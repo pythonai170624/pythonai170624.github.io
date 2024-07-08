@@ -14,7 +14,7 @@
             flex-direction: column;
             align-items: center;
         }
-        .diagram, .code {
+        .diagram, .code, .description {
             margin: 20px;
             border: 1px solid #ccc;
             padding: 10px;
@@ -28,6 +28,9 @@
             margin-right: auto;
             max-width: 100%;
             height: auto;
+        }
+        .description {
+            background-color: #e0f7fa;
         }
         h2 {
             text-align: center;
@@ -54,10 +57,11 @@ y: int = int(input("what is y?"))
 print("x * y =", x * y)
 
 # End
-
-# This program multiplies two integers input by the user and prints the result.
                 </code>
             </pre>
+        </div>
+        <div class="description">
+            <p>This program multiplies two integers input by the user and prints the result.</p>
         </div>
 
         <h2>diff floats</h2>
@@ -75,10 +79,11 @@ y: float = float(input("what is y?"))
 print("x - y =", x - y)
 
 # End
-
-# This program subtracts the second float input by the user from the first and prints the result.
                 </code>
             </pre>
+        </div>
+        <div class="description">
+            <p>This program subtracts the second float input by the user from the first and prints the result.</p>
         </div>
 
         <h2>string concat</h2>
@@ -96,10 +101,11 @@ lname: str = input("what is your last-name?")
 print(fname + " " + lname + ".")
 
 # End
-
-# This program concatenates the user's first name and last name, adding a space in between, and prints the result.
                 </code>
             </pre>
+        </div>
+        <div class="description">
+            <p>This program concatenates the user's first name and last name, adding a space in between, and prints the result.</p>
         </div>
 
         <h2>if-else</h2>
@@ -110,7 +116,7 @@ print(fname + " " + lname + ".")
             <h3>Python Program</h3>
             <pre>
                 <code>
-## start
+## Start
 
 x: float = float(input("enter a number:"))
 
@@ -118,13 +124,14 @@ if x > 0:
     print("Positive")
     #if you want to write nothing -- pass
 else:
-   print ("Negative or zero")
+    print("Negative or zero")
 
-## end
-
-# This program checks if the number input by the user is positive, negative, or zero, and prints the corresponding message.
+## End
                 </code>
             </pre>
+        </div>
+        <div class="description">
+            <p>This program checks if the number input by the user is positive, negative, or zero, and prints the corresponding message.</p>
         </div>
 
         <h2>if-else-pass-const</h2>
@@ -144,11 +151,9 @@ if pwd == "python1234":
 else:
     print("wrong! out you go ...");
 
-## end
+## End
 
-# This program checks if the input password matches "python1234" and prints a corresponding message.
-
-######## Bonus:
+# Bonus:
 
 ## Tip: look at this way of checking--
 
@@ -157,10 +162,12 @@ if not (pwd == PASSWORD):
     print("correct! you are in!");
 else:
     print("wrong! out you go ...");
-
-# This is an alternative way to check the password, where the correct and wrong messages are swapped due to the 'not' operator.
                 </code>
             </pre>
+        </div>
+        <div class="description">
+            <p>This program checks if the input password matches "python1234" and prints a corresponding message.</p>
+            <p>Bonus: An alternative way to check the password, where the correct and wrong messages are swapped due to the 'not' operator.</p>
         </div>
     </div>
 </body>
