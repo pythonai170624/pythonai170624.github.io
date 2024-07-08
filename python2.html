@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Diagrams and Programs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .diagram, .code {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #f9f9f9;
+        }
+        .diagram img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pytho lesson 2:</h1>
+
+        <h2>Diagram 6</h2>
+        <div class="diagram">
+            <img src="ai_6.drawio.png" alt="Diagram 6">
+        </div>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Start
+
+x: int = int(input("what is x?"))
+y: int = int(input("what is y?"))
+print("x * y =", x * y)
+
+# End
+                </code>
+            </pre>
+        </div>
+
+        <h2>Diagram 7</h2>
+        <div class="diagram">
+            <img src="ai_7.drawio.png" alt="Diagram 7">
+        </div>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Start
+
+x: float = float(input("what is x?"))
+y: float = float(input("what is y?"))
+print("x - y =", x - y)
+
+# End
+                </code>
+            </pre>
+        </div>
+
+        <h2>Diagram 8</h2>
+        <div class="diagram">
+            <img src="ai_8.drawio.png" alt="Diagram 8">
+        </div>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Start
+
+fname: str = input("what is your first-name?")
+lname: str = input("what is your last-name?")
+print(fname + " " + lname + ".")
+
+# End
+                </code>
+            </pre>
+        </div>
+
+        <h2>Diagram 9</h2>
+        <div class="diagram">
+            <img src="ai_9.drawio.png" alt="Diagram 9">
+        </div>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+## start
+
+x: float = float(input("enter a number:"))
+
+if x > 0:
+    print("Positive")
+    #if you want to write nothing -- pass
+else:
+   print ("Negative or zero")
+
+## end
+                </code>
+            </pre>
+        </div>
+
+        <h2>Diagram 10</h2>
+        <div class="diagram">
+            <img src="ai_10.drawio.png" alt="Diagram 10">
+        </div>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+## Start
+
+pwd: str = input("what's the password?");
+
+if pwd == "python1234":
+    print("correct! you are in!");
+else:
+    print("wrong! out you go ...");
+
+## end
+
+######## Bonus:
+
+## Tip: look at this way of checking--
+
+PASSWORD: str = "python1234"
+if not (pwd == PASSWORD):
+    print("correct! you are in!");
+else:
+    print("wrong! out you go ...");
+
+                </code>
+            </pre>
+        </div>
+    </div>
+</body>
+</html>
