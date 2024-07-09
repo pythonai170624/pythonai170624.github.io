@@ -14,13 +14,19 @@
             flex-direction: column;
             align-items: center;
         }
-        .code {
+        .code, .demo {
             margin: 20px;
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 8px;
             width: 80%;
+        }
+        .code {
             background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
         }
         .summary {
             margin: 20px;
@@ -76,6 +82,25 @@ print(f"{point_name}({x}, {y})");
                 </code>
             </pre>
         </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+what's your first name? Alice
+what's your last name? Johnson
+what's your age? 29
+Your name is Alice Johnson your age is: 29.0
+Your name is Alice Johnson your age is: 29.0
+first number? 8
+second number? 5
+The numbers in ascending order: 5, 8
+what's the point name? Point A
+what's the point x value? 3.5
+what's the point y value? 4.2
+Point A(3.5, 4.2)
+                </code>
+            </pre>
+        </div>
         <div class="summary">
             <p>This program demonstrates the use of formatted string literals (f-strings) in Python for various input and output operations, including user name and age, comparing two numbers, and representing a point with x and y coordinates.</p>
         </div>
@@ -111,6 +136,21 @@ print(f"percentage: {prc:%}");
                 </code>
             </pre>
         </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Pi: 3.14159
+Pi: 3.14
+Name: Alice 30
+Name: Laura Croft 27
+Name: Alice       30
+Name: Alice      30  
+Name: Laura Croft 27
+percentage: 50.000000%
+                </code>
+            </pre>
+        </div>
         <div class="summary">
             <p>This program illustrates advanced formatted printing techniques in Python, including formatting floats to specific decimal places, aligning strings, and printing percentages.</p>
         </div>
@@ -141,6 +181,17 @@ else:
 
 # Print goodbye message
 print("Goodbye!")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+enter number: 5
+5 is Positive
+5 is Positive
+Goodbye!
                 </code>
             </pre>
         </div>
@@ -200,6 +251,21 @@ else:
                 </code>
             </pre>
         </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+what's your age? 25
+what's your balance? 120000
+you are qualified for the program
+you are qualified for the program
+you are qualified for the program
+you are qualified for the program
+you are qualified for the program
+always
+                </code>
+            </pre>
+        </div>
         <div class="summary">
             <p>This program demonstrates different ways to check whether a user qualifies for a program based on age and balance using various conditional statements in Python.</p>
         </div>
@@ -251,6 +317,16 @@ match day:
                 </code>
             </pre>
         </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Enter a day and get it in a string (1-7): 3
+Tuesday
+Tuesday
+                </code>
+            </pre>
+        </div>
         <div class="summary">
             <p>This program takes a number representing a day of the week and prints the corresponding day name using both if-elif-else statements and the match-case construct.</p>
         </div>
@@ -298,6 +374,16 @@ match card_id:
                 </code>
             </pre>
         </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Enter a card number (2-14): 12
+Q
+Q
+                </code>
+            </pre>
+        </div>
         <div class="summary">
             <p>This program maps card IDs to their corresponding card names using the match-case construct, demonstrating pattern matching with multiple cases.</p>
         </div>
@@ -319,6 +405,17 @@ if number % 2 == 0: # is the remainder when divided by 2 equal to 0?
     print(f"{number} is Zugi even");
 else:
     print(f"{number} is E-Zugi odd");
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Give me a number? 10
+10 / 2 = 5.0
+10 % 2 = 0
+10 is Zugi even
                 </code>
             </pre>
         </div>
