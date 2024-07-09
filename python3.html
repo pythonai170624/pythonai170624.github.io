@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #f9f9f9;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>printf basics</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Get user's first name
+fname: str = input("what's your first name?");
+
+# Get user's last name
+lname: str = input("what's your last name?");
+
+# Get user's age
+age: float = float(input("what's your age?"));
+
+# Print user information
+print("Your name is ", fname, lname, "your age is:", age);
+
+# Print user information using formatted string
+print(f"Your name is {fname} {lname} your age is: {age}");
+
+# Get two numbers and print them in ascending order
+x: int = int(input("first number? "))
+y: int = int(input("second number? "))
+if x > y:
+    print(f"The numbers in ascending order: {y}, {x}")
+else:
+    print(f"The numbers in ascending order: {x}, {y}")
+
+# Get point name and coordinates, then print them
+point_name: str = input("what's the point name?");
+x: float = float(input("what's the point x value?"));
+y: float = float(input("what's the point y value?"));
+print(f"{point_name}({x}, {y})");
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of formatted string literals (f-strings) in Python for various input and output operations, including user name and age, comparing two numbers, and representing a point with x and y coordinates.</p>
+        </div>
+
+        <h2>printf -- more</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Define the value of Pi
+pi: float = 3.14159;
+
+# Print the value of Pi with default and two decimal places
+print(f"Pi: {pi}");
+print(f"Pi: {pi:.2f}");
+
+# Define names and ages
+name1: str = "Alice";
+age1: int = 30;
+name2: str = "Laura Croft";
+age2: int = 27;
+
+# Print names and ages with different alignments
+print(f"Name: {name1} {age1}")
+print(f"Name: {name2} {age2}")
+print(f"Name: {name1:<11} {age1:>4}")
+print(f"Name: {name1:<11} {age1:^5}")
+print(f"Name: {name2:<11} {age2}")
+
+# Define and print a percentage
+prc: float = 0.5;
+print(f"percentage: {prc:%}");
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program illustrates advanced formatted printing techniques in Python, including formatting floats to specific decimal places, aligning strings, and printing percentages.</p>
+        </div>
+
+        <h2>if else elif</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Read number from user
+number: int = int(input("enter number:"));
+
+# Check if the number is positive, negative, or zero
+if number > 0:
+    print(f"{number} is Positive");
+elif number < 0:
+    print(f"{number} is Negative");
+else:
+    print(f"{number} is Zero");
+
+# Another way to check if the number is zero, positive, or negative
+if number == 0:
+    print(f"{number} is Zero");
+elif number > 0:
+    print(f"{number} is Positive");
+else:
+    print(f"{number} is Negative");
+
+# Print goodbye message
+print("Goodbye!")
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program takes a number as input from the user and checks whether the number is positive, negative, or zero using if-elif-else statements. It also prints a farewell message.</p>
+        </div>
+
+        <h2>if __ and __ or</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# We require age bigger than 18 and more than 100,000 balance
+age: int = int(input("what's your age?"));
+balance: int = int(input("what's your balance?"));
+
+# Easiest way using short-circuit logic
+if age > 18 and balance > 100_000:
+    print("you are qualified for the program");
+else:
+    print("you are NOT qualified for the program");
+
+# Nested if to check age and balance
+if age > 18:
+    if balance > 100_000:
+        print("you are qualified for the program");
+    else:
+        print("you are NOT qualified for the program");
+else:
+    print("you are NOT qualified for the program");
+
+# Check the same but with not
+if not age <= 18 and not balance <= 100_000:
+    print("you are qualified for the program");
+else:
+    print("you are NOT qualified for the program");
+
+# Using or instead of and
+if age <= 18 or balance <= 100_000:
+    print("you are NOT qualified for the program");
+else:
+    print("you are qualified for the program");
+
+# Solving with elif
+if age > 18 and balance <= 100_000:
+    print("you are NOT qualified for the program due to your balance");
+elif balance > 100_000 and age <= 18:
+    print("you are NOT qualified for the program due to your age");
+else:
+    print("you are qualified for the program");
+
+if age >= 18 or age < 18:
+    print("always")
+else:
+    # will never reach here
+    print("not always")
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates different ways to check whether a user qualifies for a program based on age and balance using various conditional statements in Python.</p>
+        </div>
+
+        <h2>match case</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Get day of the week as a number
+day: int = int(input("Enter a day and get it in a string (1-7):"))
+
+# Using if-elif-else to match day to its name
+if day == 1:
+    print("Sunday");
+elif day == 2:
+    print("Monday");
+elif day == 3:
+    print("Tuesday");
+elif day == 4:
+    print("Wednesday");
+elif day == 5:
+    print("Thursday");
+elif day == 6:
+    print("Friday");
+elif day == 7:
+    print("Saturday");
+else:
+    print("Invalid day.");
+
+# Using match-case to match day to its name
+match day:
+    case 1:
+        print("Sunday");
+    case 2:
+        print("Monday");
+    case 3:
+        print("Tuesday");
+    case 4:
+        print("Wednesday");
+    case 5:
+        print("Thursday");
+    case 6:
+        print("Friday");
+    case 7:
+        print("Saturday");
+    case _:
+        print("Invalid day.");
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program takes a number representing a day of the week and prints the corresponding day name using both if-elif-else statements and the match-case construct.</p>
+        </div>
+
+        <h2>match case -- more</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Get card ID as a number
+card_id: int = int(input("Enter a card number (2-14):"))
+
+# Using if-else to print card name
+if card_id >= 2 and card_id <= 10:
+    print(card_id)
+else:
+    match card_id:
+        case 11:
+            print("J");
+        case 12:
+            print("Q");
+        case 13:
+            print("K");
+        case 14:
+            print("A");
+        case 15:
+            print("JOKER");
+
+# Using match-case to print card name
+match card_id:
+    case 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10:
+        print(card_id);
+    case 11:
+        print("J");
+    case 12:
+        print("Q");
+    case 13:
+        print("K");
+    case 14:
+        print("A");
+    case 15:
+        print("JOKER");
+    case _:
+        print("Invalid card");
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program maps card IDs to their corresponding card names using the match-case construct, demonstrating pattern matching with multiple cases.</p>
+        </div>
+
+        <h2>modulo and div</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Get a number from user
+number: int = int(input("Give me a number?"));
+
+# Perform division and modulo operations
+print(f"{number} / 2 = {number / 2}")
+print(f"{number} % 2 = {number % 2}")
+
+# Check if the number is even or odd using modulo operator
+if number % 2 == 0: # is the remainder when divided by 2 equal to 0?
+    print(f"{number} is Zugi even");
+else:
+    print(f"{number} is E-Zugi odd");
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of the modulo operator to determine if a number is even or odd, and prints the result accordingly.</p>
+        </div>
+
+    </div>
+</body>
+</html>
