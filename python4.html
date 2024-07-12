@@ -91,10 +91,11 @@ if 1:  # will always happen
     print("always happens")
 
 num: int = int(input("Please enter a number: "))
-# ternary condition
-print(("NOT " if not num % 7 == 0 else "") + "seven boom")
-print(f"{'NOT ' if not num % 7 == 0 else ''}seven boom")
-print(f"{'NOT ' if num % 7 else ''}seven boom")
+            
+# ternary condition -- the shortest way !!!
+print(f"{'NOT ' if not num % 7 else ''}seven boom")
+
+# the { } can contain any calculation or expression
 print(f"{2 + 2}")
 
 y: int = 1
@@ -115,9 +116,7 @@ if num % 3 == 0:  # if divisible by 3
         <h3>Run Demo</h3>
         <pre>
 Please enter a number: 21
-NOT seven boom
-NOT seven boom
-NOT seven boom
+seven boom
 4
 Fizz 
 Buzz
