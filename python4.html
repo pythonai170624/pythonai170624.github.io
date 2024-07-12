@@ -7,45 +7,51 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 20px;
         }
-        h1, h2 {
-            color: #333;
-            text-align: center;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .code-block {
-            background-color: #f4f4f4;
-            border-left: 10px solid #ccc;
+        .diagram, .code, .description, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
             padding: 10px;
-            margin: 20px 0;
-            overflow-x: auto;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .diagram {
+            background-color: #f9f9f9;
+        }
+        .code {
+            background-color: #f4f4f4;
         }
         .demo {
             background-color: black;
             color: white;
-            padding: 10px;
-            margin: 20px 0;
-            overflow-x: auto;
         }
         .demo h3 {
             color: white;
             font-weight: bold;
         }
-        .explanation {
-            font-style: italic;
-            margin-top: 10px;
-            background-color: #e0f7fa; /* Light blue background color */
-            padding: 10px;
-            border-radius: 8px;
-        }
         .documentation {
             background-color: #f5f5dc;
             color: #333;
-            padding: 10px;
-            margin: 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+        }
+        .description {
+            background-color: #e0f7fa; /* Light blue background color */
+        }
+        .diagram img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
         }
         a {
             color: #1e90ff;
@@ -54,11 +60,13 @@
 </head>
 <body>
 
-<h1>Python Examples</h1>
+<div class="container">
+    <h1>Python Examples</h1>
 
-<h2>If Expression and Ternary Condition</h2>
-<div class="code-block">
-<pre>
+    <h2>If Expression and Ternary Condition</h2>
+    <div class="code">
+        <h3>Python Program</h3>
+        <pre>
 # question ? Yes = everything , No = 0, None
 number: int = 1
 if number != 0:  # beginner
@@ -101,11 +109,11 @@ if num % 5:  # if not divisible by 5
     print("Fizz", end=" ")
 if num % 3 == 0:  # if divisible by 3
     print("Buzz")
-</pre>
-</div>
-<div class="demo">
-    <h3>Run Demo</h3>
-    <pre>
+        </pre>
+    </div>
+    <div class="demo">
+        <h3>Run Demo</h3>
+        <pre>
 Please enter a number: 21
 NOT seven boom
 NOT seven boom
@@ -113,19 +121,20 @@ NOT seven boom
 4
 Fizz 
 Buzz
-    </pre>
-</div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/expressions.html#conditional-expressions" target="_blank">ternary conditions</a>.</p>
-</div>
-<div class="explanation">
-    This code demonstrates various conditional statements in Python, including the use of if-else, inline if-else, and checking conditions within print statements.
-</div>
+        </pre>
+    </div>
+    <div class="documentation">
+        <h3>Documentation</h3>
+        <p>For more information, visit the geeksforgeeks.org on <a href="https://www.geeksforgeeks.org/ternary-operator-in-python/#python-ternary-if-else" target="_blank">ternary conditions</a>.</p>
+    </div>
+    <div class="description">
+        <p>This code demonstrates various conditional statements in Python, including the use of if-else, inline if-else, and checking conditions within print statements.</p>
+    </div>
 
-<h2>Booleans</h2>
-<div class="code-block">
-<pre>
+    <h2>Booleans</h2>
+    <div class="code">
+        <h3>Python Program</h3>
+        <pre>
 x: bool = True
 y: bool = False
 
@@ -140,49 +149,54 @@ if is_balance_sufficient and is_old_enough:  # checking both conditions
 
 if not is_balance_sufficient:  # checking if balance is insufficient
     print('not enough doe in balance')
-</pre>
-</div>
-<div class="demo">
-    <h3>Run Demo</h3>
-    <pre>
+        </pre>
+    </div>
+    <div class="demo">
+        <h3>Run Demo</h3>
+        <pre>
 not enough doe in balance
-    </pre>
-</div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/library/stdtypes.html#boolean-type-bool" target="_blank">boolean type</a>.</p>
-</div>
-<div class="explanation">
-    This code shows how to use boolean variables in Python, including simple conditional checks and combining conditions using logical operators.
-</div>
+        </pre>
+    </div>
+    <div class="documentation">
+        <h3>Documentation</h3>
+        <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/library/stdtypes.html#boolean-type-bool" target="_blank">boolean type</a>.</p>
+    </div>
+    <div class="description">
+        <p>This code shows how to use boolean variables in Python, including simple conditional checks and combining conditions using logical operators.</p>
+    </div>
 
-<h2>While Loop</h2>
-<div class="code-block">
-<pre>
+    <h2>While Loop</h2>
+    <div class="diagram">
+        <img src="while1.drawio.png" alt="while1.drawio.png">
+    </div>
+    <div class="code">
+        <h3>Python Program</h3>
+        <pre>
 x: int = 1
 while x < 20:  # condition is tested before entering 1st cycle
     print(x, end=" ")
     x = x + 1  # increment x by 1
 print('finish')  # loop finished
-</pre>
-</div>
-<div class="demo">
-    <h3>Run Demo</h3>
-    <pre>
+        </pre>
+    </div>
+    <div class="demo">
+        <h3>Run Demo</h3>
+        <pre>
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 finish
-    </pre>
-</div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
-</div>
-<div class="explanation">
-    This code snippet demonstrates a basic while loop that prints numbers from 1 to 19.
-</div>
+        </pre>
+    </div>
+    <div class="documentation">
+        <h3>Documentation</h3>
+        <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
+    </div>
+    <div class="description">
+        <p>This code snippet demonstrates a basic while loop that prints numbers from 1 to 19.</p>
+    </div>
 
-<h2>Do While</h2>
-<div class="code-block">
-<pre>
+    <h2>Do While</h2>
+    <div class="code">
+        <h3>Python Program</h3>
+        <pre>
 # input 3 numbers in a loop a, b, c until a * 2 + b > c - 1
 a: int
 b: int
@@ -214,11 +228,11 @@ avg: float = total / number_of_products
 print(f"you bought {number_of_products} products.")
 print(f"the avg is: {avg}.")
 print(f"you exceed the 1,000 by {diff}")
-</pre>
-</div>
-<div class="demo">
-    <h3>Run Demo</h3>
-    <pre>
+        </pre>
+    </div>
+    <div class="demo">
+        <h3>Run Demo</h3>
+        <pre>
 enter a: 2
 enter b: 3
 enter c: 4
@@ -233,19 +247,20 @@ enter product price: 600
 you bought 2 products.
 the avg is: 550.0.
 you exceed the 1,000 by 100.0
-    </pre>
-</div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
-</div>
-<div class="explanation">
-    This code includes a "do-while" like loop implemented in Python using a while loop with a break condition. It handles both a general condition check loop and a product price accumulation loop.
-</div>
+        </pre>
+    </div>
+    <div class="documentation">
+        <h3>Documentation</h3>
+        <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
+    </div>
+    <div class="description">
+        <p>This code includes a "do-while" like loop implemented in Python using a while loop with a break condition. It handles both a general condition check loop and a product price accumulation loop.</p>
+    </div>
 
-<h2>For and Foreach Loop</h2>
-<div class="code-block">
-<pre>
+    <h2>For and Foreach Loop</h2>
+    <div class="code">
+        <h3>Python Program</h3>
+        <pre>
 for i in range(1, 11):
     print(i, end=" ")
 
@@ -271,11 +286,11 @@ print()
 # simple loop from 1 to 19
 for i in range(1, 20, 1):
     print(i, end=" ")
-</pre>
-</div>
-<div class="demo">
-    <h3>Run Demo</h3>
-    <pre>
+        </pre>
+    </div>
+    <div class="demo">
+        <h3>Run Demo</h3>
+        <pre>
 1 2 3 4 5 6 7 8 9 10 
 enter price: 200
 enter price: 300
@@ -285,14 +300,16 @@ Hello
 1 3 5 7 9 11 13 15 17 19 
 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
-    </pre>
-</div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank">for loops</a>.</p>
-</div>
-<div class="explanation">
-    This code demonstrates various uses of the for loop in Python, including simple iteration, early termination with break, and iterating over strings and ranges with different steps.
+        </pre>
+    </div>
+    <div class="documentation">
+        <h3>Documentation</h3>
+        <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank">for loops</a>.</p>
+    </div>
+    <div class="description">
+        <p>This code demonstrates various uses of the for loop in Python, including simple iteration, early termination with break, and iterating over strings and ranges with different steps.</p>
+    </div>
+
 </div>
 
 </body>
