@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 10px solid #ccc;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .demo h3 {
+            color: white;
+            font-weight: bold;
+        }
+        .explanation {
+            font-style: italic;
+            margin-top: 10px;
+            background-color: #e0f7fa; /* Light blue background color */
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Python Examples</h1>
+
+<h2>If Expression and Ternary Condition</h2>
+<div class="code-block">
+<pre>
+# question ? Yes = everything , No = 0, None
+number: int = 1
+if number != 0:  # beginner
+    print("Number different than 0")
+
+if number:  # pro
+    print("Number different than 0")
+
+if 0:  # will never happen
+    print("never happens")
+if 1:  # will always happen
+    print("always happens")
+
+if not number % 7:  # checking if number is divisible by 7
+    print('number divided by 7 no sheerit')
+
+if "":  # will never happen
+    print('never happens')
+if "a":  # will always happen
+    print('always happens')
+if 1:  # will always happen
+    print("always happens")
+
+num: int = int(input("Please enter a number: "))
+# ternary condition
+print(("NOT " if not num % 7 == 0 else "") + "seven boom")
+print(f"{'NOT ' if not num % 7 == 0 else ''}seven boom")
+print(f"{'NOT ' if num % 7 else ''}seven boom")
+print(f"{2 + 2}")
+
+y: int = 1
+if y > 3:
+    x = 2
+else:
+    x = 5
+# ternary condition
+x: int = 2 if y > 3 else 5
+
+if num % 5:  # if not divisible by 5
+    print("Fizz", end=" ")
+if num % 3 == 0:  # if divisible by 3
+    print("Buzz")
+</pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+Please enter a number: 21
+NOT seven boom
+NOT seven boom
+NOT seven boom
+4
+Fizz 
+Buzz
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/expressions.html#conditional-expressions" target="_blank">ternary conditions</a>.</p>
+</div>
+<div class="explanation">
+    This code demonstrates various conditional statements in Python, including the use of if-else, inline if-else, and checking conditions within print statements.
+</div>
+
+<h2>Booleans</h2>
+<div class="code-block">
+<pre>
+x: bool = True
+y: bool = False
+
+balance: int = 100_000
+age: int = 19
+
+is_balance_sufficient: bool = balance * 1.98 + 2000 > 200_000
+is_old_enough: bool = age > 18
+
+if is_balance_sufficient and is_old_enough:  # checking both conditions
+    print('you can join!')
+
+if not is_balance_sufficient:  # checking if balance is insufficient
+    print('not enough doe in balance')
+</pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+not enough doe in balance
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/library/stdtypes.html#boolean-type-bool" target="_blank">boolean type</a>.</p>
+</div>
+<div class="explanation">
+    This code shows how to use boolean variables in Python, including simple conditional checks and combining conditions using logical operators.
+</div>
+
+<h2>While Loop</h2>
+<div class="code-block">
+<pre>
+x: int = 1
+while x < 20:  # condition is tested before entering 1st cycle
+    print(x, end=" ")
+    x = x + 1  # increment x by 1
+print('finish')  # loop finished
+</pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 finish
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
+</div>
+<div class="explanation">
+    This code snippet demonstrates a basic while loop that prints numbers from 1 to 19.
+</div>
+
+<h2>Do While</h2>
+<div class="code-block">
+<pre>
+# input 3 numbers in a loop a, b, c until a * 2 + b > c - 1
+a: int
+b: int
+c: int = 0
+
+while True:
+    a = float(input('enter a: '))
+    b = float(input('enter b: '))
+    c = float(input('enter c: '))
+    print(f"a: {a} b: {b} c: {c}")
+    if a * 2 + b <= c - 1:  # break condition
+        break
+
+print('finish')  # loop finished
+
+price: int = 0
+total: int = 0
+number_of_products: int = 0
+
+while True:
+    price = float(input('enter product price: '))
+    total = total + price
+    number_of_products = number_of_products + 1
+    if total > 1000:  # break condition
+        break
+
+diff: float = total - 1_000
+avg: float = total / number_of_products
+print(f"you bought {number_of_products} products.")
+print(f"the avg is: {avg}.")
+print(f"you exceed the 1,000 by {diff}")
+</pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+enter a: 2
+enter b: 3
+enter c: 4
+a: 2.0 b: 3.0 c: 4.0
+enter a: 1
+enter b: 1
+enter c: 2
+a: 1.0 b: 1.0 c: 2.0
+finish
+enter product price: 500
+enter product price: 600
+you bought 2 products.
+the avg is: 550.0.
+you exceed the 1,000 by 100.0
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank">while loops</a>.</p>
+</div>
+<div class="explanation">
+    This code includes a "do-while" like loop implemented in Python using a while loop with a break condition. It handles both a general condition check loop and a product price accumulation loop.
+</div>
+
+<h2>For and Foreach Loop</h2>
+<div class="code-block">
+<pre>
+for i in range(1, 11):
+    print(i, end=" ")
+
+total: int = 0
+for i in range(1, 11):  # loop from 1 to 10
+    price: int = int(input('enter price: '))
+    total = total + price
+    if total > 1000:  # break condition
+        break
+
+# for-each loop over a string
+for c in "Hello":
+    print(c, end="")
+print()
+# loop with step 2
+for i in range(1, 20, 2):
+    print(i, end=" ")
+print()
+# loop with negative step
+for i in range(20, 1, -1):
+    print(i, end=" ")
+print()
+# simple loop from 1 to 19
+for i in range(1, 20, 1):
+    print(i, end=" ")
+</pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+1 2 3 4 5 6 7 8 9 10 
+enter price: 200
+enter price: 300
+enter price: 400
+enter price: 200
+Hello
+1 3 5 7 9 11 13 15 17 19 
+20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank">for loops</a>.</p>
+</div>
+<div class="explanation">
+    This code demonstrates various uses of the for loop in Python, including simple iteration, early termination with break, and iterating over strings and ranges with different steps.
+</div>
+
+</body>
+</html>
