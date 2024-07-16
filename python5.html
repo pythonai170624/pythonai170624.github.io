@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>while-break-continue</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# input grades from the user
+# until got grade 999
+# if the user miswritten grade not between 0-100 then ignore
+
+grade: int = 0
+the_sum: int = 0
+count: int = 0
+while True:
+    grade = int(input('Enter grade:'))
+    if grade == 999:
+        break
+    if grade < 0 or grade > 100:
+        continue  # jump to While (True)
+    the_sum += grade
+    count += 1
+
+print(f"the avg is {the_sum / count:.2f}")
+
+# print all the numbers between 1-100, don't print numbers which are multiple of 7
+# sum all of the numbers (which are not multiple of 7) and print it
+
+total: int = 0
+for i in range(1, 101):
+    if i % 7 == 0:
+        continue
+    if i % 40 == 0:
+        print()
+    print(i, end=" ")
+    total += i
+print()
+print(f"total = {total}")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Enter grade: 80
+Enter grade: 90
+Enter grade: 999
+the avg is 85.00
+1 2 3 4 5 6 8 9 10 11 12 13 15 16 17 18 19 20 22 23 24 25 26 29 30 31 32 33 34 36 37 38 39 43 44 45 46 48 49 50 51 52 53 55 56 57 58 59 60 62 63 64 65 66 68 69 70 71 72 73 75 76 77 78 79 80 82 83 84 85 86 88 89 90 91 92 93 95 96 97 98 99 100 
+total = 4851
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-continue-statement/" target="_blank">continue</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of the continue statement to skip certain iterations in a loop, and how to calculate the average of user-input grades while ignoring invalid inputs.</p>
+        </div>
+
+        <h2>for-else</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# input 10 numbers from the user
+# if the user entered 10 numbers then print the avg
+# if the user wants to cancel he shall input the number -999
+
+the_sum: int = 0
+number: int = 0
+for i in range(1, 11):
+    number = int(input('enter number: '))
+    if number == -999:
+        break  # exit the loop
+    the_sum += number
+else:
+    # code that will run only if Break did not happen
+    # break did NOT happen
+    print('all 10 numbers were inserted')
+    avg: float = the_sum / 10
+    print(f"the avg is: {avg: .2f}")
+
+# jump point
+print('finish')
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+enter number: 10
+enter number: 20
+enter number: 30
+enter number: 40
+enter number: 50
+enter number: 60
+enter number: 70
+enter number: 80
+enter number: 90
+enter number: 100
+all 10 numbers were inserted
+the avg is:  55.00
+finish
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops" target="_blank">loops with else</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of the else clause in loops, which executes a block of code if the loop completes without encountering a break statement.</p>
+        </div>
+
+        <h2>randoms</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# print 6 random numbers between 1-45
+
+import random  # bring this module into my program
+
+for i in range(1, 7):
+    rnd: int = random.randint(1, 45)  # random between 1-45 (include 45)
+    print(rnd, end=" ")
+
+# nosaf
+print()
+nosaf: int = random.randint(1, 6)  # random between 1-6
+print(f'mispar nosaf = {nosaf}')
+
+random_bool: bool = random.choice([True, False])
+random_name: str = random.choice(["Danny", "Yossi", "Shlomi"])
+
+# run it in a loop until the user answers correctly..
+# random an int number between 1-100 (num1) 40
+# random a second int number between 1-100 (num2) 100
+# print an exercise num1 + num2 = ?
+# ask input from the user
+# check if the user answered correctly
+
+number1: int = random.randint(1, 100)  # random number between 1-100
+number2: int = random.randint(1, 100)  # random number between 1-100
+print(f"{number1} + {number2} = ?")
+correct_result: int = number1 + number2
+while True:
+    user_answer: int = int(input("What's the result?"))
+    if user_answer == correct_result:
+        break
+    else:
+        print(f"Wrong. the answer is not {user_answer}. the correct answer is {correct_result}")
+
+print(f"Correct! the answer is {correct_result}")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+6 17 33 42 29 5 
+mispar nosaf = 4
+54 + 23 = ?
+What's the result? 77
+Correct! the answer is 77
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/library/random.html" target="_blank">random</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates how to generate random numbers using the random module in Python. It also includes an interactive math exercise that repeatedly prompts the user until they provide the correct answer.</p>
+        </div>
+
+        <h2>loops with None</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# input numbers from the user
+# print the max number of the input
+# exit the loop with -999
+
+number: int = 0
+the_max: int = None
+the_min: int = None
+while True:
+    number = int(input('Enter number [-999 to exit]:'))
+    if number == -999:
+        break
+
+    '''#################################### MAX ############################'''
+    '''############# way 1'''
+    if the_max == None or number > the_max:
+        the_max = number
+
+    '''############# way 2'''
+    if not the_max or number > the_max:
+        the_max = number
+
+    '''############# way 3'''
+    the_max = number if not the_max or number > the_max else the_max;
+
+    '''#################################### MIN ############################'''
+    '''############# way 1'''
+    if the_min == None or number < the_min:
+        the_min = number
+
+    '''############# way 2'''
+    if not the_min or number < the_min:
+        the_min = number
+
+    '''############# way 3'''
+    the_min = number if not the_min or number < the_min else the_min;
+
+print(f"the min number is {the_min}")
+print(f"the max number is {the_max}")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Enter number [-999 to exit]: 20
+Enter number [-999 to exit]: 50
+Enter number [-999 to exit]: 10
+Enter number [-999 to exit]: 30
+Enter number [-999 to exit]: -999
+the min number is 10
+the max number is 50
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-none-keyword/" target="_blank">None type</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program takes user input and determines the maximum and minimum numbers entered, using various approaches to compare values. The loop continues until the user inputs -999.</p>
+        </div>
+
+        <h2>nested loops</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# nested loop: it's a loop inside a loop
+number: int = 1
+
+# will run 3 x 5 = 15 times
+for j in range(1, 4):  # 3
+    for i in range(1, 6):  # 5
+        print(number, end=" ")
+        number += 1
+    print()
+
+# input number from user, i.e. 5
+# 1
+# 12
+# 123
+# 1234
+# 12345
+
+number: int = 9;
+for i in range(1, number + 1):  # 1 2 3 4 5
+    for j in range(1, i + 1):  # 1..1 1..2 1..3 1..4 1..5
+        print(j, end="")
+    print()
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+1 2 3 4 5 
+6 7 8 9 10 
+11 12 13 14 15 
+
+1
+12
+123
+1234
+12345
+123456
+1234567
+12345678
+123456789
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-nested-loops/" target="_blank">nested loops</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of nested loops to print sequences of numbers in various patterns, including a simple grid and a triangular number pattern.</p>
+        </div>
+
+        <h2>lists</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+grade1: int = 100
+grade2: int = 99
+#.. 100... 1000
+
+#                      0   1   2
+grades: list[int] = [100, 92, 97]  # () {}
+names: list[str] = ["danny", "moshe", "suzi"]
+flags: list[bool] = [True, False, True, True]
+points: list[float] = [1.99, 2.99, 0.001]
+#   len = 5
+#   0    1   2   3   4 (len-1)
+# [99, 100, 92, 97, 88]
+print(grades)
+grades.append(88)
+grades.insert(0, 99)
+print(grades)
+print(len(grades))
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+[100, 92, 97]
+[99, 100, 92, 97, 88]
+5
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/datastructures.html" target="_blank">list data structures</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the creation and manipulation of lists in Python, including adding elements and determining the length of a list.</p>
+        </div>
+    </div>
+</body>
+</html>
