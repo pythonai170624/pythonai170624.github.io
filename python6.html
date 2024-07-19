@@ -98,7 +98,12 @@ while True:
 print(grades)
 print(f"max(grades) = {max(grades)}")
 print(f"min(grades) = {min(grades)}")
+print(f"sum(grades) = {sum(grades)}")
+print(f"len(grades) = {len(grades)}")
 print(f"avg(grades) = {sum(grades) / len(grades) : .2f}")
+
+import statistics
+print(f"statistics.mean(grades) = {statistics.mean(grades) : .2f}")
             </code></pre>
         </div>
         <div class="demo">
@@ -120,12 +125,15 @@ enter grade [-999 to exit]:-999
 [85, 92, 77]
 max(grades) = 92
 min(grades) = 77
+sum(grades) = 254
+len(grades) = 3
 avg(grades) =  84.67
+statistics.mean(grades) = 84.67
             </code></pre>
         </div>
         <div class="documentation">
             <h3>Documentation</h3>
-            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists" target="_blank">Python Documentation</a>. and also <a href="https://www.geeksforgeeks.org/python-list/" target="_blank">GeeksforGeeks</a>.</p>
+            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists" target="_blank">Python Documentation</a> and also <a href="https://www.geeksforgeeks.org/python-list/" target="_blank">GeeksforGeeks</a>.</p>
         </div>
         <div class="summary">
             <p>This program demonstrates various list operations such as indexing, slicing, updating, and inputting values from the user.</p>
@@ -161,12 +169,19 @@ print('after pop [1]', numbers)
 del numbers[1]
 print('after remove item index 1', numbers)
 
+# Remove all occurrence of 99
+while 99 in numbers:
+    numbers.remove(99)
+
 # Clear all items
 numbers.clear()
 print('after clear', numbers)
 
-# Extend and count
-numbers.extend([10, 2, -1, 4, 4, 4])
+numbers.extend([10, 2, -1, 4])
+print('after extend', numbers)
+print('numbers.index(-1)', numbers.index(-1))
+
+numbers.extend([4, 4, 4, 4, -9, 12, 4])
 print('after extend', numbers)
 print('numbers.count(4)', numbers.count(4))
 
@@ -176,6 +191,32 @@ clone.sort()
 print('after sort [clone]', clone)
 clone.sort(reverse=True)
 print('after sort reverse [clone]', clone)
+
+# Sorted does not change the list
+print('after sorted', sorted(numbers))
+print('after sorted reverse', sorted(numbers, reverse=True))
+print('after list + reversed', list(reversed(numbers)))  # iterator
+
+print(numbers)
+
+# Boolean operations on lists
+bool1: list[bool] = [True, True, True]
+bool2: list[bool] = [True, True, False]
+bool3: list[int] = [20, 0, 300, 100, 100]
+print('all bool1', bool1, all(bool1))  # True
+print('all bool2', bool2, all(bool2))  # False
+print('all bool3', bool3, all(bool3))  # False
+
+bool1: list[bool] = [True, True, True]
+bool2: list[bool] = [True, True, False]
+bool3: list[int] = [20, 0, 300, 100, 100]
+bool4: list[bool] = [False, False]
+bool5: list[int] = [0, 0, 0, 0, 0]
+print('any bool1', bool1, any(bool1))  # True
+print('any bool2', bool2, any(bool2))  # True
+print('any bool3', bool3, any(bool3))  # True
+print('any bool4', bool4, any(bool4))  # False
+print('any bool5', bool5, any(bool5))  # False
             </code></pre>
         </div>
         <div class="demo">
@@ -189,11 +230,29 @@ pop index [1] == 2
 after pop [1] [10, -1, 4]
 after remove item index 1 [10, 4]
 after clear []
-after extend [10, 2, -1, 4, 4, 4]
-numbers.count(4) 3
-after sort [clone] [-1, 2, 4, 4, 4, 10]
-after sort reverse [clone] [10, 4, 4, 4, 2, -1]
+after extend [10, 2, -1, 4]
+numbers.index(-1) 2
+after extend [10, 2, -1, 4, 4, 4, 4, -9, 12, 4]
+numbers.count(4) 5
+after sort [clone] [-9, -1, 2, 4, 4, 4, 4, 4, 10, 12]
+after sort reverse [clone] [12, 10, 4, 4, 4, 4, 4, 2, -1, -9]
+after sorted [-9, -1, 2, 4, 4, 4, 4, 4, 10, 12]
+after sorted reverse [12, 10, 4, 4, 4, 4, 4, 2, -1, -9]
+after list + reversed [12, 10, 4, 4, 4, 4, 4, 2, -1, -9]
+[10, 2, -1, 4, 4, 4, 4, -9, 12, 4]
+all bool1 [True, True, True] True
+all bool2 [True, True, False] False
+all bool3 [20, 0, 300, 100, 100] False
+any bool1 [True, True, True] True
+any bool2 [True, True, False] True
+any bool3 [20, 0, 300, 100, 100] True
+any bool4 [False, False] False
+any bool5 [0, 0, 0, 0, 0] False
             </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists" target="_blank">Python Documentation</a> or <a href="https://www.geeksforgeeks.org/python-list/" target="_blank">GeeksforGeeks</a>.</p>
         </div>
         <div class="summary">
             <p>This program demonstrates additional list operations including extending, removing, popping, clearing, counting, sorting, and reversing lists.</p>
@@ -316,9 +375,7 @@ finish
 number: int = 15
 space: int = number // 2
 for i in range(1, number + 1, 2):
-    # short
-    # print(space * " ", end="")
-    # loop solution
+    print(space * " ", end="")
     for j in range(1, i + 1):
         print("*", end="")
     print()
@@ -344,9 +401,6 @@ for i in range(1, number + 1, 2):
         <div class="summary">
             <p>This program draws a pyramid pattern of stars. The number of spaces decreases and the number of stars increases with each row to form a pyramid.</p>
         </div>
-
-
-
     </div>
 </body>
 </html>
