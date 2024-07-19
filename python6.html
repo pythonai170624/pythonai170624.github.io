@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>lists basic functions</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code>
+# Working with lists
+
+numbers: list[int] = [10, 2, -1, 4]
+print(numbers)
+print(f"numbers[0] = {numbers[0]}")  # 10
+print(f"numbers[3] = {numbers[3]}")  # 4
+
+# Iterating with index
+for i in range(0, len(numbers)):
+    print(f"numbers[{i}] = {numbers[i]}", end=" | ")
+print()
+
+# Iterating with for-each
+for number in numbers:
+    print(number, end=" ")
+print()
+
+# Slicing
+print(f"numbers[0: 3] = {numbers[0: 3]}")  # [10, 2, -1]
+print(f"numbers[:3] = {numbers[:3]}")  # [10, 2, -1]
+print(f"numbers[:] = {numbers[:]}")  # [10, 2, -1, 4]
+
+# Updating elements
+numbers[0] = 200
+print('after numbers[0] = 200', numbers)
+numbers.insert(2, 444)
+print('after numbers.insert(2, 444)', numbers)
+
+# Input grades from user until -999 is entered
+grades: list[int] = []
+while True:
+    grade: int = int(input("enter grade [-999 to exit]:"))
+    if grade == -999:
+        break
+    if grade < 0 or grade > 100:
+        continue
+    grades.append(grade)
+
+print(grades)
+print(f"max(grades) = {max(grades)}")
+print(f"min(grades) = {min(grades)}")
+print(f"avg(grades) = {sum(grades) / len(grades) : .2f}")
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>
+[10, 2, -1, 4]
+numbers[0] = 10
+numbers[3] = 4
+numbers[0] = 10 | numbers[1] = 2 | numbers[2] = -1 | numbers[3] = 4 |
+10 2 -1 4
+numbers[0: 3] = [10, 2, -1]
+numbers[:3] = [10, 2, -1]
+numbers[:] = [10, 2, -1, 4]
+after numbers[0] = 200 [200, 2, 444, -1, 4]
+enter grade [-999 to exit]:85
+enter grade [-999 to exit]:92
+enter grade [-999 to exit]:77
+enter grade [-999 to exit]:-999
+[85, 92, 77]
+max(grades) = 92
+min(grades) = 77
+avg(grades) =  84.67
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists" target="_blank">Python Documentation</a>. and also <a href="https://www.geeksforgeeks.org/python-list/" target="_blank">GeeksforGeeks</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates various list operations such as indexing, slicing, updating, and inputting values from the user.</p>
+        </div>
+
+        <h2>list functions - more</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code>
+# More list operations
+
+numbers: list[int] = [10, 2, -1, 4]
+more_numbers: list[int] = [99, -999]
+
+numbers.extend(more_numbers)  # Add list 2 to list 1
+print('after concat', numbers)
+
+# Remove first occurrence of an item
+numbers.remove(-999)
+print('after remove -999', numbers)
+
+# Pop last item
+pop: int = numbers.pop()
+print('pop last', pop)
+print('after pop', numbers)
+
+# Pop item at index 1
+pop2: int = numbers.pop(1)
+print('pop index [1] ==', pop2)
+print('after pop [1]', numbers)
+
+# Remove item at index 1
+del numbers[1]
+print('after remove item index 1', numbers)
+
+# Clear all items
+numbers.clear()
+print('after clear', numbers)
+
+# Extend and count
+numbers.extend([10, 2, -1, 4, 4, 4])
+print('after extend', numbers)
+print('numbers.count(4)', numbers.count(4))
+
+# Sort and reverse
+clone = numbers.copy()
+clone.sort()
+print('after sort [clone]', clone)
+clone.sort(reverse=True)
+print('after sort reverse [clone]', clone)
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>
+after concat [10, 2, -1, 4, 99, -999]
+after remove -999 [10, 2, -1, 4, 99]
+pop last 99
+after pop [10, 2, -1, 4]
+pop index [1] == 2
+after pop [1] [10, -1, 4]
+after remove item index 1 [10, 4]
+after clear []
+after extend [10, 2, -1, 4, 4, 4]
+numbers.count(4) 3
+after sort [clone] [-1, 2, 4, 4, 4, 10]
+after sort reverse [clone] [10, 4, 4, 4, 2, -1]
+            </code></pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates additional list operations including extending, removing, popping, clearing, counting, sorting, and reversing lists.</p>
+        </div>
+
+        <h2>comprehension</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code>
+# List comprehensions
+
+n_list: list[int] = []
+for i in range(0, 10):
+    n_list.append(i ** 2)
+print(n_list)
+
+# Using list comprehension
+n_list = [i ** 2 for i in range(0, 20)]
+print(n_list)
+
+# Comprehension to create a list of even numbers
+targil1: list[int] = [i for i in range(0, 21, 2)]
+print(targil1)
+
+# Comprehension to create a list of 10 random numbers
+import random
+targil2: list[int] = [random.randint(1, 100) for _ in range(10)]
+print(targil2)
+
+# Comprehension to create a list of 10 random even numbers
+just_random: list[int] = [random.randint(1, 100) for _ in range(10)]
+random_even: list[int] = [n for n in just_random if n % 2 == 0]
+print(random_even)
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361]
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+[42, 75, 91, 33, 77, 16, 29, 57, 36, 97]
+[16, 36]
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions" target="_blank">Python Documentation</a> or <a href="https://www.geeksforgeeks.org/python-list-comprehension/" target="_blank">GeeksforGeeks</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of list comprehensions to create lists based on existing lists or ranges, including creating lists of squares and random numbers.</p>
+        </div>
+
+        <h2>error handling</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code>
+# Error handling in Python
+
+numbers: list[int] = [1, 4, 5, 9]
+
+# Potential error
+try:
+    grade: int = int(input('Enter grade:'))
+    print('grade is ok')
+except:
+    print('something went wrong ...')
+
+# Loop until valid input
+grade: int = None
+while not grade:
+    try:
+        grade = int(input('Enter grade:'))
+        print('grade is ok')
+    except:
+        print('something went wrong ... try again')
+
+# Print the error
+grade: int = None
+while not grade:
+    try:
+        grade = int(input('Enter grade:'))
+        print('grade is ok')
+    except Exception as e:
+        print(f'something went wrong --{e}-- ... try again')
+
+print('finish')
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>
+Enter grade: 85
+grade is ok
+Enter grade: abc
+something went wrong ... try again
+Enter grade: 92
+grade is ok
+Enter grade: -1
+something went wrong --invalid literal for int() with base 10: '-1'-- ... try again
+Enter grade: 77
+grade is ok
+finish
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit <a href="https://docs.python.org/3/tutorial/errors.html" target="_blank">Python Documentation</a> or <a href="https://www.geeksforgeeks.org/python-try-except/" target="_blank">GeeksforGeeks</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates basic error handling in Python using try-except blocks and loops to ensure valid user input.</p>
+        </div>
+
+        <h2>pyramid</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code>
+# Drawing stars in a pyramid shape
+
+number: int = 15
+space: int = number // 2
+for i in range(1, number + 1, 2):
+    # short
+    # print(space * " ", end="")
+    # loop solution
+    for j in range(1, i + 1):
+        print("*", end="")
+    print()
+    space -= 1
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>
+      *
+     ***
+    *****
+   *******
+  *********
+ ***********
+*************
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit <a href="https://www.geeksforgeeks.org/programs-printing-pyramid-patterns-python/" target="_blank">GeeksforGeeks</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program draws a pyramid pattern of stars. The number of spaces decreases and the number of stars increases with each row to form a pyramid.</p>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
