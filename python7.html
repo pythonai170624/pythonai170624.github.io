@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>[1] String Functions</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code># String manipulation functions
+text: str = "Hello, World!!"
+print(len(text))
+
+text1: str = "   Hello, World!!   "
+print(text1.strip())
+
+text2: str = "Hello, World!!"
+print(text2.lower())
+
+text3: str = "Hello, World!!"
+print(text3.upper())
+
+text4: str = "Hello, World!!"
+print(text4.replace("World", "Python"))
+print(text4.replace("l", "t"))
+print(text4.replace("t", ""))
+
+text5: str = "Hello, World!! good morning"
+print(text5.split())
+text5 = "Hello,*World!!*good*morning"
+print(text5.split('*'))
+
+print(['H', 'E', 'L', 'L', 'O'])
+print("".join(['H', 'E', 'L', 'L', 'O']))
+
+text6: str = "Hello, World!! good morning"
+print('text6.startswith("Hello") ?', text6.startswith("Hello"))
+
+text7: str = "Hello, World!! good morning"
+print('text7.endswith("good morning") ?', text7.endswith("good morning"))
+
+text8: str = "hello, world!! good morning"
+print('text8.capitalize() ', text8.capitalize())
+
+text9: str = "hello, world!! good morning"
+print('text9.title() ', text9.title())
+
+print('"1234" text10.isalpha() ', "1234".isalpha())
+print('"abcd".isalpha()', "abcd".isalpha())
+print('"abcd_".isalpha()', "abcd_".isalpha())
+print('"abcd*".isalpha()', "abcd1*".isalpha())
+
+print('"1234" text10.isdigit()', "1234".isdigit())
+print('"abcd".isdigit()" ', "abcd".isdigit())
+print('"abcd1".isdigit()" ', "abcd1".isdigit())
+
+print('"Aab".islower()', "Aab".islower())
+print('"aab".islower()', "aab".islower())
+print('"Aab".isupper()', "Aab".isupper())
+print('"ABC".isupper()', "ABC".isupper())
+
+print('"AasdasBcccC".swapcase()', "AasdasBcccC".swapcase())
+
+print('"42".zfill(5)', "42".zfill(5))
+
+print('Hello!'.center(12, '-'))
+print('Hello!'.center(12, ' '))
+
+print('"     ".isspace()', "    ".isspace())
+
+print("Hello python course")
+print('   [0]', "Hello python course"[0])
+print("  [-1]", "Hello python course"[-1])
+print("[::-1]", "Hello python course"[::-1])
+print("  [5:]", "Hello python course"[5:])
+print("  [:8]", "Hello python course"[:8])
+print(" [::2]", "Hello python course"[::2])
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>Hello, World!!
+Hello, World!!
+hello, world!!
+HELLO, WORLD!!
+Hello, Python!!
+Hetto, WorTd!!
+Hello, World!!
+['Hello,', 'World!!', 'good', 'morning']
+['Hello,', 'World!!', 'good', 'morning']
+['H', 'E', 'L', 'L', 'O']
+HELLO
+text6.startswith("Hello") ? True
+text7.endswith("good morning") ? True
+text8.capitalize()  Hello, world!! good morning
+text9.title()  Hello, World!! Good Morning
+"1234" text10.isalpha()  False
+"abcd".isalpha() True
+"abcd_".isalpha() False
+"abcd*".isalpha() False
+"1234" text10.isdigit() True
+"abcd".isdigit()"  False
+"abcd1".isdigit()"  False
+"Aab".islower() False
+"aab".islower() True
+"Aab".isupper() False
+"ABC".isupper() True
+"AasdasBcccC".swapcase() aASDASbCCCc
+"42".zfill(5) 00042
+Hello!----
+Hello!     
+"     ".isspace() True
+Hello python course
+   [0] H
+  [-1] e
+[::-1] esruoc nohtyp olleH
+  [5:]  python course
+  [:8] Hello py
+ [::2] Hlo yhn ors
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank">string methods</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates various string manipulation techniques in Python, including stripping whitespace, changing case, replacing substrings, splitting strings, joining lists into strings, and checking string properties.</p>
+        </div>
+
+        <h2>[2a] Import Functions Demo</h2>
+        <div class="code">
+            <h3>global_func.py</h3>
+            <pre><code># Define global functions
+def hello():
+    print('hello')
+
+def get_int(msg: str = 'Enter number: ', err: str = 'Something went wrong.... try again'):
+    """
+    This function gets an input of integer from the user
+    whenever a string is received it will get it again
+
+    Parameters:
+        msg: str, default 'Enter number: '
+        err: str = 'Something went wrong.... try again'
+
+    Returns:
+        integer number
+    """
+    num: int = None
+
+    while not num:
+        try:
+            num = int(input(msg))
+        except:
+            print(err)
+    return num
+
+if __name__ == "__main__":
+    print('testing import ...')
+            </code></pre>
+        </div>
+        <div class="summary">
+            <p>This program defines two global functions: `hello`, which prints a greeting, and `get_int`, which prompts the user for an integer input and handles invalid inputs gracefully.</p>
+        </div>
+
+        <h2>[2b] use 'import' and 'help'</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code># Import modules
+import global_func as gf
+
+# more import options
+import global_func
+from global_func import *
+from global_func import hello
+
+# for nested file -- import projfoldername.filenmae
+
+# Show help for the global_func module
+help(gf)
+
+# Call hello function from global_func module
+x: int = gf.hello()
+
+# Call get_int function from global_func module with default message
+z: int = gf.get_int()
+
+# Call get_int function from global_func module with custom message and error
+gf.get_int(msg='Enter age: ', err='Bad age inserted')
+
+# Call get_int function from global_func module with custom message
+gf.get_int('Enter age: ')
+
+# Call get_int function from global_func module with default parameters
+gf.get_int()
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>Help on module global_func:
+
+NAME
+    global_func
+
+FUNCTIONS
+    get_int(msg: str = 'Enter number: ', err: str = 'Something went wrong.... try again') -> int
+        This function gets an input of integer from the user
+        whenever a string is received it will get it again
+    
+        Parameters:
+            msg: str, default 'Enter number: '
+            err: str = 'Something went wrong.... try again'
+    
+        Returns:
+            integer number
+
+    hello()
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">modules</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of importing custom modules and built-in modules, generating random numbers, and using global functions for input handling.</p>
+        </div>
+
+        <h2>[3] Prime Number Check</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code># Check if a number is prime
+prime: bool = True
+num: int = int(input('Enter number: '))
+for i in range(2, num):
+    if num % i == 0:
+        prime = False
+        break
+print(f"{num} is {'Not ' if not prime else ''}Prime")
+
+# Check divisibility of number
+divided: [bool] = []
+for i in range(2, num):
+    is_divided: bool = num % i == 0
+    divided.append(is_divided)
+print(divided)
+comp = [num % i == 0 for i in range(2, num)]
+print(comp)
+print(f"{num} is {'Not ' if any(divided) else ''}Prime")
+
+print(f"{num} is {'Not ' if any(num % i == 0 for i in range(2, num)) else ''}Prime")
+print([num % i for i in range(2, num)])
+print(f"is Prime? {all([num % i for i in range(2, num)])}")
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>Enter number: 7
+7 is Prime
+[False, False, False, False, False]
+[False, False, False, False, False]
+7 is Prime
+7 is Prime
+[1, 1, 1, 1, 1]
+is Prime? True
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-program-to-check-whether-a-number-is-prime-or-not/" target="_blank">https://www.geeksforgeeks.org/python-program-to-check-whether-a-number-is-prime-or-not/</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program checks if a number is prime by testing its divisibility and demonstrates different methods to perform the check.</p>
+        </div>
+
+        <h2>[4] Sum of Digits</h2>
+        <img src="sum_digits.drawio.png" alt="Sum of Digits Diagram">
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code># Calculate the sum of digits of a number
+num: int = int(input('Enter number: '))
+sum_digits: int = 0
+while num > 0:
+    rdigit: int = num % 10
+    sum_digits += rdigit
+    num = num // 10
+print(f'digit sum = {sum_digits}')
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>Enter number: 973
+digit sum = 19
+            </code></pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-program-for-sum-the-digits-of-a-given-number/" target="_blank">python-program-for-sum-the-digits-of-a-given-numbe</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program calculates the sum of the digits of a given number using a while loop.</p>
+        </div>
+
+        <h2>[5] Swap Digits</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre><code># Swap the digits of a two-digit number
+num = int(input('enter number: '))
+rdigit: int = num % 10
+ldigit: int = num // 10
+new_number: int = rdigit * 10 + ldigit
+print(f"{num} ==> {new_number}")
+            </code></pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre><code>enter number: 97
+97 ==> 79
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>
