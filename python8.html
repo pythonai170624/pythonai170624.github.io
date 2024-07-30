@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>functions with no return value</h2>
+        <div class="code">
+            <h3>funcs_print.py</h3>
+            <pre>
+                <code>
+def sum_two(a: int = 0, b: int = 0) -> None:
+    """sum_two print the sum of 2 given numbers
+       default value is 0"""
+    print(f"{a} + {b} = {a + b}")
+
+def diff_two(a: int = 0, b: int = 0) -> None:
+    """sum_two print the sum of 2 given numbers
+       default value is 0"""
+    print(f"{a} - {b} = {a - b}")
+
+def biggest(a: int = 0, b: int = 0, c: int = 0) -> None:
+    """print the biggest of 3 given numbers
+       default value is 0"""
+    print(f"max of: {a} {b} {c} ==> is: {max(a, b, c)}")
+
+def print_len(list_param: list[int] = []) -> None:
+    """print the length of the given list
+       default is []"""
+    print(f"length of {list_param} ===> is: {len(list_param)}")
+
+def diff_max_min(list_param: list[int] = []) -> None:
+    """print the diff between max min of the given list
+       default is []"""
+    if not list_param:
+        print("empty list")
+        return
+    diff: int = max(list_param) - min(list_param)
+    print(f"diff max min of {list_param} ==> is: {diff}")
+
+def head_tail(word: str) -> None:
+    """print if the head of agiven string is equals to it's tail"""
+    if word[0].lower() == word[-1].lower():
+        print(f"{word} head == tail")
+    else:
+        print(f"{word} head NOT equals tail")
+
+def the_same(a: bool = False, b: bool = False) -> None:
+    """print if 2 given booleans are the same"""
+    if a == b:
+        print(f"{a} {b} ==> the same")
+    else:
+        print(f"{a} {b} ==> NOT the same")
+
+def sort_print_float(a: float = 0, b: float = 0) -> None:
+    """gets 2 floats put them in a list, sort and print"""
+    list_float: list[float] = [a, b]
+    list_float.sort()
+    print(list_float)
+
+def main():
+    # help(sum_two)
+    sum_two(10, 159)
+    sum_two()
+    words: list[str] = ["radar", "apple", \
+                        "level", "civic", "noon"]
+    for word in words:
+        head_tail(word)
+
+if __name__ == "__main__":
+    main()                </code>
+            </pre>
+        </div>
+        <div class="code">
+            <h3>program.py</h3>
+            <pre>
+                <code>
+import funcs_print
+
+funcs_print.sum_two(5, 12)
+funcs_print.sum_two()
+funcs_print.diff_two(9999, 4444)
+funcs_print.diff_two()
+funcs_print.biggest(-10, -100, 1)
+funcs_print.print_len([8, 10, 200, -300])
+funcs_print.diff_max_min([900, 1010, -87, 0, 10_000])
+funcs_print.diff_max_min()
+
+funcs_print.head_tail("radar")
+funcs_print.head_tail("mango")
+words: list[str] = ["radar", "apple", "level", "civic", "noon"]
+for word in words:
+    funcs_print.head_tail(word)
+
+opt_ = [[True, True], [False, True], [True, False], [False, False]]
+for opt_in in opt_:
+    funcs_print.the_same(opt_in[0], opt_in[1])
+
+print('goodbye!')
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+5 + 12 = 17
+0 + 0 = 0
+9999 - 4444 = 5555
+0 - 0 = 0
+max of: -10 -100 1 ==> is: 1
+length of [8, 10, 200, -300] ===> is: 4
+diff max min of [900, 1010, -87, 0, 10_000] ==> is: 10087
+empty list
+radar head == tail
+mango head NOT equals tail
+radar head == tail
+apple head NOT equals tail
+level head == tail
+civic head == tail
+noon head == tail
+True True ==> the same
+False True ==> NOT the same
+True False ==> NOT the same
+False False ==> the same
+goodbye!
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates how to call functions which do not return a value.</p>
+        </div>
+
+        <h2>functions with return value</h2>
+        <div class="code">
+            <h3>funcs_return.py</h3>
+            <pre>
+                <code>
+def half(x: int = 0) -> int | None:
+    """returns half"""
+    if x == None:
+        return None
+    return x // 2
+
+def power3(x: int = 0) -> int:
+    """returns power3"""
+    result: int = x ** 3
+    return result
+
+def all_zeros(list_numbers: list[int] = []) -> str:
+    if not any(list_numbers):
+        return "all zeros"
+    else:
+        return "not all zeros"
+                </code>
+            </pre>
+        </div>
+        <div class="code">
+            <h3>program.py</h3>
+            <pre>
+                <code>
+import funcs_return
+
+x: int = 90
+
+funcs_return.half(x)  # does nothing
+half_value: int = funcs_return.half(x)  # store in half_value
+print(funcs_return.half(x))  # print
+
+print(half_value)  # 45
+print(max(funcs_return.half(120), 61))  # 61
+print(max(60, 61))  # 61
+print(max(funcs_return.half(120), funcs_return.half(121)))  # 60
+
+print(funcs_return.power3(5))
+
+# create a list of numbers from 1 to 5 of power3
+# example-
+# result: [1*1*1, 2*2*2, 3*3*3, 4*4*4, 5*5*5]
+#         [1, 8, 27, 64, 125]
+power3_list = []
+for i in range(1, 6):
+    power3_list.append(funcs_return.power3(i))
+print(power3_list)
+
+power3_list_co = [funcs_return.power3(i) for i in range(1, 6)]
+print(power3_list_co)
+
+print("[0, 0, 0, 0]", funcs_return.all_zeros([0, 0, 0, 0]))
+print("[0, 0, 0, 1]", funcs_return.all_zeros([0, 0, 0, 1]))
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+45
+61
+61
+60
+125
+[1, 8, 27, 64, 125]
+[1, 8, 27, 64, 125]
+[0, 0, 0, 0] all zeros
+[0, 0, 0, 1] not all zeros
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates how to call functions which <b>return</b> a value.</p>
+        </div>
+    </div>
+</body>
+</html>
