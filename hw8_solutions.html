@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw8 שיעורי בית + פתרון</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            body {
+                margin-left: 5%;
+                width: 90%;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            body {
+                justify-items: center;
+                margin: 20%;
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+            body.night-mode {
+                justify-items: center;
+                margin: 20%;
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+        }
+
+        body {
+            background-color: #eaeff2;
+            color: #127989;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            text-align: left;
+            direction: rtl;
+
+
+        }
+
+        .question {
+            color: #127989;
+        }
+
+        .query {
+            color: #124989;
+        }
+
+        body.night-mode {
+            background-color: #403e3e;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            text-align: left;
+            direction: rtl;
+
+
+        }
+
+        .question.night-mode {
+            color: #c586c0;
+        }
+
+        .query.night-mode {
+            color: #c586ac;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #127989;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0f5b6c;
+        }
+
+
+
+        h1 {
+            color: #569cd6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+            direction: rtl;
+            text-align: right;
+
+        }
+
+        .query {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            direction: rtl;
+            text-align: right;
+
+        }
+
+        .code-block {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+
+        .code {
+            display: block;
+            margin-left: 5%;
+            direction: ltr;
+
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .operator {
+            color: #d4d4d4;
+        }
+
+        .responsive-image {
+            margin-top: 2%;
+            width: 30%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> שיעורי בית + פתרון hw8</h1>
+    <button id="theme-toggle">Switch Theme</button>
+    <div class="query">
+
+        <p><b>1.</b> פונקציות ללא ערך מוחזר-
+       צור קובץ בשם- py.return_without_func ובתוכו כתוב את הפונקציות הבאות
+       מתחת לכל פונקציה כתוב הערה באמצעות 3 גרשיים """" המסבירה מה הפונקציה עושה
+       (צור קובץ בשם - py1.sol ש עושה import ל- return_without_func ומפעיל כל פונקציה)</p>
+
+    </div>
+    <div class="question">
+        <p>A. כתוב פונקציה ascending_my המקבלת 2 פרמטרים מסוג int ומדפיסה את המספרים בסדר עולה. קרא לפונקציה שכתבת עם
+            המספרים ,7 -12</p>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">def</span> <span class="function">ascending_my</span>(<span class="variable">a</span>:
+            <span class="keyword">int</span>, <span class="variable">b</span>: <span class="keyword">int</span>):<br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="comment">This function takes two integers and prints them in ascending order.</span><br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="keyword">if</span> <span class="variable">a</span> <span class="operator">></span> <span
+                class="variable">b</span>:<br>
+            &emsp;&emsp;<span class="variable">a</span>, <span class="variable">b</span> <span class="operator">=</span>
+            <span class="variable">b</span>, <span class="variable">a</span><br>
+            &emsp;<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span
+                class="keyword">range</span>(<span class="variable">a</span>, <span class="variable">b</span> <span
+                class="operator">+</span> <span class="number">1</span>):<br>
+            &emsp;&emsp;<span class="keyword">print</span>(<span class="variable">i</span>)<br>
+            <br>
+            <span class="function">ascending_my</span>(<span class="number">7</span>, <span class="number">12</span>)
+        </span>
+    </div>
+
+    <div class="question">
+        <p>B. כתוב פונקציה details_my המקבלת מחרוזת str ומדפיסה את התו הראשון של המחרוזת, את התו האמצעי ואת התו האחרון .
+            קרא לפונקציה שכתבת עם המחרוזת "AI is the best"</p>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">def</span> <span class="function">details_my</span>(<span class="variable">s</span>:
+            <span class="keyword">str</span>):<br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="comment">This function takes a string and prints the first character,</span><br>
+            &emsp;<span class="comment">the middle character, and the last character.</span><br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="variable">first_char</span> <span class="operator">=</span> <span
+                class="variable">s</span>[<span class="number">0</span>]<br>
+            &emsp;<span class="variable">middle_char</span> <span class="operator">=</span> <span
+                class="variable">s</span>[<span class="keyword">len</span>(<span class="variable">s</span>) <span
+                class="operator">//</span> <span class="number">2</span>]<br>
+            &emsp;<span class="variable">last_char</span> <span class="operator">=</span> <span
+                class="variable">s</span>[<span class="operator">-</span><span class="number">1</span>]<br>
+            &emsp;<span class="keyword">print</span>(<span class="variable">first_char</span>, <span
+                class="variable">middle_char</span>, <span class="variable">last_char</span>)<br>
+            <br>
+            <span class="function">details_my</span>(<span class="string">"AI is the best"</span>)
+        </span>
+    </div>
+
+    <div class="question">
+        <p>C. כתוב פונקציה bool_say המקבלת בוליאני. אם הבוליאני הוא True היא תדפיס " yes " אחרת היא תדפיס "no". קרא
+            לפונקציה שכתבת פעמיים: פעם אחת עם True ופעם נוספת עם False</p>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">def</span> <span class="function">bool_say</span>(<span class="variable">flag</span>:
+            <span class="keyword">bool</span>):<br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="comment">This function takes a boolean and prints "yes" if True, otherwise prints
+                "no".</span><br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="keyword">if</span> <span class="variable">flag</span>:<br>
+            &emsp;&emsp;<span class="keyword">print</span>(<span class="string">"yes"</span>)<br>
+            &emsp;<span class="keyword">else</span>:<br>
+            &emsp;&emsp;<span class="keyword">print</span>(<span class="string">"no"</span>)<br>
+            <br>
+            <span class="function">bool_say</span>(<span class="keyword">True</span>)<br>
+            <span class="function">bool_say</span>(<span class="keyword">False</span>)
+        </span>
+    </div>
+
+    <div class="question">
+        <p>D. כתוב פונקציה zugi_print המקבלת כפרמטר רשימה של מספרים מסוג [int[list ומדפיסה עבור כל מספר ברשימה "even"
+            (זוגי) או "odd" (אי-ז וגי) . קרא לפונקציה שכתבת עם רשימת המספרים [14 14, 15, 10, 2, 3, 5,] odd, odd, even,
+            even, odd, even, even :הצפוי הפלט</p>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">def</span> <span class="function">zugi_print</span>(<span
+                class="variable">numbers</span>: <span class="keyword">list</span>[<span
+                class="keyword">int</span>]):<br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="comment">This function takes a list of integers and prints "even" if the number is even,
+            </span><br>
+            &emsp;<span class="comment"> otherwise prints "odd".</span><br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span>
+            <span class="variable">numbers</span>:<br>
+            &emsp;&emsp;<span class="keyword">if</span> <span class="variable">num</span> <span class="operator">%
+            </span><span class="number">2</span> <span class="operator">==</span> <span class="number">0</span>:<br>
+            &emsp;&emsp;&emsp;<span class="keyword">print</span>(<span class="variable">num</span> <span
+                class="string">" is even"</span>)<br>
+            &emsp;&emsp;<span class="keyword">else</span>:<br>
+            &emsp;&emsp;&emsp;<span class="keyword">print</span>(<span class="variable">num</span> <span
+                class="string">" is odd"</span>)<br>
+            <br>
+            <span class="function">zugi_print</span>([<span class="number">14</span>, <span class="number">15</span>,
+            <span class="number">10</span>, <span class="number">2</span>, <span class="number">3</span>, <span
+                class="number">5</span>)
+        </span>
+    </div>
+
+    <div class="question">
+        <p><b>E.</b> כתוב פונקציה statistics_my המקבלת רשימה של ציונים ומדפיסה את הציון הכי גבוה, הציון הכי נמוך, כמות
+            הציונים, ממוצע הציונים
+        כעת כתוב קטע קוד ב py1.sol הקולט ציונים מהמשתמש עד שנקלט הציון מינוס .99 התעלם מציונים קטנים מ - 0 או גדולים
+            מ - .100 כל ציון שנקלט הוסף לרשימה.
+        לאחר מכן- קרא לפונקציית statistics_my ושלח לה את רשימת הציונים שיצרת
+        ** בונוס: הוסף לפונקציה הדפסה של כמה ציונים מצטיינים היו (מעל 90) , כמה נכשלים היו (מתחת ל- 55), מהי סטיית
+            התקן (? )</p>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">def</span> <span class="function">statistics_my</span>(<span
+                class="variable">grades</span>: <span class="keyword">list</span>[<span
+                class="keyword">int</span>]):<br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="comment">This function takes a list of grades and prints the highest grade, </span><br>
+            &emsp;<span class="comment">the lowest grade, the number of grades, and the average grade.</span><br>
+            &emsp;<span class="comment">"""</span><br>
+            &emsp;<span class="keyword">if</span> <span class="keyword">not</span> <span
+                class="variable">grades</span>:<br>
+            &emsp;&emsp;<span class="keyword">print</span>(<span class="string">"No grades provided"</span>)<br>
+            &emsp;&emsp;<span class="keyword">return</span><br>
+            <br>
+            &emsp;<span class="variable">highest</span> <span class="operator">=</span> <span
+                class="keyword">max</span>(<span class="variable">grades</span>)<br>
+            &emsp;<span class="variable">lowest</span> <span class="operator">=</span> <span
+                class="keyword">min</span>(<span class="variable">grades</span>)<br>
+            &emsp;<span class="variable">count</span> <span class="operator">=</span> <span
+                class="keyword">len</span>(<span class="variable">grades</span>)<br>
+            &emsp;<span class="variable">average</span> <span class="operator">=</span> <span
+                class="keyword">sum</span>(<span class="variable">grades</span>) <span class="operator">/</span> <span
+                class="variable">count</span><br>
+            &emsp;<span class="keyword">print</span>(<span class="string">f"Highest grade: {highest}"</span>)<br>
+            &emsp;<span class="keyword">print</span>(<span class="string">f"Lowest grade: {lowest}"</span>)<br>
+            &emsp;<span class="keyword">print</span>(<span class="string">f"Number of grades: {count}"</span>)<br>
+            &emsp;<span class="keyword">print</span>(<span class="string">f"Average grade: {average}"</span>)<br>
+            <br>
+            &emsp;<span class="comment"># Bonus: Count excellent and failing grades, and calculate standard
+                deviation</span><br>
+            &emsp;<span class="variable">excellent_count</span> <span class="operator">=</span> <span
+                class="keyword">len</span>([<span class="variable">grade</span> <span class="keyword">for</span> <span
+                class="variable">grade</span> <span class="keyword">in</span> <span class="variable">grades</span> <span
+                class="keyword">if</span> <span class="variable">grade</span> <span class="operator">></span> <span
+                class="number">90</span])<br>
+                &emsp;<span class="variable">failing_count</span> <span class="operator">=</span> <span
+                    class="keyword">len</span>([<span class="variable">grade</span> <span class="keyword">for</span>
+                <span class="variable">grade</span> <span class="keyword">in</span> <span class="variable">grades</span>
+                <span class="keyword">if</span> <span class="variable">grade</span> <span class="operator">
+                    << /span> <span class="number">55</span])<br>
+                            &emsp;<span class="variable">variance</span> <span class="operator">=</span> <span
+                                class="keyword">sum</span>(<span class="operator">(</span><span
+                                class="variable">x</span> <span class="operator">-</span> <span
+                                class="variable">average</span><span class="operator">)**</span> <span
+                                class="number">2</span> <span class="keyword">for</span> <span class="variable">x</span>
+                            <span class="keyword">in</span> <span class="variable">grades</span>) <span
+                                class="operator">/</span> <span class="variable">count</span><br>
+                            &emsp;<span class="variable">std_deviation</span> <span class="operator">=</span> <span
+                                class="variable">variance</span> <span class="operator">**</span> <span
+                                class="number">0.5</span><br>
+                            &emsp;<span class="keyword">print</span>(<span class="string">f"Number of excellent grades
+                                (&gt;90): {excellent_count}"</span>)<br>
+                            &emsp;<span class="keyword">print</span>(<span class="string">f"Number of failing grades
+                                (&lt;55): {failing_count}"</span>)<br>
+                            &emsp;<span class="keyword">print</span>(<span class="string">f"Standard deviation:
+                                {std_deviation}"</span>)<br>
+                            <br>
+                            <span class="variable">grades</span> <span class="operator">=</span> []<br>
+                            <span class="keyword">while</span> <span class="keyword">True</span>:<br>
+                            &emsp;<span class="variable">grade</span> <span class="operator">=</span> <span
+                                class="keyword">int</span>(<span class="keyword">input</span>(<span
+                                class="string">"Enter a grade (-99 to stop): "</span>))<br>
+                            &emsp;<span class="keyword">if</span> <span class="variable">grade</span> <span
+                                class="operator">==</span> <span class="number">-99</span>:<br>
+                            &emsp;&emsp;<span class="keyword">break</span><br>
+                            &emsp;<span class="keyword">if</span> <span class="number">0</span> <span class="operator">
+                                <=< /span> <span class="variable">grade</span> <span class="operator">
+                                        <=< /span> <span class="number">100</span>:<br>
+                                            &emsp;&emsp;&emsp;<span class="variable">grades</span>.<span
+                                                class="keyword">append</span>(<span class="variable">grade</span>)<br>
+                                            <br>
+                                            <span class="function">statistics_my</span>(<span
+                                                class="variable">grades</span>)
+                                    </span>
+    </div>
+
+    <div class="question">
+        &emsp;<P><B>F.</B> הדפס עזרה עבור כל פונקציה.</P>
+    </div>
+    <div class="code-block">
+        <span class="code">
+            <span class="keyword">print</span>(<span class="keyword">help</span>(<span
+                class="function">ascending_my</span>))<br>
+            <span class="keyword">print</span>(<span class="keyword">help</span>(<span
+                class="function">details_my</span>))<br>
+            <span class="keyword">print</span>(<span class="keyword">help</span>(<span
+                class="function">bool_say</span>))<br>
+            <span class="keyword">print</span>(<span class="keyword">help</span>(<span
+                class="function">zugi_print</span>))<br>
+            <span class="keyword">print</span>(<span class="keyword">help</span>(<span
+                class="function">statistics_my</span>))
+        </span>
+    </div>
+    <div class="container">
+        <div class="query">
+            <p><b>2.</b> פונקציות עם ערך מוחזר -
+            צור קובץ בשם- py.return_with_func ובתוכו כתוב את הפונקציות הבאות
+            מתחת לכל פונקציה כתוב הערה באמצעות 3 גרשיים """" המסבירה מה הפונקציה עושה
+            (צור קובץ בשם - py2.sol ש עושה import ל- return_with_func ומפעיל כל פונקציה)</p>
+        </div>
+        <div class="question">
+            <p><b>A.</b> כתוב פונקציה avg_my המקבלת 2 פרמטרים מסוג int ומחזירה float של הממוצע שלהם. קרא לפונקציה שכתבת
+                עם המספרים ,99 90 ואחסן את התוצאה בתא זיכרון בשם- 1avg. לאחר מכן הדפס את 1avg</p>
+
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">avg_my</span>(<span
+                    class="variable">num1</span>: <span class="keyword">int</span>, <span class="variable">num2</span>:
+                <span class="keyword">int</span>) <span class="operator">-></span> <span
+                    class="keyword">float</span>:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function takes two integers and returns their average as a
+                    float.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="variable">return</span> (<span class="variable">num1</span> <span
+                    class="operator">+</span> <span class="variable">num2</span>) <span class="operator">/</span> <span
+                    class="number">2</span><br>
+                <br>
+                <span class="keyword">avg1</span> <span class="operator">=</span> <span
+                    class="function">avg_my</span>(<span class="number">90</span>, <span class="number">99</span>)<br>
+                <span class="keyword">print</span>(<span class="variable">avg1</span>)
+            </span>
+        </div>
+
+        <div class="question">
+            <p><b>B.</b> כתוב פונקציה headline_my המקבלת פרמטר מסוג str ומחזירה str של א ותה המחרוזת באותיות גדולות
+                בתוספת סימן קריאה בסוף המשפט. קרא לפונקציה שכתבת עם הכותרת "world the concurred has python "ואחסן את
+                התוצאה בתא זיכרון בשם- 1head. לאחר מכן הדפס את 1head פעמיים</p>
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">headline_my</span>(<span
+                    class="variable">text</span>: <span class="keyword">str</span>) <span class="operator">-></span>
+                <span class="keyword">str</span>:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function takes a string and returns it in uppercase with an exclamation
+                    mark at the end.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="variable">return</span> <span class="variable">text</span>.<span
+                    class="function">upper</span>() <span class="operator">+</span> <span class="string">"!"</span><br>
+                <br>
+                <span class="keyword">head1</span> <span class="operator">=</span> <span
+                    class="function">headline_my</span>(<span class="string">"the world has concurred
+                    python"</span>)<br>
+                <span class="keyword">print</span>(<span class="variable">head1</span>)<br>
+                <span class="keyword">print</span>(<span class="variable">head1</span>)
+            </span>
+        </div>
+
+        <div class="question">
+            <p><b>C.</b> כתוב פונקציה list_concat המקבלת 3 פרמטרים מסוג [int[list ומחזירה ]int[list של רשימה המכילה את 3
+                הרשימות מאוחדות לרשימה אחת ארוכה. קרא לפונקציה שכתבת עם הרשימות [9 8, 7,] [6 5, 4, 3,] [2 1,] ו אחסן את
+                התוצאה ברשימת con_res. כעת הדפס את הרשימה שחזרה ואת האורך שלה</p>
+                <p>פלט צפוי: [9 8, 7, 6, 5, 4, 3, 2, 1,] אורך-9</p>
+            </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">list_concat</span>(<span
+                    class="variable">list1</span>: <span class="keyword">list</span>[<span class="keyword">int</span>],
+                <span class="variable">list2</span>: <span class="keyword">list</span>[<span
+                    class="keyword">int</span>], <span class="variable">list3</span>: <span
+                    class="keyword">list</span>[<span class="keyword">int</span>]) <span class="operator">-></span>
+                <span class="keyword">list</span>[<span class="keyword">int</span>]:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function takes three lists of integers and returns a single
+                    concatenated list.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="variable">return</span> <span class="variable">list1</span> <span
+                    class="operator">+</span> <span class="variable">list2</span> <span class="operator">+</span> <span
+                    class="variable">list3</span><br>
+                <br>
+                <span class="variable">con_res</span> <span class="operator">=</span> <span
+                    class="function">list_concat</span>([<span class="number">9</span>, <span class="number">8</span>,
+                <span class="number">7</span>], [<span class="number">6</span>, <span class="number">5</span>, <span
+                    class="number">4</span>, <span class="number">3</span>], [<span class="number">2</span>, <span
+                    class="number">1</span>])<br>
+                <span class="keyword">print</span>(<span class="variable">con_res</span>)<br>
+                <span class="keyword">print</span>(<span class="keyword">len</span>(<span
+                    class="variable">con_res</span>))
+            </span>
+        </div>
+
+        <div class="question">
+            <p><b>D.</b> הדפס help עבור כל פונקציה</p>
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">help</span>(<span class="function">avg_my</span>)<br>
+                <span class="keyword">help</span>(<span class="function">headline_my</span>)<br>
+                <span class="keyword">help</span>(<span class="function">list_concat</span>)
+            </span>
+        </div>
+
+        <div class="query">
+            <p><b>3.</b>כתוב פונקציה בדיוק כמו שאלה ,1 סעיף c המחזירה str של התוצאה</p>
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">bool_say_str</span>(<span
+                    class="variable">flag</span>: <span class="keyword">bool</span>) <span class="operator">-></span>
+                <span class="keyword">str</span>:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function takes a boolean and returns "yes" or "no" as a
+                    string.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="keyword">return</span> <span class="string">"yes"</span> <span
+                    class="operator">if</span> <span class="variable">flag</span> <span class="operator">else</span>
+                <span class="string">"no"</span><br>
+                <br>
+                <span class="keyword">print</span>(<span class="function">bool_say_str</span>(<span
+                    class="keyword">True</span>))<br>
+                <span class="keyword">print</span>(<span class="function">bool_say_str</span>(<span
+                    class="keyword">False</span>))
+            </span>
+        </div>
+
+        <div class="query">
+            <p><b>4.</b> כתוב פונקציה בדיוק כמו שאלה ,1 סעיף d המחזירה [str[list של התוצאה</p>
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">zugi_print_str</span>(<span
+                    class="variable">numbers</span>: <span class="keyword">list</span>[<span
+                    class="keyword">int</span>]) <span class="operator">-></span> <span
+                    class="keyword">list</span>[<span class="keyword">str</span>]:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function takes a list of integers and returns a list of strings
+                    indicating whether each number is even or odd.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="keyword">return</span> [<br>
+                &emsp;&emsp;<span class="keyword">"even"</span> <span class="operator">if</span> <span
+                    class="variable">num</span> <span class="operator">%</span> <span class="number">2</span> <span
+                    class="operator">==</span> <span class="number">0</span> <span class="operator">else</span> <span
+                    class="keyword">"odd"</span><br>
+                &emsp; <span class="operator">for</span> <span class="variable">num</span> <span
+                    class="keyword">in</span> <span class="variable">numbers</span><br>
+                &emsp;]<br>
+                <br>
+                <span class="variable">result</span> <span class="operator">=</span> <span
+                    class="function">zugi_print_str</span>([<span class="number">14</span>, <span
+                    class="number">14</span>, <span class="number">15</span>, <span class="number">10</span>, <span
+                    class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>])<br>
+                <span class="keyword">print</span>(<span class="variable">result</span>)
+            </span>
+        </div>
+
+        <div class="query">
+            <p><b>5.</b> **בונוס: כתוב פונקציה int_get שמקבלת כפרמטר מחרוזת str. הפונקציה קולטת באמצעות input מספר
+                מהמשתמש מסוג int. ומציגה את המחרוזת שהתקבלה כפרמטר בזמן ה- input,
+            הפונקציה תקלוט מספר שוב ושוב עד אשר ייקלט מספר אמיתי שפעולת ה- int עליו הצליחה.
+             (רמז: בסוגריים של ה - Input שים את המחרוזת שקיבלת כפרמטר)
+            רמז השתמש ב except try.
+            הפונקציה תחזיר את המספר (התקין) שנקלט
+            כעת שכלל את הפתרון של שאלה 1 סעיף e. קלוט כל ציון באמצעות הפונקציה שכתבת</p>
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="keyword">def</span> <span class="function">int_get</span>(<span
+                    class="variable">prompt</span>: <span class="keyword">str</span>) <span class="operator">-></span>
+                <span class="keyword">int</span>:<br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="comment">This function prompts the user to input an integer, repeating until a valid
+                    integer is entered, using the provided prompt string.</span><br>
+                &emsp;<span class="comment">"""</span><br>
+                &emsp;<span class="keyword">while</span> <span class="keyword">True</span>:<br>
+                &emsp;&emsp;<span class="keyword">try</span>:<br>
+                &emsp;&emsp;&emsp;<span class="variable">value</span> <span class="operator">=</span> <span
+                    class="keyword">int</span>(<span class="keyword">input</span>(<span
+                    class="string">prompt</span>))<br>
+                &emsp;&emsp;&emsp;<span class="variable">return</span> <span class="variable">value</span><br>
+                &emsp;&emsp;<span class="keyword">except</span> <span class="keyword">ValueError</span>:<br>
+                &emsp;&emsp;&emsp;<span class="keyword">print</span>(<span class="string">"Invalid input. Please enter a
+                    valid integer."</span>)<br>
+                <br>
+                <span class="keyword">grades</span> <span class="operator">=</span> []<br>
+                <span class="keyword">while</span> <span class="keyword">True</span>:<br>
+                &emsp;<span class="variable">grade</span> <span class="operator">=</span> <span
+                    class="function">int_get</span>(<span class="string">"Enter a grade (enter -1.99 to finish):
+                    "</span>)<br>
+                &emsp;<span class="keyword">if</span> <span class="variable">grade</span> <span
+                    class="operator">&gt;</span> <span class="number">0</span> <span class="operator">and</span> <span
+                    class="variable">grade</span> <span class="operator">&lt;</span> <span
+                    class="number">100</span>:<br>
+                &emsp;&emsp;<span class="variable">grades</span>.<span class="function">append</span>(<span
+                    class="variable">grade</span>)<br>
+                &emsp;<span class="keyword">elif</span> <span class="variable">grade</span> <span
+                    class="operator">==</span> <span class="number">-1.99</span>:<br>
+                &emsp;&emsp;<span class="keyword">break</span><br>
+                <br>
+                <span class="function">statistics_my</span>(<span class="variable">grades</span>)
+            </span>
+        </div>
+
+        <div class="query">
+            <p><b>6.</b> אם נדפיס מה שחזר מפונקציה שאין בה return בכלל , מה נקבל?
+            אם נדפיס מה שחזר מפונקציה שיש בה None return, מה נקבל?
+            מה הדמיון בין - break לבין - return ?
+        </div>
+        <div class="code-block centered">
+            <span class="code">
+                <span class="comment"># If a function does not have a return value, it returns <span
+                        class="keyword">None</span> by default.</span><br>
+                <span class="comment"># Printing the result from such a function will output <span
+                        class="keyword">None</span>.</span><br>
+                <br>
+                <span class="comment"># A function that explicitly returns <span class="keyword">None</span> will also
+                    output <span class="keyword">None</span> when printed.</span><br>
+                <br>
+                <span class="comment"># Both <span class="keyword">break</span> and <span class="keyword">return</span>
+                    are used to exit from a scope. </span><br>
+                <span class="comment"># <span class="keyword">break</span> exits loops, while <span
+                        class="keyword">return</span> exits functions.</span>
+            </span>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://www.ecomschool.co.il/wp-content/uploads/2019/06/wide1000-768x157.d110a0.webp"
+            class="responsive-image" alt="תמונה">
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+
+            themeToggleButton.addEventListener('click', () => {
+
+                document.body.classList.toggle('night-mode');
+
+                document.querySelectorAll('.question').forEach(element => {
+                    element.classList.toggle('night-mode');
+
+                });
+                document.querySelectorAll('.query').forEach(element => {
+                    element.classList.toggle('night-mode');
+
+                });
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>
