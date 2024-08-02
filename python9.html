@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <!-- What is Lambda -->
+        <h2>What is Lambda</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Lambdas are anonymous functions defined with the lambda keyword
+# Example of a regular function
+def only_positive(x):
+    return x < 0  # Return True if x is negative, else False
+
+# The same function using lambda
+only_positive_with_lambda = lambda x: x < 0  # create a function using Lambda
+
+print(only_positive_with_lambda(-12))  # Output: True
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit w3schools documentation on <a href="https://www.w3schools.com/python/python_lambda.asp" target="_blank">lambda expressions</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This section introduces lambda functions in Python, which are small anonymous functions defined using the lambda keyword.</p>
+        </div>
+
+        <!-- Filter -->
+        <h2>Filter using lambda</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Filtering lists using filter and lambdas
+
+# Filter positive numbers
+print("filter", list(filter(lambda x: x > 0, [-4, 10, 0, -1, -1, 20])))  # Output: [10, 20]
+
+# Function to check if a number is even
+def is_zugi(x):
+    return x % 2 == 0  # Return True if x is even, else False
+
+print("filter zugi", list(filter(is_zugi, [-2, 0, 4, 1, -30, 400, 11])))  # Using filter with is_zugi
+print("filter zugi lambda", list(filter(lambda x: x % 2 == 0, [-2, 0, 4, 1, -30, 400, 11])))  # Using lambda for the same task
+
+# Filtering non-zero items
+print("filter non-zero", list(filter(lambda x: x != 0, [-2, 0, 4, 1, -30, 400, 11])))  # Filter non-zero items
+
+# Bonus: filter strings that start with 'a' or 'A'
+print("filter starts with a", list(filter(lambda word: word.upper().startswith("A"), ["apple", "anaconda", "banana"])))
+
+# Bonus: filter strings longer than 3 characters
+print("filter more than 3 letters", list(filter(lambda word: len(word) > 3, ["oz", "danny", "moshe", "roy", "sharona"])))
+
+# Lazy evaluation with filter
+list_1 = [-1, -2, 0, -10]
+filter_me = filter(lambda x: x > 0, list_1)  # Filter positive numbers
+print(filter_me)  # Filter object
+list_1.append(100)  # Modify original list
+print(list(filter_me))  # Output: [100]
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+filter [10, 20]
+filter zugi [-2, 0, 4, -30, 400]
+filter zugi lambda [-2, 0, 4, -30, 400]
+filter non-zero [-2, 4, 1, -30, 400, 11]
+filter starts with a ['apple', 'anaconda']
+filter more than 3 letters ['danny', 'moshe', 'sharona']
+lazy output filter, includes 100 [100]
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit geeksforgeeks on <a href="https://www.geeksforgeeks.org/lambda-filter-python-examples/" target="_blank">filter</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates the use of the filter function in Python to filter lists based on specific conditions using both regular functions and lambda functions.</p>
+        </div>
+
+        <!-- Map -->
+        <h2>Map using lambda</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Map examples to transform lists
+
+# Square each number in the list
+print('map x ** 2', list(map(lambda x: x ** 2, [-2, 0, 4, 1, -30, 400, 11])))  # Output: [4, 0, 16, 1, 900, 160000, 121]
+
+# Convert strings to integers
+print('map int', list(map(int, ["-2", "0", "4", "1", "-30", "400", "11"])))  # Output: [-2, 0, 4, 1, -30, 400, 11]
+
+# Map to return each number // 10
+print('map x // 10', list(map(lambda x: x // 10, [-2, 0, 4, 1, -30, 400, 11])))  # Output: [0, 0, 0, 0, -3, 40, 1]
+
+# Map to label even numbers as 1 and odd as 0
+print('map x % 2', list(map(lambda x: 1 if x % 2 == 0 else 0, [-2, 0, 4, 1, -30, 400, 11])))  # Output: [1, 1, 1, 0, 0, 1, 0]
+
+# Map to label even numbers as "zugi" and odd as "e-zugi"
+print('map zugi ezugi', list(map(lambda x: "zugi" if x % 2 == 0 else "e-zugi", \
+                   [-2, 0, 4, 1, -30, 400, 11])))  
+# ------> Output: ['zugi', 'zugi', 'zugi', 'e-zugi', 'e-zugi', 'zugi', 'e-zugi']
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+original     [-2, 0, 4, 1, -30, 400, 11]:               
+map x ** 2   [4, 0, 16, 1, 900, 160000, 121]
+
+original     ["-2", "0", "4", "1", "-30", "400", "11"]: 
+map int      [-2, 0, 4, 1, -30, 400, 11]
+
+original     [-2, 0, 4, 1, -30, 400, 11]:
+map x // 10  [0, 0, 0, 0, -3, 40, 1]
+
+original     [-2, 0, 4, 1, -30, 400, 11]:
+map x % 2    [1, 1, 1, 0, 0, 1, 0]
+
+original     [-2, 0, 4, 1, -30, 400, 11]:
+map zugi,ezu ['zugi', 'zugi', 'zugi', 'e-zugi', 'e-zugi', 'zugi', 'e-zugi']
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit geeksforgeeks on <a href="https://www.geeksforgeeks.org/python-map-function/" target="_blank">map</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates the use of the map function in Python to transform lists by applying a function to each element.</p>
+        </div>
+
+        <!-- Sort -->
+        <h2>Sort using key function</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Sorting examples using sorted and lambda functions
+
+words = ["zzzzz", "t", "abc", "cccc", "bb", "b"]
+print(words)  
+print(sorted(words))  # ['abc', 'b', 'bb', 'cccc', 't', 'zzzzz']
+
+print(sorted(words, key=lambda word: len(word)))  # Sort by length of word
+print(sorted(words, key=lambda word: (len(word), word)))  # Sort by length, then alphabetically
+
+def key_func(word):
+    return len(word)
+print(sorted(words, key=key_func))  # Using key_func to sort by length
+
+# Sorting a list of lists
+data = [["danny", 12], ["bob", 30], ["aaron", 42]]
+print("sort by age", sorted(data, key=lambda list_item: list_item[1]))  # Sort by age
+print("sort by name", sorted(data, key=lambda list_item: list_item[0]))  # Sort by name
+
+# Sorting with negative keys and multiple keys
+print(sorted([1, 5, 10, -100, 20, 0], key=lambda x: -1 * x))  # Sort in descending order
+print("one key", sorted([1, 5, 10, -100, 20, 3, 1, 0], key=lambda x: 1 if x % 2 == 0 else 0))  # Sort by even/odd
+print("two key", sorted([1, 5, 10, -100, 20, 3, 1, 0], key=lambda x: (1 if x % 2 == 0 else 0, x)))  # Sort by even/odd, then value
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+original:                           ['zzzzz', 't', 'abc', 'cccc', 'bb', 'b']
+sort by abc:                        ['abc', 'b', 'bb', 'cccc', 't', 'zzzzz']
+sort by length of word:             ['t', 'b', 'bb', 'abc', 'cccc', 'zzzzz']
+sort by length of word, then abc:   ['b', 't', 'bb', 'abc', 'cccc', 'zzzzz']
+sort by length of word (key_func):  ['t', 'b', 'bb', 'abc', 'cccc', 'zzzzz']
+sort by age:                        [['danny', 12], ['bob', 30], ['aaron', 42]]
+sort by name:                       [['aaron', 42], ['bob', 30], ['danny', 12]]
+sort in descending order:           [20, 10, 5, 1, 0, -100]
+(one key) first ezugi then zugi     [0, 1, 5, 1, 3, 10, -100, 20]
+(two key) first zugi asc then ezugi [0, 10, -100, 20, 1, 1, 3, 5]
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/howto/sorting.html#key-functions" target="_blank">sorted key function</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates the use of the sorted function in Python to sort lists using lambda functions and key functions.</p>
+        </div>
+
+        <!-- Scopes -->
+        <h2>Scopes</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+x = 10
+
+def new_x():
+    x = 999 # when not using global this creates a new x for the function scope
+    print(f"new_x {x}")  
+
+def arg_x(x: int):
+    x = 888 # when argument in the same name it creates a new x for the function scope
+    print(f"arg_x {x}")  
+
+def print_x(x):
+    # bad practice to use global variables
+    # variables should be declared inside the function or passed as parameters
+    print(f"print_x {x}")  # when not using global-- x here is read-only from the global scope
+
+def change_x():
+    # bad practice to use global variables
+    # variables should be declared inside the function or passed as parameters
+    global x
+    x = x + 1 # after global declared, we can change the x of the global scope
+    print(f"change_x {x}")  
+
+new_x()
+arg_x(x)
+print_x(2)
+change_x()
+print('last print', x)  
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+new_x 999
+arg_x 888
+print_x 2
+change_x 11
+last print 11
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the w3schools documentation on <a href="https://www.w3schools.com/python/python_variables_global.asp" target="_blank">global</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the use of global and local scopes in Python, highlighting best practices and potential pitfalls.</p>
+        </div>
+
+        <!-- LeetCode Two Sum -->
+        <h2>LeetCode Two Sum</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Question:
+# Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+# You may assume that each input would have exactly one solution, and you may not use the same element twice.
+# Example 1:
+# Input: nums = [2,7,11,15], target = 9
+# Output: [0,1]
+# Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+# Example 2:
+# Input: nums = [3,2,4], target = 6
+# Output: [1,2]
+# Example 3:
+# Input: nums = [3,3], target = 6
+# Output: [0,1]
+# You can return the answer in any order.
+
+def twoSum(nums, target):
+    for i in range(len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return None
+
+print(twoSum([2, 7, 11, 15], 9))  # [0, 1]
+print(twoSum([3, 2, 4], 6))  # [1, 2]
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+[0, 1]
+[1, 2]
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the Leetcode on <a href="https://leetcode.com/problems/two-sum/description/" target="_blank">Question on leetcode</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program solves the Two Sum problem from LeetCode, which involves finding two numbers in a list that add up to a given target.</p>
+        </div>
+    </div>
+</body>
+</html>
