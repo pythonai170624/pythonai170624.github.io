@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>Dictionaries</h2>
+        
+        <h3>dictionary basics</h3>
+        <div class="code">
+            <pre>
+                <code>
+info_dict: dict = {
+    "name": "oren",
+    "age": 31,
+    "height": 1.98,
+    "smoker": False,
+    "brothers_age": [18, 20],
+    "address": {"city": "tel-aviv", "street": "ben-yehuda", "number": 12}
+}
+
+print(info_dict)
+print('get(name) =', info_dict.get("name"))
+print(list(info_dict.values()))
+print(list(info_dict.keys()))
+print(list(info_dict.items()))
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{'name': 'oren', 'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+get by key: get(name) = oren
+values:     ['oren', 31, 1.98, False, [18, 20], {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}]
+keys:       ['name', 'age', 'height', 'smoker', 'brothers_age', 'address']
+items:      [('name', 'oren'), ('age', 31), ('height', 1.98), ('smoker', False), ('brothers_age', [18, 20]), ('address', {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12})]
+                </code>
+            </pre>
+        </div>
+
+        <h3>iterate Over dictionary</h3>
+        <div class="code">
+            <pre>
+                <code>
+for k, v in info_dict.items():
+    print(f"[{k}]: {v}, ", end=" ")
+print()
+
+for k in info_dict.keys():
+    print(f"[{k}]: {info_dict.get(k)}, ", end=" ")
+print()
+
+for v in info_dict.values():
+    print(f"{[key for key, val in info_dict.items() if val == v]}: {v}, ", end=" ")
+print()
+
+for item in info_dict.items():
+    print(f"[{item[0]}]: {item[1]} , ", end=" ")
+print()
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# for loop
+items:      [name]: oren,  [age]: 31,  [height]: 1.98,  [smoker]: False,  [brothers_age]: [18, 20],  [address]: {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12},  
+keys:       [name]: oren,  [age]: 31,  [height]: 1.98,  [smoker]: False,  [brothers_age]: [18, 20],  [address]: {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12},  
+values:     ['name']: oren,  ['age']: 31,  ['height']: 1.98,  ['smoker']: False,  ['brothers_age']: [18, 20],  ['address']: {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12},  
+items list: [name]: oren ,  [age]: 31 ,  [height]: 1.98 ,  [smoker]: False ,  [brothers_age]: [18, 20] ,  [address]: {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12} ,  
+                </code>
+            </pre>
+        </div>
+
+        <h3>dictionary basic functions</h3>
+        <div class="code">
+            <pre>
+                <code>
+info_dict.clear()
+print('clear', info_dict)
+
+info_dict = {"name": "oren", "age": 31, "height": 1.98, "smoker": False, "brothers_age": [18, 20],\
+             "address": {"city": "tel-aviv", "street": "ben-yehuda", "number": 12}}
+
+info_copy = info_dict.copy()
+print('copy', info_copy)
+
+print('from keys 1', dict.fromkeys(['name', 'smoker'], None))
+print('from keys 2', dict.fromkeys(info_dict.keys(), None))
+
+print('get name', info_dict.get('name'))
+print('get weight', info_dict.get('weight', 0))
+
+print('pop name', info_dict.pop('name'))
+print('after pop name', info_dict)
+
+print('pop item', info_dict.popitem())  # remove last item
+print('after pop item', info_dict)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+clear {}
+copy {'name': 'oren', 'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+from keys 1 {'name': None, 'smoker': None}
+from keys 2 {'name': None, 'age': None, 'height': None, 'smoker': None, 'brothers_age': None, 'address': None}
+get 'name':  oren
+get weight 0 ... get on non-exist key returns None or default value
+pop 'name':  oren
+originl:        {'name': 'oren', 'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+after pop name  {'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+pop item        ('address', {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}) ... gets the last item which is address
+after pop item  {'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20]}  ... the address was removed in the pop item
+                </code>
+            </pre>
+        </div>
+
+        <h3>dictionary basic functions - more</h3>
+        <div class="code">
+            <pre>
+                <code>
+info_dict.update({"name": "danny", "age": 18})
+print('after update', info_dict)
+
+info_dict['name'] = 'moshe'  # [key]
+print('after update', info_dict)
+
+del info_dict['name']
+print('after delete', info_dict)
+try:
+    del info_dict['name']
+except:
+    print('could not delete. does it exist?')
+
+dict_books = dict([[1, "1984"], [3, "Harry potter"], [5, "Game of thrones"]])
+dict_books = dict([(1, "1984"), (3, "Harry potter"), (5, "Game of thrones")])
+print('dict() function ', dict_books)
+print('get len', len(dict_books))
+print('str dict', str(dict_books))
+db_dict: dict = {True: {"name": "shalom", "age": 20}, 2: {}}
+print(db_dict)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+originl:               {'name': 'oren', 'age': 31, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+after update name, age {'name': 'danny', 'age': 18, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20], 'address': {'city': 'tel-aviv', 'street': 'ben-yehuda', 'number': 12}}
+['name'] = 'moshe'     {'name': 'moshe', 'age': 18, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20]}
+delete 'name'          {'age': 18, 'height': 1.98, 'smoker': False, 'brothers_age': [18, 20]}
+delete 'name' again    could not delete. does it exist?
+
+dict() function        {1: '1984', 3: 'Harry potter', 5: 'Game of thrones'}
+get len                3 .. since have 3 items 
+str dict               {1: '1984', 3: 'Harry potter', 5: 'Game of thrones'}
+keys: bool and number  {True: {'name': 'shalom', 'age': 20}, 2: {}}
+                </code>
+            </pre>
+        </div>
+
+        <h3>storing lambda inside dictionary</h3>
+        <div class="code">
+            <pre>
+                <code>
+# dictionary with 1 lambda function
+def add_two(x, y):
+    return x + y
+oper_dict0: dict= {"+": add_two}
+print(oper_dict0.get("+")(1, 3))  # 4
+
+# dictionary with 4 lambda function
+oper_dict: dict = {"+": lambda x, y: x + y, "-": lambda x, y: x - y, "*": lambda x, y: x * y, "/": lambda x, y: x / y}
+x: int = int(input("enter x: "))
+y: int = int(input("enter y: "))
+oper: str = input("enter oper: ")  # + - * /
+result = oper_dict.get(oper)(x, y)
+print(f"{x} {oper} {y} = {result}")
+
+# run all operations
+for k in oper_dict.keys():
+    result = oper_dict.get(k)(x, y)
+    print(f"{x} {k} {y} = {result}")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# run lambda inside dict 
+4
+
+# run lambda inside dict based on user input
+enter x: 3
+enter y: 2
+enter oper: +
+3 + 2 = 5
+
+# run all operations
+3 + 2 = 5
+3 - 2 = 1
+3 * 2 = 6
+3 / 2 = 1.5
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the official Python documentation on <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries" target="_blank">dictionaries</a>.</p>
+        </div>
+
+  <h2>Function Parameters</h2>
+        
+        <h3>pass int as value</h3>
+        <div class="code">
+            <pre>
+                <code>
+x: int = 1
+print('before func: (global x)', x)
+
+def add1(x: int) -> None:
+    # x is passed by value, local to the function
+    x = x + 1
+    print('inside add1 ----> ', x)
+
+add1(x)
+print('after func: (global x)', x)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# Output of the function local parameter demonstration
+before func: (global x) 1
+inside add1 ----> 2
+after func: (global x) 1
+                </code>
+            </pre>
+        </div>
+
+        <h3>pass list reference pointer*</h3>
+        <div class="code">
+            <pre>
+                <code>
+list_int: list[int] = [1, 2, 3]
+print('\nbefore func --> ', list_int)
+
+def add1_list(alist: list[int]) -> None:
+    # alist is mutable, changes reflect outside the function
+    alist.append(100)
+
+add1_list(list_int)
+print('after func -->', list_int)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# Output of the pass by reference demonstration
+before func -->  [1, 2, 3]
+after func -->  [1, 2, 3, 100]
+                </code>
+            </pre>
+        </div>
+
+        <h3>change list reference pointer*</h3>
+        <div class="code">
+            <pre>
+                <code>
+def clear_list(blist: list[int]) -> None:
+    blist = [1]
+    print('inside clear #300', blist)
+
+print('\nbefore clear #100 -->', list_int)
+clear_list(list_int)
+print('after clear #100 ---> ', list_int)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# Output of the change reference inside function demonstration
+before clear #100 --> [1, 2, 3, 100]
+inside clear #300 [1]
+after clear #100 --->  [1, 2, 3, 100]
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit geeksforgeeks on <a href="https://www.geeksforgeeks.org/is-python-call-by-reference-or-call-by-value/" target="_blank">pass by ref and value</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates how Python handles function parameters, including immutable and mutable types, and the effects of passing by value versus passing by reference.</p>
+        </div>
+
+        <h2>Scopes and global</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Demonstrating variable scopes in Python
+
+def foo():
+    # Read-only access to global variable x
+    print('foo read-only (not using global keyword)', x)
+
+def goo():
+    # Modifying global variable x
+    global x
+    x = x + 1
+    print('changed in goo', x)
+
+def moo(x: int):
+    # Local variable x
+    x = x + 1
+    print('moo', x)
+
+def hoo():
+    # Local variable x
+    x: int = 12
+    x = x + 2
+    print('hoo', x)
+
+def koo():
+    # Local variable x hides global x
+    x: int = 1
+
+def main():
+    x: int = 1
+    foo()
+    goo()
+    moo(10)
+    hoo()
+    print('global', x)
+
+if __name__ == "__main__":
+    main()
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# Output of the scope demonstration
+foo read-only (not using global keyword) 1
+changed in goo 2
+moo 11
+hoo 14
+global 1
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the w3schools documentation on <a href="https://www.w3schools.com/python/python_variables_global.asp" target="_blank">global</a>.</p>
+        </div>
+        <div class="summary">
+            <p>This program demonstrates the difference between global and local variable scopes in Python, showing how variable access and modification work within functions.</p>
+        </div>
+
+        <h2>LeetCode Three Consecutive Odds</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+"""
+Given an integer array arr, return true if there are three consecutive odd numbers in the array.
+Otherwise, return false.
+"""
+
+# solution 1
+def triple_odds(list1: list[int]) -> bool:
+    count = 0
+    for number in list1:
+        if number % 2 != 0:
+            count += 1
+            if count == 3:
+                return True
+        else:
+            count = 0
+    return False
+
+# solution 2
+def triple_odds_no_count_minus(list1: list[int]) -> bool:
+    for i in range(2, len(list1)):
+        if list1[i] % 2 != 0 and list1[i - 1] % 2 != 0 and list1[i - 2] % 2 != 0:
+            return True
+    return False
+
+# solution 3
+def triple_odds_no_count_plus(list1: list[int]) -> bool:
+    if len(list1) < 2:
+        return False
+    for i in range(0, len(list1) - 2):
+        if list1[i] % 2 != 0 and list1[i + 1] % 2 != 0 and list1[i + 2] % 2 != 0:
+            return True
+    return False
+
+print(triple_odds([1, 2, 34, 3, 4, 5, 7, 23, 12]))  # True
+print(triple_odds([34, 3, 4, 5]))  # False
+
+print(triple_odds_no_count_minus([1, 2, 34, 3, 4, 5, 7, 23, 12]))  # True
+print(triple_odds_no_count_minus([34, 3, 4, 5]))  # False
+
+print(triple_odds_no_count_plus([1, 2, 34, 3, 4, 5, 7, 23, 12]))  # True
+print(triple_odds_no_count_plus([34, 3, 4, 5]))  # False
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+# Output of the three consecutive odds demonstration
+True
+False
+True
+False
+True
+False
+                </code>
+            </pre>
+        </div>
+
+    </div>
+</body>
+</html>
