@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw9 שיעורי בית + פתרון</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            body {
+                margin-left: 5%;
+                width: 90%;
+                zoom: 80%;
+
+            }
+            body.night-mode{
+                margin-left: 5%;
+                width: 90%;
+                zoom: 80%;
+
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            body {
+                justify-items: center;
+                margin:30%;
+            
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+
+            body.night-mode {
+                justify-items: center;
+                margin: 30%;
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+        }
+
+        body {
+            background-color: #eaeff2;
+            color: #127989;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+
+
+
+        }
+
+        body.night-mode {
+            background-color: #403e3e;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+
+        }
+
+        h1 {
+            color: #569cd6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+            direction: rtl;
+            text-align: right;
+
+        }
+
+        .query {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            direction: rtl;
+            text-align: right;
+
+        }
+
+        .question {
+            color: #127989;
+        }
+
+        .query {
+            color: #124989;
+        }
+
+        .question.night-mode {
+            color: #c586c0;
+        }
+
+        .query.night-mode {
+            color: #c586ac;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #127989;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0f5b6c;
+        }
+
+
+        .code-block {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 4%;
+            margin-top: 10px;
+            text-align: left;
+            overflow-x: auto;
+            word-wrap: break-word;
+            width: 100%;
+        }
+
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .operator {
+            color: #d4d4d4;
+        }
+        .aaaa{
+            color: #98a5b4;
+            text-align: right;
+
+
+        }
+
+        .responsive-image {
+            margin-top: 2%;
+            width: 30%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> שיעורי בית + פתרון hw9</h1>
+    <button id="theme-toggle">Switch Theme</button>
+    <div class="content">
+        <!-- Question 1 -->
+        <div class="query">
+            <h2>1. שימוש ב-filter על רשימת מספרים</h2>
+            <p>צור רשימה של 50 מספרים אקראיים בין 1-100 והדפס אותה</p>
+            <p>כעת השתמש ב filter וב- lambda כדי לקבל מתוך הרשימה:</p>
+            <div class="question">
+                <p>a. רק מספרים הגדולים מ- 50</p>
+            </div>
+            <div class="code-block">
+
+                <P><span class="keyword">import</span> random</P>
+                <span class="variable">numbers</span> = [<span class="function">random.randint</span>(<span
+                    class="number">1</span>,
+                <span class="number">100</span>) <span class="keyword">for</span> _
+                <span class="keyword">in</span> <span class="function">range</span>(<span class="number">50</span>)]
+                <P><span class="function">print</span>(<span class="variable">numbers</span>)</P>
+
+                <span class="variable">greater_than_50</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="keyword">lambda</span> x: x > <span
+                    class="number">50</span>, <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">greater_than_50</span>)</P>
+            </div>
+            <div class="question">
+
+                <p>b. רק מספרים המתחלקים ב-7 ללא שארית</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">divisible_by_7</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="keyword">lambda</span> x: x % <span
+                    class="number">7</span> == <span class="number">0</span>, <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">divisible_by_7</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>c. רק מספרים דו-ספרתיים (רמז: 10-99)</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">two_digit_numbers</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="keyword">lambda</span> <span class="variable">x</span>:
+                <span class="number">10</span> &lt;= <span class="variable">x</span> &lt;= <span
+                    class="number">99</span>, <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">two_digit_numbers</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>d. רק מספרים דו-ספרתיים שספרת האחדות שלהם שווה לספרת העשרות שלהם</p>
+            </div>
+            <div class="code-block">
+
+                <span class="keyword">same_digit_numbers</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="keyword">lambda</span> x: <span class="number">10</span>
+                &lt;= x &lt;= <span class="number">99</span> <span class="keyword">and</span> x <span
+                    class="keyword">//</span> <span class="number">10</span> == x % <span class="number">10</span>,
+                <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">same_digit_numbers</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>e. רק מספרים שסכום הספרות שלהם הוא 9</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">sum_of_digits_9</span> <span class="keyword">=</span> <span
+                    class="function">list</span>(<span class="function">filter</span>(<span
+                    class="keyword">lambda</span> x: <span class="function">sum</span>(<span
+                    class="function">map</span>(<span class="keyword">int</span>, <span class="function">str</span>(x)))
+                <span class="keyword">==</span> <span class="number">9</span>, <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">sum_of_digits_9</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>f. רק מספרים הגדולים מהממוצע</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">average</span> = <span class="function">sum</span>(<span
+                    class="variable">numbers</span>) / <span class="function">len</span>(<span
+                    class="variable">numbers</span>)
+                <P><span class="variable">greater_than_average</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="function">lambda</span> <span class="variable">x</span>:
+                <span class="variable">x</span> > <span class="variable">average</span>, <span
+                    class="variable">numbers</span>))</P>
+                <P><span class="function">print</span>(<span class="variable">greater_than_average</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>g. רק מספרים הגדולים מחצי של המספר המקסימלי ברשימה</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">max_number</span> = <span class="function">max</span>(<span
+                    class="variable">numbers</span>)
+                <P><span class="variable">greater_than_half_max</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="function">lambda</span> <span class="variable">x</span>:
+                <span class="variable">x</span> > <span class="variable">max_number</span> / 2, <span
+                    class="variable">numbers</span>))</P>
+                <P><span class="function">print</span>(<span class="variable">greater_than_half_max</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>h.*** בונוס: רק מספרים הגדולים מהחציון</p>
+            </div>
+            <div class="code-block">
+
+                <span class="function">sorted_numbers</span> = <span class="function">sorted</span>(<span
+                    class="variable">numbers</span>)
+                <P><span class="variable">median</span> = <span class="function">sorted_numbers</span>[<span
+                    class="number">len</span>(<span class="variable">numbers</span>) // <span class="number">2</span>]</P>
+                <span class="variable">greater_than_median</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="lambda">lambda</span> <span class="variable">x</span>:
+                <span class="variable">x</span> <span class="operator">></span> <span class="variable">median</span>,
+                <span class="variable">numbers</span>))
+                <P><span class="function">print</span>(<span class="variable">greater_than_median</span>)</P>
+
+            </div>
+            <div class="question">
+                <p>i.* בונוס: קלוט מהמשתמש 5 מספרים והכנס אותם לרשימה. כעת שמור ברשימה רק מספרים השונים מהמספרים שהוכנסו
+                    לרשימת המשתמש. רמז: in not</p>
+            </div>
+            <div class="code-block">
+
+                <span class="variable">user_numbers</span> = [<span class="function">int</span>(<span
+                    class="string">"Enter a number: "</span>) <span class="keyword">for</span> _ <span
+                    class="keyword">in</span> <span class="number">range</span>(<span class="number">5</span>)]
+                <P><span class="variable">different_numbers</span> = <span class="function">list</span>(<span
+                    class="function">filter</span>(<span class="function">lambda</span> <span class="variable">x</span>:
+                <span class="variable">x</span> <span class="keyword">not</span> <span class="keyword">in</span> <span
+                    class="variable">user_numbers</span>, <span class="variable">numbers</span>))</P>
+                <span class="function">print</span>(<span class="variable">different_numbers</span>)
+
+            </div>
+            <div class="question">
+                <p>j.*** בונוס: רק מספרים ראשוניים. רמז: כתוב פונקציה המקבלת מספר ומחזירה אמת אם הוא ראשוני ושקר אם לא.
+                    כעת קרא לפונקציה שכתבת מתוך ה-lambda</p>
+            </div>
+            <div class="code-block" style="direction: ltr;">
+
+                <P><span class="keyword">def</span> <span class="function">is_prime</span>(<span
+                    class="variable">n</span>):</P>
+                <p><span class="keyword">&emsp;if</span> <span class="variable">n</span>
+                <= <span class="number">1</span>:</p>
+                    <span class="keyword">&emsp;&emsp;return</span> <span class="keyword">False</span>
+                    <P><span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span>
+                    <span class="function">range</span>(<span class="number">2</span>, <span
+                        class="function">int</span>(<span class="variable">n</span>**<span class="number">0.5</span>) +
+                    <span class="number">1</span>):</P>
+                    <span class="keyword">&emsp;&emsp;if</span> <span class="variable">n</span> % <span class="variable">i</span> ==
+                    <span class="number">0</span>:
+                    <P><span class="keyword">&emsp;&emsp;&emsp;return</span> <span class="keyword">False</span></P>
+                    <span class="keyword">&emsp;return</span> <span class="keyword">True</span>
+
+                    <p><span class="variable">prime_numbers</span> = <span class="function">list</span>(<span
+                        class="function">filter</span>(<span class="function">lambda</span> <span
+                        class="variable">x</span>: <span class="function">is_prime</span>(<span
+                        class="variable">x</span>), <span class="variable">numbers</span>))</p>
+                    <span class="function">print</span>(<span class="variable">prime_numbers</span>)
+
+            </div>
+            <div class="query">
+                <h2>3. שימוש ב - map. מקור מספר </h2>
+             <p>
+                צור רשימה של 20 מספרים אקראיים בין מינוס 50 לבין פלוס 50 והדפס אותה
+                השתמש ב map ו ב- lambda כדי לקבל רשימה חדשה שתכיל: </p>
+            <div class="code-block">
+              
+                <P><span class="keyword">import</span> random</P>
+                <span class="variable">cities_with_details</span> = <span class="function">[random.randint(-50, 50) for _ in range(20)]</span>
+                
+                <p><span class="function">print</span>(<span class="variable">numbers</span>)</p>
+                
+                <p class="aaaa"># a. כל מספר בחזקת 3</p>
+
+                cubes = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: x ** 3, <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">cubes</span>)</p>
+                
+                <p class="aaaa"># b. רק ספרת האחדות של כל מספר</p>
+                units_digit = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: abs(x) % 10, <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">units_digit</span>)</p>
+                
+                <p class="aaaa"># c. כל מספר בפרנהייט</p>
+                fahrenheit = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: x * 9 / 5 + 32, <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">fahrenheit</span>)</p>
+                
+                <p class=# d. כל מספר חיובי יהפוך למילה "positive" וכל מספר שלילי יהפוך למילה "negative"></p>
+                positive_negative = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: <span class="string">"positive"</span> if x > 0 else <span class="string">"negative"</span>, <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">positive_negative</span>)</p>
+                
+                <p class="aaaa"># e. המספר הכי גדול יוחלף במילה "max" והכי קטן במילה "min". היתר יישאר אותו דבר</p>
+                max_num = <span class="keyword">max</span>(<span class="variable">numbers</span>)
+                min_num = <span class="keyword">min</span>(<span class="variable">numbers</span>)
+                max_min_replaced = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: <span class="string">"max"</span> if x == max_num else (<span class="string">"min"</span> if x == min_num else x), <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">max_min_replaced</span>)</p>
+                
+                <P class="aaaa"># f. בונוס: כל מספר בסדר ספרות הפוך</P>
+                reversed_digits = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: <span class="keyword">int</span>(<span class="keyword">str</span>(x)[::-1]) if x >= 0 else -<span class="keyword">int</span>(<span class="keyword">str</span>(<span class="keyword">abs</span>(x))[::-1]), <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">reversed_digits</span>)</p>
+                
+                <p class="aaaa"># g. בונוס: כל מספר בערך מוחלט</p>
+                absolute_values = <span class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span> x: <span class="keyword">abs</span>(x), <span class="variable">numbers</span>))
+                <p><span class="function">print</span>(<span class="variable">absolute_values</span>)</p>
+                <p class="aaaa"># h. בונוס: צור רשימה של הוצאות והכנסות חודשיות וממנה צור רשימה של מאזן חודשי</p>
+                
+                <span class="keyword">expenses_and_income </span>= <span class="string"> [[10000, 7000], [300, 5000], [2000, 8000]]</span>
+                <span class="keyword">monthly_balance </span>= <span class="string"> [income - expense for income, expense in expenses_and_income]</span>
+                <p><span class="function">print</span>(<span class="variable">monthly_balance</span>)</p>
+                </span>
+                
+                </div>
+            <div class="query">
+                <h2>4. שימוש ב-map. מקור מחרוזת</h2>
+                <p>צור רשימת מילים שתכיל את הפירות הבאים: "Mango", "Orange", "Banana", "Apple", "Strawberry",
+                    "Pineapple", "Grapes", "Watermelon"</p>
+                <p>השתמש ב-map וב-lambda כדי לקבל רשימה חדשה שתכיל:</p>
+                <div class="question">
+
+                    <p>a. כל פרי בסדר אותיות הפוך</p>
+                </div>
+                <div class="code-block">
+                    <span class="variable">fruits</span> = <span class="string">["Mango", "Orange", "Banana", "Apple",
+                        "Strawberry", "Pineapple", "Grapes", "Watermelon"]</span>
+                    <P><span class="variable">reversed_fruits</span> = <span class="function">list</span>(<span
+                        class="function">map</span>(<span class="keyword">lambda</span> <span class="variable">x</span>:
+                    <span class="variable">x</span>[::-<span class="number">1</span>], <span
+                        class="variable">fruits</span>))
+                    <P><span class="function">print</span>(<span class="variable">reversed_fruits</span>)</P>
+
+                </div>
+                <div class="question">
+                    <p>b. אות ראשונה של כל פרי</p>
+                </div>
+                <div class="code-block">
+
+                    <span class="variable">first_letter</span> = <span class="function">list</span>(<span
+                        class="function">map</span>(<span class="function">lambda</span> <span
+                        class="variable">x</span>: <span class="variable">x</span>[<span class="number">0</span>], <span
+                        class="variable">fruits</span>))
+                    <P><span class="function">print</span>(<span class="variable">first_letter</span>)</P>
+
+                </div>
+                <div class="question">
+                    <p>c. הפרי כולו באותיות גדולות</p>
+                </div>
+                <div class="code-block">
+
+                    <span class="keyword">uppercase_fruits</span> = list(<span class="function">map</span>(<span
+                        class="lambda">lambda</span> <span class="variable">x</span>: <span
+                        class="variable">x</span>.<span class="function">upper</span>(), <span
+                        class="variable">fruits</span>))
+                    <P><span class="function">print</span>(<span class="variable">uppercase_fruits</span>)</P>
+
+                </div>
+                <div class="question">
+                    <p>d. אורך כל פרי</p>
+                </div>
+                <div class="code-block">
+
+                    <span class="variable">length_of_fruits</span> = <span class="function">list</span>(<span
+                        class="function">map</span>(<span class="function">lambda</span> <span
+                        class="variable">x</span>: <span class="function">len</span>(<span class="variable">x</span>),
+                    <span class="variable">fruits</span>))
+                    <P><span class="function">print</span>(<span class="variable">length_of_fruits</span>)</P>
+
+                </div>
+                <div class="question">
+                    <p>e.* בונוס: אם הפרי מסתיים באות s הוסף סימן קריאה. אחרת יישאר אותו הדבר</p>
+                </div>
+                <div class="code-block">
+
+                    <span class="variable">fruits_exclamation</span> = <span class="function">list</span>(<span
+                        class="function">map</span>(<span class="function">lambda</span> <span
+                        class="variable">x</span>: <span class="variable">x</span> + <span class="string">'!'</span>
+                    <span class="keyword">if</span> <span class="variable">x</span>.<span
+                        class="function">endswith</span>(<span class="string">'s'</span>) <span
+                        class="keyword">else</span> <span class="variable">x</span>, <span
+                        class="variable">fruits</span>))
+                    <P><span class="function">print</span>(<span class="variable">fruits_exclamation</span>)</P>
+
+                </div>
+                <div class="question">
+                    <p>f.** בונוס: הוסף את מספר הקלוריות למאה גרם לכל פרי</p>
+                </div>
+                <div class="code-block">
+
+                    <span class="keyword">fruits_with_calories</span> = [
+                    [<span class="string">"Apple"</span>, <span class="number">52</span>], [<span
+                        class="string">"Banana"</span>, <span class="number">89</span>], [<span
+                        class="string">"Orange"</span>, <span class="number">47</span>], [<span
+                        class="string">"Mango"</span>, <span class="number">60</span>],
+                    [<span class="string">"Strawberry"</span>, <span class="number">32</span>], [<span
+                        class="string">"Pineapple"</span>, <span class="number">50</span>], [<span
+                        class="string">"Grapes"</span>, <span class="number">69</span>], [<span
+                        class="string">"Watermelon"</span>, <span class="number">30</span>]
+                    ]
+
+                    <p class="aaaa"># א. צור רשימה חדשה שתכיל רק את מספר הקלוריות</p>
+                    <span class="variable">calories_only</span> = <span class="keyword">list</span>(<span
+                        class="keyword">map</span>(<span class="keyword">lambda</span> <span class="variable">x</span>:
+                    <span class="variable">x</span>[<span class="number">1</span>], <span
+                        class="variable">fruits_with_calories</span>))
+                    <P><span class="function">print</span>(<span class="variable">calories_only</span>)</P>
+
+                    <p class="aaaa"># ב. צור רשימה חדשה עם מחוברת</span>
+                        <span class="variable">fruit_calories_combined</span> = <span class="keyword">list</span>(<span
+                            class="keyword">map</span>(<span class="keyword">lambda</span> <span
+                            class="variable">x</span>:
+                        <span class="keyword">str</span>(<span class="variable">x</span>[<span class="number">1</span>])
+                        +
+                        <span class="variable">x</span>[<span class="number">0</span>], <span
+                            class="variable">fruits_with_calories</span>))
+                        <P><span class="function">print</span>(<span class="variable">fruit_calories_combined</span>)</P>
+
+                    <p class="aaaa"># ג. אם פרי מעל 50 קלוריות הוסף סימן קריאה לשם שלו</p>
+                    <span class="variable">high_calories_exclamation</span> = <span class="keyword">list</span>(<span
+                        class="keyword">map</span>(<span class="keyword">lambda</span> <span class="variable">x</span>:
+                    <span class="variable">x</span>[<span class="number">0</span>] + <span class="string">'!'</span>
+                    <span class="keyword">if</span> <span class="variable">x</span>[<span class="number">1</span>] >
+                    <span class="number">50</span> <span class="keyword">else</span> <span
+                        class="variable">x</span>[<span class="number">0</span>], <span
+                        class="variable">fruits_with_calories</span>))
+                    <P><span class="function">print</span>(<span class="variable">high_calories_exclamation</span>)</P>
+
+                </div>
+
+
+
+                <!-- Question 5 -->
+                <div class="query">
+                    <h2>5. מיון לפי key</h2>
+                    <p>"Tokyo", "New York", "Paris", "London", "Sydney", "Dubai", "Shanghai": הבא ברשימה</p>
+                    <p>השתמש ב-sort וב-lambda כדי למיין לפי:</p>
+                    <div class="question">
+                        <p>a. אורך שם העיר</p>
+                    </div>
+                    <div class="code-block">
+
+                        <P><span class="keyword">cities</span> = <span class="string">["Tokyo", "New York", "Paris",
+                            "London", "Sydney", "Dubai", "Shanghai"]</span></P>
+                        <span class="keyword">sorted_by_length</span> = <span class="keyword">sorted</span>(<span
+                            class="keyword">cities</span>, <span class="keyword">key</span>=<span
+                            class="function">lambda</span> <span class="variable">x</span>: <span
+                            class="keyword">len</span>(<span class="variable">x</span>))
+                        <p><span class="function">print</span>(<span class="variable">sorted_by_length</span>)</p>
+
+                    </div>
+                    <div class="question">
+                        <p>b. האות האחרונה של שם העיר</p>
+                    </div>
+                    <div class="code-block">
+
+                        <span class="keyword">sorted_by_last_letter</span> = <span class="keyword">sorted</span>(cities,
+                        key=<span class="keyword">lambda</span> x: x[-<span class="number">1</span>])
+                        <P><span class="function">print</span>(<span class="variable">sorted_by_last_letter</span>)</P>
+
+                    </div>
+                    <div class="question">
+                        <p>c. שם העיר בסדר אותיות הפוך</p>
+                    </div>
+                    <div class="code-block">
+
+                        <span class="keyword">sorted_by_reversed_name</span> = <span class="keyword">sorted</span>(<span
+                            class="variable">cities</span>, <span class="keyword">key</span>=<span
+                            class="keyword">lambda</span> <span class="variable">x</span>: <span
+                            class="variable">x</span>[::-<span class="number">1</span>])
+                        <P><span class="function">print</span>(<span class="variable">sorted_by_reversed_name</span>)</P>
+
+                    </div>
+                    <div class="question">
+                        <p>d.** בונוס: הוסף את המרחק במיילים מישראל ואת שם היבשת</p>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="variable">cities_with_details = [</span> = <span class="string">["Tokyo", 5760, "Asia"], ["New York", 5690, "North America"], ["Paris", 2050, "Europe"],
+                            ["London", 2240, "Europe"], ["Sydney", 8780, "Australia"], ["Dubai", 1300, "Asia"],
+                            ["Shanghai", 4920, "Asia"]
+                            ]</span>
+                        
+                        
+                        
+
+                        <p class="aaaa"> # א. מיין לפי המרחק מישראל</p>
+                        <span class="keyword">sorted_by_distance</span> = <span
+                            class="keyword">sorted</span>(cities_with_details, key=<span class="keyword">lambda</span>
+                        x: x[1])
+                        <p><span class="function">print</span>(sorted_by_distance)</p>
+                        <p class="aaaa"> # ב. מיין לפי המרחק מישראל מהגדול לקטן </p>
+                        <span class="keyword">sorted_by_distance_desc</span> = <span
+                            class="keyword">sorted</span>(cities_with_details, key=<span class="keyword">lambda</span>
+                        x: x[1], <span class="keyword">reverse</span>=<span class="keyword">True</span>)
+                        <P><span class="function">print</span>(sorted_by_distance_desc)</P>
+
+                        <p class="aaaa"># ג. מיין לפי שם היבשת</p>
+                        <span class="keyword">sorted_by_continent</span> = <span
+                            class="keyword">sorted</span>(cities_with_details, key=<span class="keyword">lambda</span>
+                        x: x[2])
+                        <P><span class="function">print</span>(sorted_by_continent)</P> 
+
+                        <p class="aaaa"># ד. מיין לפי שם היבשת ובמיון השני לפי המרחק</p>
+                        <span class="keyword">sorted_by_continent_distance</span> = <span
+                            class="keyword">sorted</span>(cities_with_details, key=<span class="keyword">lambda</span>
+                        x: (x[2], x[1]))
+                        <p><span class="function">print</span>(sorted_by_continent_distance)</p>
+
+                    </div>
+
+                </div>
+                
+
+                <!-- Question 6 -->
+                <div class="query">
+                    <h2>6. המשמעות של המילה global בתוך פונקציה</h2>
+                    <p>מה החסרון בשימוש ב-global כחלק מפונקציה? מה זה ידרוש בעתיד... מדוע כאן נקבל שגיאה:</p>
+                    <div class="code-block" style="direction: ltr;">
+                        <span class="variable"> x: int</span> = <span class="string">1</span>
+                        <p><span class="variable">def</span> 
+                        <span class="function">foo</span>():</p>
+                        <p><span class="function">print</span>(<span class="variable">x</span>)</p>
+                        <span class="variable"> x</span> = <span class="string">4</span>
+                        <P><span class="function">foo</span>()</P>
+
+                       
+
+                    </div>
+                    <p>המשמעות של המילה global בתוך פונקציה היא שהמשתנה שמוגדר כ-global הוא משתנה גלובלי שנמצא מחוץ
+                        לפונקציה, כך שכל השינויים בו בתוך הפונקציה ישפיעו גם מחוץ לה. החסרון בשימוש ב-global כחלק
+                        מפונקציה הוא שהדבר יכול להוביל לשגיאות וקונפליקטים בקוד, מכיוון שכל שינוי במשתנה הגלובלי
+                        יכול להשפיע על חלקים אחרים בקוד שמשתמשים באותו משתנה.</p>
+                    <p>בדוגמה לעיל, השגיאה מתרחשת מכיוון שהפונקציה מנסה להדפיס את המשתנה x לפני שהוא הוגדר בתוך
+                        הפונקציה. הפונקציה מגדירה את x כמשתנה מקומי ולא כמשתנה גלובלי, ולכן השגיאה מתרחשת.</p>
+                </div>
+            </div>
+            <div class="image-container" style="text-align: left;">
+                <img src="https://www.ecomschool.co.il/wp-content/uploads/2019/06/wide1000-768x157.d110a0.webp"
+                    class="responsive-image" alt="תמונה">
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const themeToggleButton = document.getElementById('theme-toggle');
+
+                    themeToggleButton.addEventListener('click', () => {
+
+                        document.body.classList.toggle('night-mode');
+
+                        document.querySelectorAll('.question').forEach(element => {
+                            element.classList.toggle('night-mode');
+
+                        });
+                        document.querySelectorAll('.query').forEach(element => {
+                            element.classList.toggle('night-mode');
+
+                        });
+
+                    });
+
+                });
+            </script>
+</body>
+
+</html>
