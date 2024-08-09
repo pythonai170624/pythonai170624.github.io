@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיעורי בית + פתרון hw10</title>
+    <style>
+          @media screen and (max-width: 768px) {
+            body {
+                width: 90%;
+                zoom: 80%;
+
+            }
+          
+        }
+
+        @media screen and (min-width: 769px) {
+            body {
+                justify-items: center;
+                margin:30%;
+            
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+            }
+        body {
+            background-color: rgb(212, 187, 187);
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            margin-bottom: 0%;
+            margin-top: 0%;
+        }
+
+        h1 {
+            color: #1d86dc;
+            direction: rtl;
+            text-align: center;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .answer {
+            direction: ltr;
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            margin-top: 10px;
+
+        }
+
+        .code {
+            color: #d4d4d4;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .aaaa {
+            color: #98a5b4;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> שיעורי בית + פתרון hw10</h1>
+
+    <div class="question">
+        <p><b>1.</b> עבודה עם- dict</p>
+       <p>צור מילון עבור מדינת ישראל ושים בו את הפרטים הבאים:</p>
+    </div>
+    <div class="answer">
+        <p class="code">{
+            <br><span class="string">'name'</span>: <span class="string">'Israel'</span>,
+            <br><span class="string">'birth'</span>: <span class="number">1948</span>,
+            <br><span class="string">'population_millions'</span>: <span class="number">9.3</span>,
+            <br><span class="string">'capital'</span>: <span class="string">'Jerusalem'</span>,
+            <br><span class="string">'language'</span>: <span class="string">'Hebrew'</span>,
+            <br><span class="string">'cities'</span>: [<span class="string">'Jerusalem'</span>, <span
+                class="string">'Tel Aviv'</span>, <span class="string">'Haifa'</span>, <span class="string">'Rishon
+                LeZion'</span>, <span class="string">'Petah Tikva'</span>, <span class="string">'Ashdod'</span>],
+            <br><span class="string">'currency'</span>: <span class="string">'ILS'</span>,
+            <br><span class="string">'area_Kilometer'</span>: <span class="number">22145</span>,
+            <br><span class="string">'gdp_billion'</span>: <span class="number">450</span>
+            }
+        </p>
+    </div>
+
+
+    <div class="question">
+        a. מצא והדפס את עיר הבירה:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">capital</span> = israel.get(<span
+                class="string">'capital'</span>)<br><span class="keyword">print</span>(<span
+                class="keyword">capital</span>) </p>
+    </div>
+
+    <div class="question">
+        b. הדפס את כל המפתחות:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">keys</span> = israel.keys()<br><span class="keyword">print</span>(<span
+                class="keyword">keys</span>) </p>
+    </div>
+
+    <div class="question">
+        c. רשימה המכילה את המפתחות באותיות גדולות:
+    </div>
+    <div class="answer">
+        <p class="code">upper_keys = [<span class="keyword">key</span>.upper() <span class="keyword">for</span> <span
+                class="keyword">key</span> <span class="keyword">in</span> israel.keys()]<br><span
+                class="keyword">print</span>(upper_keys)</p>
+    </div>
+
+    <div class="question">
+        d. הדפס את כל הערכים:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">values</span> = israel.values()<br><span
+                class="keyword">print</span>(<span class="keyword">values</span>) </p>
+    </div>
+
+    <div class="question">
+        e. רשימה המכילה את אורכי ה-values:
+    </div>
+    <div class="answer">
+        <p class="code">lengths = [<span class="keyword">len</span>(str(<span class="keyword">value</span>)) <span
+                class="keyword">for</span> <span class="keyword">value</span> <span class="keyword">in</span>
+            israel.values()]<br><span class="keyword">print</span>(lengths) </p>
+    </div>
+
+    <div class="question">
+        f. הדפס את כל זוגות הערכים:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">items</span> = israel.items()<br><span class="keyword">print</span>(<span
+                class="keyword">items</span>) </p>
+    </div>
+
+    <div class="question">
+        g. העתק את המילון למילון חדש:
+    </div>
+    <div class="answer">
+        <p class="code">israel_copy = israel.copy()</p>
+    </div>
+
+    <div class="question">
+        h. נקה את המילון החדש מערכים:
+    </div>
+    <div class="answer">
+        <p class="code">israel_copy.clear()<br><span class="keyword">print</span>(israel_copy) </p>
+    </div>
+
+    <div class="question">
+        i. מילון חדש עם אותם מפתחות אבל ערכים None:
+    </div>
+    <div class="answer">
+        <p class="code">new_dict = dict.fromkeys(israel.keys(), None)<br><span class="keyword">print</span>(new_dict)
+
+        </p>
+    </div>
+
+    <div class="question">
+        j. מחיקת המפתח 'currency':
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">del</span> israel[<span class="string">'currency'</span>]<br><span
+                class="keyword">print</span>(israel) </p>
+    </div>
+
+    <div class="question">
+        k. משיכת ומחיקת המפתח 'area_Kilometer':
+    </div>
+    <div class="answer">
+        <p class="code">area_km = israel.pop(<span class="string">'area_Kilometer'</span>)<br><span
+                class="keyword">print</span>(area_km) <br><span class="keyword">print</span>(israel) </p>
+    </div>
+
+    <div class="question">
+        l. עדכון והוספת ערכים למילון:
+    </div>
+    <div class="answer">
+        <p class="code">israel.update({<span class="string">'population_millions'</span>: <span
+                class="number">9.4</span>, <span class="string">'Soccer'</span>: <span
+                class="string">'sport_national'</span>})<br><span class="keyword">print</span>(israel) </p>
+    </div>
+
+    <div class="question">
+        <b>2.</b> עבודה עם dict במקום case match:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">def</span> <span class="function">perform_action</span>(<span
+                class="keyword">action</span>):<br> actions_dict = {<br> <span class="string">'add'</span>: <span
+                class="string">'Adding item'</span>,<br> <span class="string">'delete'</span>: <span
+                class="string">'Deleting item'</span>,<br> <span class="string">'update'</span>: <span
+                class="string">'Updating item'</span><br> }<br> <span class="keyword">return</span>
+            actions_dict.get(action, <span class="string">'Unknown action'</span>)<br><br>result = perform_action(<span
+                class="string">'add'</span>)<br><span class="keyword">print</span>(result) </p>
+    </div>
+
+    <div class="question">
+        <b>3/</b> פונקציה המחזירה מילון עם סטטיסטיקות של רשימת מספרים:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">def</span> <span class="function">get_statistics</span>(<span
+                class="keyword">numbers</span>: <span class="keyword">list</span>[<span class="keyword">int</span>]) ->
+            <span class="keyword">dict</span>:<br> <span class="keyword">return</span> {<br> <span
+                class="string">"sum"</span>: <span class="keyword">sum</span>(numbers),<br> <span
+                class="string">"max"</span>: <span class="keyword">max</span>(numbers),<br> <span
+                class="string">"min"</span>: <span class="keyword">min</span>(numbers),<br> <span
+                class="string">"average"</span>: <span class="keyword">sum</span>(numbers) / <span
+                class="keyword">len</span>(numbers),<br> <span class="string">"count"</span>: <span
+                class="keyword">len</span>(numbers)<br> }<br><br>numbers = [10, 20, 30, 40, 50]<br>statistics =
+            get_statistics(numbers)<br><span class="keyword">print</span>(statistics)
+        </p>
+    </div>
+
+    <div class="question">
+        <b>4.</b> בונוס: הפעלת פעולה על מחרוזת שנקלטת מהמשתמש:
+    </div>
+    <div class="answer">
+        <p class="code">oper_dict = {<br> <span class="string">"lower"</span>: <span class="keyword">lambda</span> w:
+            w.lower(),<br> <span class="string">"upper"</span>: <span class="keyword">lambda</span> w: w.upper(),<br>
+            <span class="string">"len"</span>: <span class="keyword">lambda</span> w: <span
+                class="keyword">len</span>(w),<br> <span class="string">"reverse"</span>: <span
+                class="keyword">lambda</span> w: w[::-1]<br>}<br><br>word = <span class="keyword">input</span>(<span
+                class="string">"Enter word: "</span>)<br>operation = <span class="keyword">input</span>(<span
+                class="string">"Enter operation name (lower, upper, len, reverse): "</span>)<br>result =
+            oper_dict.get(operation, <span class="keyword">lambda</span> w: <span class="string">"Unknown
+                operation"</span>)(word)<br><span class="keyword">print</span>(result)
+        </p>
+    </div>
+
+    <div class="question">
+        <b>5.</b> הסבר על פונקציות המניפולציה למילון:
+    </div>
+    <div class="answer">
+        <p class="code"><span class="keyword">def</span> <span class="function">remove_key_from_dict</span>(<span
+                class="keyword">dictionary</span>: <span class="keyword">dict</span>):<br>
+            dictionary.popitem()<br><br><span class="keyword">def</span> <span class="function">clear_all</span>(<span
+                class="keyword">dictionary</span>: <span class="keyword">dict</span>):<br> dictionary.clear()<br><br>a ={<span class="string">'x'</span>: <span class="number">1</span>,<span class="string">'y'</span>:<span
+                class="number">2</span>}<br><br>remove_key_from_dict(a)<br><br><span class="keyword">print</span>(a)
+            <br><span class="function"> clear_all</span>(a)<br><br><span class="keyword">print</span>(a)
+            <br><br>
+        </p>
+    </div>
+
+    <div class="question">
+        <b>6.</b> הסבר על סוגריים מרובעים במילון:
+    </div>
+    <div class="answer">
+        <p class="code">coordinates = { <span class="string">'x'</span>: <span class="number">10</span>, <span
+                class="string">'y'</span>: <span class="number">20</span> }<br><br><span
+                class="keyword">print</span>(coordinates[<span class="string">'x'</span>]) ] = <span
+                class="number">15</span><br><br><span class="keyword">print</span>(coordinates[<span
+                class="string">'x'</span>])<br><br>coordinates[<span class="string">'z'</span>] = <span
+                class="number">30</span><br><br><span class="keyword">print</span>(coordinates) </p>
+    </div>
+
+    <div class="question">
+        <b></b> שימוש ב- filter ו-map עם רשימת מדינות:
+    </div>
+    <div class="answer">
+        <p class="code">countries = [<br> {<span class="string">'name'</span>: <span class="string">'Israel'</span>,
+            <span class="string">'population'</span>: <span class="number">9.3</span>, <span
+                class="string">'birth'</span>: <span class="number">1948</span>},<br> {<span
+                class="string">'name'</span>: <span class="string">'United States'</span>, <span
+                class="string">'population'</span>: <span class="number">331.9</span>, <span
+                class="string">'birth'</span>: <span class="number">1776</span>},<br> {<span
+                class="string">'name'</span>: <span class="string">'Japan'</span>, <span
+                class="string">'population'</span>: <span class="number">125.8</span>, <span
+                class="string">'birth'</span>: <span class="number">660</span>},<br> {<span
+                class="string">'name'</span>: <span class="string">'Australia'</span>, <span
+                class="string">'population'</span>: <span class="number">25.7</span>, <span
+                class="string">'birth'</span>: <span class="number">1901</span>},<br> {<span
+                class="string">'name'</span>: <span class="string">'Canada'</span>, <span
+                class="string">'population'</span>: <span class="number">38.0</span>, <span
+                class="string">'birth'</span>: <span class="number">1867</span>}<br>]
+        <p class="aaaa" style="direction: rtl;"># 1.שימוש ב-filter כדי לסנן מדינות עם יותר מ-30 מיליון תושבים</p>
+        <br>large_population_countries = <span class="keyword">list</span>(<span class="keyword">filter</span>(<span class="keyword">lambda</span>country: country[<span class="string">'population'</span>] > <span class="number">30</span>,countries))<br>
+        <span class="keyword">print</span>(large_population_countries) 
+        <p class="aaaa" style="direction: rtl;"># 2. שימוש ב-filter כדי לסנן מדינות שהוקמו אחרי שנת 1800</p><br>post_1800_countries =
+        <span class="keyword">list</span>(<span class="keyword">filter</span>(<span class="keyword">lambda</span>
+        country: country[<span class="string">'birth'</span>] > <span class="number">1800</span>,
+        countries))<br>
+        <span class="keyword">print</span>(post_1800_countries) 
+        <p class="aaaa" style="direction: rtl;"># 3. שימוש ב-map כדי ליצור רשימה של שמות המדינות</p>country_names = <span
+            class="keyword">list</span>(<span class="keyword">map</span>(<span class="keyword">lambda</span>
+        country: country[<span class="string">'name'</span>], countries))<br>
+        <span
+            class="keyword">print</span>(country_names) 
+            <p class="aaaa" style="direction: rtl;"># 4. שימוש ב-map כדי ליצור רשימה של
+            שנות ההקמה של המדינות</p>country_birth_years = <span class="keyword">list</span>(<span
+            class="keyword">map</span>(<span class="keyword">lambda</span> country: country[<span
+            class="string">'birth'</span>], countries))<br><span class="keyword">print</span>(country_birth_years)
+            <p class="aaaa" style="direction: rtl;"># 5. שימושב-sort כדי למיין את המדינות לפי שנת ההקמה שלהן</p>sorted_by_birth = <span
+            class="keyword">sorted</span>(countries, key=<span class="keyword">lambda</span> country: country[<span
+            class="string">'birth'</span>])<br><span class="keyword">print</span>(sorted_by_birth) 
+            <p class="aaaa" style="direction: rtl;"># 6. שימוש ב-sort כדי למיין את המדינות לפי מספר התושביםשלהן</p>sorted_by_population = <span class="keyword">sorted</span>(countries, key=<span
+            class="keyword">lambda</span> country: country[<span class="string">'population'</span>])<br>
+            <span
+            class="keyword">print</span>(sorted_by_population)</p>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
