@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Topics - Tuples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .demo h3 {
+            font-weight: bold;
+            color: white;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        .summary {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        h3 {
+            text-align: left;
+            color: #444;
+        }
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Topics</h1>
+
+        <h2>Basic Tuple Operations</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Basic Tuple Creation and Access
+# -- create tuple with 1 item using ,
+group_max: tuple[int] = (100,)
+print(group_max[0])  # Output: 100
+
+simple_tuple: tuple[int] = (1, 2, 3)
+one_item_tuple: tuple[int] = (1,)
+
+fruits: tuple[str] = ("apple", "banana", "cherry")
+print(fruits)  # Output: ("apple", "banana", "cherry")
+print(fruits[0])  # Output: "apple"
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+100
+("apple", "banana", "cherry")
+"apple"
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section covers the basics of creating and accessing tuple elements in Python. Tuples are immutable, meaning once created, their elements cannot be modified.</p>
+        </div>
+
+        <h2>Tuple with Mixed Data Types</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Tuples can hold elements of different data types
+mix: tuple[any] = (1, "Hello", [1, 2, 3], {"name": "danny"})
+print(mix)  # Output: (1, "Hello", [1, 2, 3], {"name": "danny"})
+
+# Modifying a mutable element within a tuple
+mix[2][0] = 100
+mix[2].append(200)
+print(mix)  # Output: (1, "Hello", [100, 200, 3], {"name": "danny"})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+(1, "Hello", [1, 2, 3], {"name": "danny"})
+(1, "Hello", [100, 200, 3], {"name": "danny"})
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates that tuples can contain elements of various data types. While tuples themselves are immutable, if they contain mutable elements (like lists), those elements can be modified.</p>
+        </div>
+
+        <h2>Tuple Unpacking and Nested Tuples</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Unpacking Tuples
+number_tuple: tuple[int] = (1, 2, 3)
+x, y, z = number_tuple
+print(x, y, z)  # Output: 1 2 3
+
+# Nested Tuples
+create_nested_tuple: tuple[tuple[any]] = (
+    ("Alice", 21, "Physics"),
+    ("Bob", 222, "Chemistry"),
+    ("Charlie", 20, "Mathematics")
+)
+print(create_nested_tuple)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+1 2 3
+(("Alice", 21, "Physics"), ("Bob", 222, "Chemistry"), ("Charlie", 20, "Mathematics"))
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section shows how to unpack tuples into individual variables and demonstrates the use of nested tuples to represent more complex data structures.</p>
+        </div>
+
+        <h2>Tuple Functions and Methods</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+numbers: tuple[int] = (1, 2, 0, 3, 2, 100)
+
+# Basic Tuple Operations
+print(numbers.count(2))  # Output: 2
+print(numbers.index(100))  # Output: 5
+print(len(numbers))  # Output: 6
+print(max(numbers))  # Output: 100
+print(min(numbers))  # Output: 0
+print(sum(numbers))  # Output: 108
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+2
+5
+6
+100
+0
+108
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section covers common tuple functions and methods like `count`, `index`, `len`, `max`, `min`, and `sum` that allow you to analyze and retrieve information from tuples.</p>
+        </div>
+
+        <h2>Advanced Tuple Operations</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Creating Tuples with Ranges and Comprehensions
+create_tuple = tuple(range(21))  # Tuple with numbers from 0 to 20
+print(create_tuple)
+
+# Tuple Comprehension Example
+tuple_comp = tuple(x**2 for x in range(1, 6))
+print(tuple_comp)
+
+# Tuples from Lists and Zipping Tuples
+names: tuple[str] = ("Alice", "Bob", "Charlie")
+scores: tuple[int] = (80, 90, 99, 100)
+combined_tuple: tuple[tuple[any]] = tuple(zip(names, scores))
+print(combined_tuple)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+(1, 4, 9, 16, 25)
+(("Alice", 80), ("Bob", 90), ("Charlie", 99))
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section explores advanced tuple operations such as creating tuples with ranges and comprehensions, and using the `zip` function to combine multiple sequences into tuples.</p>
+        </div>
+
+        <h2>Sorting and Manipulating Tuples</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Sorting Tuples
+grades = (("Alice", 92), ("Bob", 90), ("Charlie", 88), ("David", 85), ("Eve", 79))
+sorted_grades = tuple(sorted(grades, key=lambda pair: pair[1]))
+print(sorted_grades)
+
+# Tuple Concatenation and Repetition
+tuple_1: tuple[int] = (1, 2)
+tuple_2: tuple[int] = (3, 4)
+print(tuple_1 + tuple_2)  # Output: (1, 2, 3, 4)
+print(tuple_1 * 3)  # Output: (1, 2, 1, 2, 1, 2)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+(("David", 85), ("Charlie", 88), ("Bob", 90), ("Alice", 92), ("Eve", 79))
+(1, 2, 3, 4)
+(1, 2, 1, 2, 1, 2)
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates how to sort tuples, concatenate multiple tuples, and repeat tuples. These operations are useful for organizing and manipulating tuple data in Python.</p>
+        </div>
+
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, visit the geeksforgeeks documentation on <a href="https://www.geeksforgeeks.org/python-tuple-function/" target="_blank">tuples</a>.</p>
+        </div>
+
+<h2>Working with Dictionaries and Tuples</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+# Creating a dictionary using tuples
+dict_books = dict([[1, "1984"], [3, "Harry Potter"], [5, "Game of Thrones"]])
+print(dict_books)
+
+# Another way to create a dictionary using tuples
+dict_books = dict([(1, "1984"), (3, "Harry Potter"), (5, "Game of Thrones")])
+print(dict_books)
+
+# Creating a dictionary using a comprehension with a tuple
+list1 = [2, 3, 7, 9, 10, 15, 30]
+zugi_dict = {item: item**2 for item in list1 if item % 2 == 0}
+print(if_dict)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{1: '1984', 3: 'Harry Potter', 5: 'Game of Thrones'}
+{1: '1984', 3: 'Harry Potter', 5: 'Game of Thrones'}
+{2: 4, 10: 100, 30: 900}
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section demonstrates how to create dictionaries using tuples and comprehensions. It shows how to build a dictionary from a list of tuples and how to use dictionary comprehensions to filter and transform data.</p>
+        </div>
+        <h2>datetime and timedelta</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+from datetime import datetime, timedelta
+
+print('Israel', datetime.now())  # Current local time
+print('UTC   ', datetime.utcnow())  # Current UTC time
+print(datetime.now().strftime("%H:%M:%S.%f %Y-%m-%d"))  # Format: Hours, Minutes, Seconds, Milliseconds, Year-Month-Day
+print(datetime.now().strftime("%H:%M:%S.%f %Y-%B-%d %A"))  # Format: Hours, Minutes, Seconds, Milliseconds, Year-FullMonthName-Day FullDayName
+print((datetime.now() + timedelta(days=1)).strftime("%H:%M:%S.%f %Y-%B-%d %A"))  # Time 1 day from now
+print((datetime.now() + timedelta(days=30)).strftime("%H:%M:%S.%f %Y-%B-%d %A"))  # Time 30 days from now
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Israel 2024-11-01 17:30:31.123456
+UTC    2024-11-01 14:30:31.123456
+17:30:31.123456 2024-11-01
+17:30:31.123456 2024-November-01 Wednesday
+17:30:31.123456 2024-November-02 Thursday
+17:30:31.123456 2024-December-01 Friday
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This section covers handling date and time in Python using the `datetime` module. The code demonstrates how to get the current local and UTC time, format date and time strings, and calculate future dates.</p>
+        </div>
+
+        <h2>Using the `zip` Function</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+names = ['Alice', 'Bob', 'Charlie']
+ages = [25, 30, 35]
+
+# Combine the two lists into a list of tuples
+combined = list(zip(names, ages))
+print(combined)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+[('Alice', 25), ('Bob', 30), ('Charlie', 35)]
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>The `zip` function in Python is used to combine two or more iterables (e.g., lists, tuples) into a single iterable of tuples. Each tuple contains elements from the iterables that share the same index.</p>
+        </div>
+
+        <h2>Using the `enumerate` Function</h2>
+        <div class="code">
+            <h3>Python Program</h3>
+            <pre>
+                <code>
+fruits = ['apple', 'banana', 'cherry']
+
+# Enumerate over the list
+for index, fruit in enumerate(fruits):
+    print(f"Index {index}: {fruit}")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Index 0: apple
+Index 1: banana
+Index 2: cherry
+                </code>
+            </pre>
+        </div>
+        <div class="summary">
+            <p>The `enumerate` function adds a counter to an iterable, returning it as an enumerate object. This is useful when you need to have both the index and the value of each item in a loop.</p>
+        </div>
+
+
+    </div>
+</body>
+</html>
