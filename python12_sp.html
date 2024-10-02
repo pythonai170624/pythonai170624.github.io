@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Procedures Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .summary {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+            max-width: 90%;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+            max-width: 90%;
+        }
+        .summary {
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+            max-width: 90%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Stored Procedures Demo</h1>
+
+        <!-- Stored Procedure 1 -->
+        <h2>Hello World</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION hello_world()
+RETURNS varchar
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN CONCAT('hello', 'world', ' ! ', current_timestamp);
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT hello_world();
+-- Output Example: 'hello world ! 2024-10-02 12:34:56'
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the string 'hello world' along with the current date and time, formatted as a single string.</p>
+        </div>
+
+        <!-- Stored Procedure 2 -->
+        <h2>Sum of Two Numbers</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_sum(m DOUBLE PRECISION, n DOUBLE PRECISION)
+RETURNS DOUBLE PRECISION
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    x INTEGER := 0;
+BEGIN
+    RETURN m + n + x;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_sum(10.5, 5.7);
+-- Output: 16.2
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure takes two double precision numbers, adds them, and returns the result.</p>
+        </div>
+
+        <!-- Stored Procedure 3 -->
+        <h2>Product and Division</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_product(x DOUBLE PRECISION, y DOUBLE PRECISION,
+    OUT prod DOUBLE PRECISION, OUT div_res DOUBLE PRECISION)
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    z DOUBLE PRECISION := 1.0;
+BEGIN
+    prod = x * y * z;
+    div_res = x / y;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_product(15.0, 3.0);
+-- Output Example: prod = 45.0, div_res = 5.0
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure calculates the product of two numbers and divides the first number by the second, returning both results.</p>
+        </div>
+
+ <!-- Stored Procedure 12 -->
+        <h2>Get Maximum of Two Numbers</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_max(_x INTEGER, _y INTEGER)
+RETURNS INTEGER
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    IF _x > _y THEN
+        RETURN _x;
+    ELSE
+        RETURN _y;
+    END IF;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_get_max(10, 20);
+-- Output Example: 20
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the larger of two integers.</p>
+        </div>
+
+        <!-- Stored Procedure 13 -->
+        <h2>Get Maximum of Three Numbers</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_max3(_x INTEGER, _y INTEGER, _z INTEGER)
+RETURNS INTEGER
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    IF _x > _y AND _x > _z THEN
+        RETURN _x;
+    ELSIF _y > _z THEN
+        RETURN _y;
+    ELSE
+        RETURN _z;
+    END IF;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_get_max3(10, 20, 30);
+-- Output Example: 30
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the largest of three integers.</p>
+        </div>
+
+        <!-- Stored Procedure 16 -->
+        <h2>Random Number Generator</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_random(_max INTEGER)
+RETURNS INTEGER
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN (RANDOM() * (_max - 1)) + 1;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_get_random(100);
+-- Output Example: random number between 1 and 100
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns a random integer between 1 and the specified maximum value.</p>
+        </div>
+
+
+        <!-- Stored Procedure 18 -->
+        <h2>Division with Exception Handling</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_div(x INTEGER, y INTEGER)
+RETURNS DOUBLE PRECISION
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    IF y = 0 THEN
+        RAISE division_by_zero;
+    END IF;
+    RETURN x::DOUBLE PRECISION / y::DOUBLE PRECISION;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_div(10, 2);
+-- Output Example: 5.0
+SELECT sp_div(10, 0);
+-- Output: division by zero error
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure divides two integers and returns the result as a double precision value. If the second number is zero, it raises a division by zero exception.</p>
+        </div>
+
+
+        <!-- Table Creation and Data Insertion -->
+        <h2>Table Creation and Data Insertion</h2>
+        <div class="code">
+            <h3>SQL Code</h3>
+            <pre>
+CREATE TABLE countries (
+    id bigserial NOT NULL PRIMARY KEY,
+    name text NOT NULL
+);
+
+CREATE TABLE movies (
+    id bigserial NOT NULL PRIMARY KEY,
+    title text,
+    release_date timestamp NOT NULL,
+    price double precision DEFAULT 0 NOT NULL,
+    country_id bigint REFERENCES countries
+);
+
+INSERT INTO countries (name) VALUES ('Israel'), ('USA'), ('JAPAN'), ('CANADA');
+INSERT INTO movies (title, release_date, price, country_id) 
+VALUES ('batman returns', '2020-12-16 20:21:00', 45.5, 3),
+       ('wonder woman', '2018-07-11 08:12:11', 125.5, 3),
+       ('matrix resurrection', '2021-01-03 09:10:11', 38.7, 4);
+            </pre>
+        </div>
+
+        <!-- Stored Procedure 4 -->
+        <h2>Movie Statistics</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_movies_stat(
+    OUT min_price DOUBLE PRECISION,
+    OUT max_price DOUBLE PRECISION,
+    OUT avg_price DOUBLE PRECISION)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    SELECT MIN(price), MAX(price), AVG(price)::NUMERIC(5, 2)
+    INTO min_price, max_price, avg_price
+    FROM movies;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_movies_stat();
+-- Output Example: min_price = 38.7, max_price = 125.5, avg_price = 69.9
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the minimum, maximum, and average prices of all movies in the `movies` table.</p>
+        </div>
+
+        <!-- Stored Procedure 5 -->
+        <h2>Most Expensive Movie</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_most_expensive_movie_name(
+    OUT movie_name TEXT, OUT movie_price DOUBLE PRECISION)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    SELECT title, price
+    INTO movie_name, movie_price
+    FROM movies
+    WHERE price = (SELECT MAX(price) FROM movies);
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_most_expensive_movie_name();
+-- Output Example: movie_name = 'wonder woman', movie_price = 125.5
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the title and price of the most expensive movie in the `movies` table.</p>
+        </div>
+
+        <!-- Stored Procedure 6 -->
+        <h2>Expensive Movie Name</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_movies_expensive_name(
+    OUT most_expensive_movie_name TEXT)
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    max_price DOUBLE PRECISION := 0;
+BEGIN
+    SELECT MAX(price) INTO max_price FROM movies;
+
+    SELECT title INTO most_expensive_movie_name
+    FROM movies
+    WHERE price = max_price;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_movies_expensive_name();
+-- Output Example: most_expensive_movie_name = 'wonder woman'
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the name of the most expensive movie in the `movies` table.</p>
+        </div>
+
+        <!-- Stored Procedure 7 -->
+        <h2>Count Movies and Countries</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_count_movies_and_countries(
+    OUT count_movies_and_countries BIGINT)
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    count_movies BIGINT := 0;
+    count_countries BIGINT := 0;
+BEGIN
+    SELECT COUNT(*) INTO count_movies FROM movies;
+    SELECT COUNT(*) INTO count_countries FROM countries;
+    count_movies_and_countries := count_movies + count_countries;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_count_movies_and_countries();
+-- Output Example: count_movies_and_countries = 7
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the total count of movies and countries combined from the `movies` and `countries` tables.</p>
+        </div>
+
+        <!-- Stored Procedure 8 -->
+        <h2>Insert a Movie</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_insert_movie(
+    _title TEXT, _release_date TIMESTAMP, _price DOUBLE PRECISION, _country_id BIGINT)
+RETURNS BIGINT
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    new_id BIGINT := 0;
+BEGIN
+    INSERT INTO movies (title, release_date, price, country_id)
+    VALUES (_title, _release_date, _price, _country_id)
+    RETURNING id INTO new_id;
+
+    RETURN new_id;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_insert_movie('Queen Gambit', '2020-08-12', 87.1, 3);
+-- Output Example: new movie ID
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure inserts a new movie into the `movies` table and returns the ID of the newly created movie.</p>
+        </div>
+
+        <!-- Stored Procedure 9 -->
+        <h2>Update Movie</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE PROCEDURE sp_update_movie(
+    _title TEXT, _release_date TIMESTAMP, _price DOUBLE PRECISION, _country_id BIGINT, _update_id BIGINT)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    UPDATE movies
+    SET title = _title, release_date = _release_date, price = _price, country_id = _country_id
+    WHERE id = _update_id;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+CALL sp_update_movie('Queen Gambit 2', '2020-08-12', 87.1, 3, 5);
+-- Output: movie details updated
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure updates the details of an existing movie given the movie's ID.</p>
+        </div>
+
+        <!-- Stored Procedure 10 -->
+        <h2>Movies in Price Range</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_movies_in_range(
+    _min DOUBLE PRECISION, _max DOUBLE PRECISION)
+RETURNS TABLE(id BIGINT, title TEXT, release_date TIMESTAMP, price DOUBLE PRECISION, country_id BIGINT, country_name TEXT)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT m.id, m.title, m.release_date, m.price, m.country_id, c.name
+    FROM movies m
+    JOIN countries c ON m.country_id = c.id
+    WHERE m.price BETWEEN _min AND _max;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_get_movies_in_range(100, 150);
+-- Output Example: movies with prices between 100 and 150
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns all movies within a specified price range, including details such as the movie title, release date, and country name.</p>
+        </div>
+
+        <!-- Stored Procedure 11 -->
+        <h2>Movies Excluding Cheapest and Most Expensive</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_movies_mid()
+RETURNS TABLE(id BIGINT, title TEXT, release_date TIMESTAMP, price DOUBLE PRECISION, country_id BIGINT, country_name TEXT)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN QUERY
+    WITH cheapest_movie AS (
+        SELECT * FROM movies WHERE price = (SELECT MIN(price) FROM movies)
+    ), expensive_movie AS (
+        SELECT * FROM movies WHERE price = (SELECT MAX(price) FROM movies)
+    )
+    SELECT m.id, m.title, m.release_date, m.price, m.country_id, c.name
+    FROM movies m
+    JOIN countries c ON m.country_id = c.id
+    WHERE m.id NOT IN (SELECT cheapest_movie.id FROM cheapest_movie)
+    AND m.id NOT IN (SELECT expensive_movie.id FROM expensive_movie);
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_get_movies_mid();
+-- Output Example: all movies except the cheapest and most expensive
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns all movies that are neither the cheapest nor the most expensive.</p>
+        </div>
+
+
+        <!-- Stored Procedure 14 -->
+        <h2>Movies Based on ID Type</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_movies_country_id(_id_type TEXT)
+RETURNS TABLE(id BIGINT, title TEXT)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT CASE 
+              WHEN _id_type = 'M' THEN m.id
+              ELSE m.country_id
+           END AS id, m.title
+    FROM movies m;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_get_movies_country_id('M');
+-- Output Example: returns movie ID and title
+SELECT * FROM sp_get_movies_country_id('C');
+-- Output Example: returns country ID and movie title
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns either the movie ID or country ID along with the movie title, depending on the input type.</p>
+        </div>
+
+        <!-- Stored Procedure 15 -->
+        <h2>Movies Price or Squared Price</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_movies_price_or_pow2(_pow BOOLEAN)
+RETURNS TABLE(id BIGINT, title TEXT, price DOUBLE PRECISION)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT m.id, m.title, 
+           CASE 
+               WHEN _pow THEN POW(m.price, 2)
+               ELSE m.price
+           END AS price
+    FROM movies m;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT * FROM sp_get_movies_price_or_pow2(TRUE);
+-- Output Example: returns movies with prices squared
+SELECT * FROM sp_get_movies_price_or_pow2(FALSE);
+-- Output Example: returns movies with regular prices
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure returns the movie price squared if `_pow` is true, otherwise returns the regular price along with the movie ID and title.</p>
+        </div>
+
+        <!-- Stored Procedure 17 -->
+        <h2>Sum of Movie Prices</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_get_sum_loop()
+RETURNS DOUBLE PRECISION
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    sum DOUBLE PRECISION := 0.0;
+BEGIN
+    FOR i IN 1..(SELECT MAX(movies.id) FROM movies) LOOP
+        IF (SELECT COUNT(*) FROM movies m WHERE m.id = i) > 0 THEN
+            sum := sum + (SELECT m.price FROM movies m WHERE m.id = i);
+        END IF;
+    END LOOP;
+    RETURN sum;
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_get_sum_loop();
+-- Output Example: sum of all movie prices
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure calculates and returns the sum of prices for all movies by looping through each movie's ID.</p>
+        </div>
+
+        <!-- Stored Procedure 19 -->
+        <h2>Upsert Movie</h2>
+        <div class="code">
+            <h3>Stored Procedure</h3>
+            <pre>
+CREATE OR REPLACE FUNCTION sp_upsert_movie(
+    _title TEXT, _release_date TIMESTAMP, _price DOUBLE PRECISION, _country_id BIGINT)
+RETURNS BIGINT
+LANGUAGE plpgsql AS
+$$
+DECLARE
+    record_id BIGINT := 0;
+BEGIN
+    SELECT movies.id INTO record_id 
+    FROM movies 
+    WHERE movies.title = _title;
+
+    IF NOT FOUND THEN
+        INSERT INTO movies (title, release_date, price, country_id)
+        VALUES (_title, _release_date, _price, _country_id)
+        RETURNING id INTO record_id;
+    ELSE
+        UPDATE movies
+        SET release_date = _release_date, price = _price, country_id = _country_id
+        WHERE movies.id = record_id;
+    END IF;
+
+    RETURN record_id;  -- Return the ID of the newly created or updated record
+END;
+$$;
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+SELECT sp_upsert_movie('Eternals', '2020-05-21', 101.3, 1);
+-- Output Example: newly inserted or updated movie ID
+            </pre>
+        </div>
+        <div class="summary">
+            <p>This stored procedure inserts a new movie or updates an existing movie if it already exists, returning the movie's ID.</p>
+        </div>
+
+    </div>
+</body>
+</html>
