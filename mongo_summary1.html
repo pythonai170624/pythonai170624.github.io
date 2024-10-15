@@ -173,11 +173,17 @@ Multiple documents inserted
             <pre>
                 <code>
 {
+    "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), // Alice's document
+    "name": "Alice",
+    "age": 23,
+    "major": "Computer Science"
+},
+{
     "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), 
     "name": "Bob",
     "age": 21,
     "major": "Mathematics"
-}
+},
 {
     "_id": ObjectId("64e6475d9d6a7f45c47b3c23"),
     "name": "Charlie",
@@ -295,6 +301,18 @@ db.students.updateOne(
     "name": "Alice",
     "age": 24,
     "major": "Computer Science"
+},
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), 
+    "name": "Bob",
+    "age": 21,
+    "major": "Mathematics"
+},
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3c23"),
+    "name": "Charlie",
+    "age": 22,
+    "major": "Physics"
 }
                 </code>
             </pre>
@@ -329,10 +347,22 @@ db.students.updateMany(
     <pre>
         <code>
 {
+    "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), 
+    "name": "Alice",
+    "age": 24,
+    "major": "Computer Science"
+},
+{
     "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), 
     "name": "Bob",
     "age": 25,
     "major": "Mathematics"
+},
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3c23"),
+    "name": "Charlie",
+    "age": 25,
+    "major": "Physics"
 }
         </code>
     </pre>
@@ -368,7 +398,7 @@ db.students.deleteOne({ name: "Charlie" })
     "name": "Alice",
     "age": 24,
     "major": "Computer Science"
-}
+},
 {
     "_id": ObjectId("64e6475d9d6a7f45c47b3b12"),
     "name": "Bob",
@@ -398,7 +428,7 @@ db.students.aggregate([
             <h3>Run Demo</h3>
             <pre>
                 <code>
-{ "_id": null, "averageAge": 22.67 }
+{ "_id": null, "averageAge": 24.5 }
                 </code>
             </pre>
         </div>
