@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB SQL-like Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .documentation, .after-command, .summary {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .after-command {
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        .documentation {
+            background-color: #f5f5dc;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MongoDB SQL-like Commands</h1>
+
+        <!-- Create Collection -->
+        <h2>Create Collection</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// A collection in MongoDB is like a table in SQL databases. 
+// It's a group of documents stored within the database.
+// The command below creates a new collection called 'students'.
+db.createCollection("students")
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Collection created
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Create Collection</h3>
+            <pre>
+                <code>
+Collection "students" has been created successfully.
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.createCollection/" target="_blank">db.createCollection</a>.</p>
+        </div>
+
+   <!-- InsertOne -->
+<h2>Insert One</h2>
+<div class="code">
+    <h3>MongoDB Command</h3>
+    <pre>
+        <code>
+// A document is a record in the collection, similar to a row in a SQL table.
+// MongoDB automatically adds a field '_id' to each document to uniquely identify it.
+// The command below inserts a single document into the 'students' collection.
+db.students.insertOne({
+    name: "Alice",
+    age: 23,
+    major: "Computer Science"
+})
+        </code>
+    </pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+        <code>
+Document inserted
+        </code>
+    </pre>
+</div>
+<div class="after-command">
+    <h3>Database After Insert One</h3>
+    <pre>
+        <code>
+// MongoDB will automatically assign a unique '_id' for the document if not provided.
+// The database will now look like this:
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), // Automatically generated _id
+    "name": "Alice",
+    "age": 23,
+    "major": "Computer Science"
+}
+        </code>
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/" target="_blank">db.collection.insertOne</a>.</p>
+</div>
+
+<!-- _id Explanation -->
+<h2>Understanding the _id Field</h2>
+<div class="summary">
+    <p>In MongoDB, every document has a unique identifier called the <code>_id</code> field. If you don't provide an <code>_id</code> when inserting a document, MongoDB will automatically generate one for you. This field ensures each document can be uniquely identified.</p>
+    
+    <p>The <code>_id</code> is typically an <code>ObjectId</code> type, which is a 12-byte value. It is generated based on the current timestamp, machine ID, process ID, and a random counter to ensure uniqueness across distributed systems.</p>
+    
+    <h3>Example of Automatically Generated <code>_id</code></h3>
+    <pre>
+        <code>
+{
+    "_id": ObjectId("5f43e7e5bcf86cd799439011"),
+    "name": "Alice",
+    "age": 23,
+    "major": "Computer Science"
+}
+        </code>
+    </pre>
+    <p>Here’s a breakdown of the generated <code>ObjectId</code> "5f43e7e5bcf86cd799439011":</p>
+    <ul>
+        <li><b>Timestamp:</b> The first 4 bytes represent the creation timestamp (in seconds).</li>
+        <li><b>Machine Identifier:</b> The next 3 bytes are derived from the machine ID.</li>
+        <li><b>Process ID:</b> The following 2 bytes represent the process ID that generated the ObjectId.</li>
+        <li><b>Counter:</b> The last 3 bytes are an incrementing counter, ensuring uniqueness when multiple ObjectIds are generated within the same second.</li>
+    </ul>
+
+    <p>It's important to note that the <code>_id</code> field can also be manually set to any unique value, but MongoDB defaults to <code>ObjectId</code> if none is provided.</p>
+</div>
+
+
+        <!-- InsertMany -->
+        <h2>Insert Many</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// The command below inserts multiple documents (records) into the 'students' collection.
+// Each document will have its own unique '_id' field created by MongoDB.
+db.students.insertMany([
+    { name: "Bob", age: 21, major: "Mathematics" },
+    { name: "Charlie", age: 22, major: "Physics" }
+])
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Multiple documents inserted
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Insert Many</h3>
+            <pre>
+                <code>
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), 
+    "name": "Bob",
+    "age": 21,
+    "major": "Mathematics"
+}
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3c23"),
+    "name": "Charlie",
+    "age": 22,
+    "major": "Physics"
+}
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/" target="_blank">db.collection.insertMany</a>.</p>
+        </div>
+
+        <!-- Find -->
+        <h2>Find Documents</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// The command below retrieves all documents from the 'students' collection.
+// Similar to a 'SELECT *' in SQL, this finds and displays all records in the collection.
+db.students.find()
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), "name": "Alice", "age": 23, "major": "Computer Science" }
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), "name": "Bob", "age": 21, "major": "Mathematics" }
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3c23"), "name": "Charlie", "age": 22, "major": "Physics" }
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
+        </div>
+
+  <!-- Find by Key -->
+        <h2>Find by Key</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// You can query documents in MongoDB using specific field values.
+// This command finds all documents where the 'name' field is "Alice".
+db.students.find({ name: "Alice" })
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), "name": "Alice", "age": 23, "major": "Computer Science" }
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
+        </div>
+
+        <!-- Find with OR -->
+        <h2>Find Documents with OR</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// This query uses the '$or' operator to find documents where either condition is true.
+// It retrieves documents where the age is 21 or the major is 'Physics'.
+db.students.find({
+    $or: [
+        { age: 21 },
+        { major: "Physics" }
+    ]
+})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), "name": "Bob", "age": 21, "major": "Mathematics" }
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3c23"), "name": "Charlie", "age": 22, "major": "Physics" }
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/operator/query/or/" target="_blank">db.collection.find</a>.</p>
+        </div>
+
+        <!-- UpdateOne -->
+        <h2>Update One</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// The updateOne command updates the first document that matches the filter.
+// The command below updates Alice's age from 23 to 24 in the 'students' collection.
+db.students.updateOne(
+    { name: "Alice" },  // Filter: Find a document where the name is 'Alice'
+    { $set: { age: 24 } }  // Update: Set the 'age' field to 24
+)
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+1 document matched, 1 document modified
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Update One</h3>
+            <pre>
+                <code>
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), 
+    "name": "Alice",
+    "age": 24,
+    "major": "Computer Science"
+}
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/" target="_blank">db.collection.updateOne</a>.</p>
+        </div>
+
+<!-- UpdateMany -->
+<h2>Update Many</h2>
+<div class="code">
+    <h3>MongoDB Command</h3>
+    <pre>
+        <code>
+// The updateMany command updates all documents that match the filter.
+// Here, it updates all students with a major in 'Mathematics' and sets their age to 25.
+db.students.updateMany(
+    { major: "Mathematics" },  // Filter: Find all documents with major 'Mathematics'
+    { $set: { age: 25 } }      // Update: Set the 'age' field to 25 for all matches
+)
+        </code>
+    </pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+        <code>
+2 documents matched, 2 documents modified
+        </code>
+    </pre>
+</div>
+<div class="after-command">
+    <h3>Database After Update Many</h3>
+    <pre>
+        <code>
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), 
+    "name": "Bob",
+    "age": 25,
+    "major": "Mathematics"
+}
+        </code>
+    </pre>
+</div>
+<div class="documentation">
+    <h3>Documentation</h3>
+    <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/" target="_blank">db.collection.updateMany</a>.</p>
+</div>
+
+ <!-- DeleteOne -->
+        <h2>Delete One</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// The deleteOne command deletes a single document that matches the filter.
+// The command below deletes the document where 'name' is 'Charlie'.
+db.students.deleteOne({ name: "Charlie" })
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+1 document deleted
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Delete One</h3>
+            <pre>
+                <code>
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), 
+    "name": "Alice",
+    "age": 24,
+    "major": "Computer Science"
+}
+{
+    "_id": ObjectId("64e6475d9d6a7f45c47b3b12"),
+    "name": "Bob",
+    "age": 25,
+    "major": "Mathematics"
+}
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/" target="_blank">db.collection.deleteOne</a>.</p>
+        </div>
+
+        <!-- Aggregate -->
+        <h2>Aggregate</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Aggregation pipelines allow you to perform operations on documents and return results.
+// This example calculates the average age of all students in the 'students' collection.
+db.students.aggregate([
+    { $group: { _id: null, averageAge: { $avg: "$age" } } }
+])
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{ "_id": null, "averageAge": 22.67 }
+                </code>
+            </pre>
+        </div>
+        <div class="documentation">
+            <h3>Documentation</h3>
+            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/" target="_blank">db.collection.aggregate</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
