@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB GPS, Expire, and Schema Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .code, .demo, .after-command, .summary {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 80%;
+        }
+        .code {
+            background-color: #f9f9f9;
+        }
+        .demo {
+            background-color: black;
+            color: white;
+        }
+        .after-command {
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MongoDB GPS, Expire, and Schema</h1>
+
+        <!-- MongoDB Schema Validation -->
+        <h2>Schema Validation - creation</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Creating a collection with schema validation using JSON schema
+db.createCollection("users", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "username", "email" ],
+         properties: {
+            username: {
+               bsonType: "string",
+               description: "must be a string and is required",
+               minLength: 3
+            },
+            email: {
+               bsonType: "string",
+               description: "must be a string and is required",
+               pattern: "^.+@.+\..+$"  // Simple email pattern
+            },
+            age: {
+               bsonType: "int",
+               description: "must be an integer and greater than 0",
+               minimum: 1
+            }
+         }
+      }
+   }
+})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Collection created with schema validation
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Schema Validation</h3>
+            <pre>
+                <code>
+Collection "users" has been created successfully with schema validation.
+                </code>
+            </pre>
+        </div>
+
+        <!-- Schema validation - insert valid -->
+        <h2>Schema validation - insert valid</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Inserting a valid document that fits the schema
+db.users.insertOne({
+   username: "Alice",
+   email: "alice@example.com",
+   age: 25
+})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Document inserted
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Valid Insert</h3>
+            <pre>
+                <code>
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a42"),
+   "username": "Alice",
+   "email": "alice@example.com",
+   "age": 25
+}
+                </code>
+            </pre>
+        </div>
+
+        <!-- Invalid Insert -->
+        <h2>Schema validation - Insert <b>invalid</b></h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Trying to insert an invalid document that doesn't fit the schema
+db.users.insertOne({
+   username: "Al",  // username is too short
+   email: "aliceexample.com",  // invalid email format
+   age: -5  // invalid age
+})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Insert failed due to schema validation errors
+                </code>
+            </pre>
+        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/core/schema-validation/" target="_blank">schema validation</a>.</p>
+
+<!-- MongoDB TTL Expiration -->
+<h2>MongoDB TTL Expiration</h2>
+<div class="code">
+    <h3>MongoDB Command</h3>
+    <pre>
+        <code>
+// Inserting a document into the 'activities' collection with a TTL index
+db.activities.insertOne({
+  action: "game_started",
+  username: "amelia_sunshine",
+  description: "User started a new game",
+  created_at: new Date()  // Important for TTL
+})
+
+// Creating a TTL index that expires documents after 60 seconds
+db.activities.createIndex(
+  { "created_at": 1 },
+  { expireAfterSeconds: 60 }
+)
+        </code>
+    </pre>
+</div>
+<div class="demo">
+    <h3>Run Demo</h3>
+    <pre>
+        <code>
+Document inserted and TTL index created
+        </code>
+    </pre>
+</div>
+<div class="after-command">
+    <h3>Database After TTL Index (Before 60 Seconds)</h3>
+    <pre>
+        <code>
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a99"),
+   "action": "game_started",
+   "username": "amelia_sunshine",
+   "description": "User started a new game",
+   "created_at": ISODate("2024-10-15T14:48:00Z")
+}
+        </code>
+    </pre>
+</div>
+
+<!-- After 60 seconds -->
+<h3>Database After TTL Index (After 60 Seconds)</h3>
+<div class="after-command">
+    <pre>
+        <code>
+// After 60 seconds, the document is automatically deleted due to TTL
+db.activities.find()  // This returns an empty result set now
+[]
+        </code>
+    </pre>
+</div>
+<p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/core/index-ttl/" target="_blank">TTL indexes</a>.</p>
+
+        <!-- MongoDB GPS Geospatial -->
+        <h2>GPS Geospatial Query - insert with location</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Creating a geospatial index for location data
+db.locations.createIndex({ location: "2dsphere" })
+
+// Inserting geolocation data into the collection
+db.locations.insertMany([
+   { name: "Park", location: { type: "Point", coordinates: [-122.4194, 37.7749] } },  // San Francisco
+   { name: "Museum", location: { type: "Point", coordinates: [-122.4094, 37.7849] } },  // Near San Francisco
+   { name: "Restaurant", location: { type: "Point", coordinates: [-73.935242, 40.730610] } },  // New York
+   { name: "Library", location: { type: "Point", coordinates: [-118.2437, 34.0522] } }  // Los Angeles
+])
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+Documents inserted with geolocation data
+                </code>
+            </pre>
+        </div>
+        <div class="after-command">
+            <h3>Database After Geospatial Insert</h3>
+            <pre>
+                <code>
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a42"),
+   "name": "Park",
+   "location": { type: "Point", coordinates: [-122.4194, 37.7749] }
+},
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a99"),
+   "name": "Museum",
+   "location": { type: "Point", coordinates: [-122.4094, 37.7849] }
+}
+...
+                </code>
+            </pre>
+        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/geospatial-queries/" target="_blank">Geospatial queries</a>.</p>
+
+        <!-- Geospatial Query -->
+        <h2>GPS Geospatial Query - find by location distance</h2>
+        <div class="code">
+            <h3>MongoDB Command</h3>
+            <pre>
+                <code>
+// Finding locations near San Francisco within 5000 meters
+db.locations.find({
+   location: {
+      $near: {
+         $geometry: { type: "Point", coordinates: [-122.4194, 37.7749] },
+         $maxDistance: 5000
+      }
+   }
+})
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Demo</h3>
+            <pre>
+                <code>
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a42"),
+   "name": "Park",
+   "location": { type: "Point", coordinates: [-122.4194, 37.7749] }
+}
+{
+   "_id": ObjectId("64e6475d9d6a7f45c47b3a99"),
+   "name": "Museum",
+   "location": { type: "Point", coordinates: [-122.4094, 37.7849] }
+}
+                </code>
+            </pre>
+        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/operator/query/near/" target="_blank">geospatial queries</a>.</p>
+    </div>
+</body>
+</html>
