@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MongoDB GPS, Expire, and Schema Validation</title>
+    <title>MongoDB GPS, Expire, Schema Validation and Python</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>MongoDB GPS, Expire, and Schema</h1>
+        <h1>MongoDB GPS, Expire, Schema Validation and Python</h1>
 
         <!-- MongoDB Schema Validation -->
         <h2>Schema Validation - creation</h2>
@@ -297,6 +297,44 @@ db.locations.find({
             </pre>
         </div>
         <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/operator/query/near/" target="_blank">geospatial queries</a>.</p>
+
+   <!-- Python MongoDB Query Execution -->
+        <h2>Running MongoDB Query in Python</h2>
+        <div class="code">
+            <h3>Python Code</h3>
+            <pre>
+                <code>
+# pip install pymongo
+from pymongo import MongoClient
+
+# Connecting to MongoDB
+client = MongoClient(host="localhost", port= 27022, username="root", password="rootpassword")
+
+# Selecting the database and collection
+study1 = client["study1"]  # db called study1
+db_students = study1['students']  # collection called students
+
+# Fetching all student records
+students = db_students.find()
+for one_student in students:
+    print(one_student)
+
+# Closing the client connection
+client.close()
+                </code>
+            </pre>
+        </div>
+        <div class="demo">
+            <h3>Run Result</h3>
+            <pre>
+                <code>
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3a42"), "name": "Alice", "age": 23, "major": "Computer Science" }
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3b12"), "name": "Bob", "age": 21, "major": "Mathematics" }
+{ "_id": ObjectId("64e6475d9d6a7f45c47b3c23"), "name": "Charlie", "age": 22, "major": "Physics" }
+                </code>
+            </pre>
+        </div>
+    </div>
     </div>
 </body>
 </html>
