@@ -14,7 +14,7 @@
             flex-direction: column;
             align-items: center;
         }
-        .code, .demo, .documentation, .after-command, .summary {
+        .code, .demo, .after-command, .summary {
             margin: 20px;
             border: 1px solid #ccc;
             padding: 10px;
@@ -31,10 +31,6 @@
         .after-command {
             background-color: #e0f7fa;
             border: 1px solid #b2ebf2;
-        }
-        .documentation {
-            background-color: #f5f5dc;
-            color: #333;
         }
         h2 {
             text-align: center;
@@ -75,10 +71,7 @@ Collection "students" has been created successfully.
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.createCollection/" target="_blank">db.createCollection</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.createCollection/" target="_blank">db.createCollection</a>.</p>
 
    <!-- InsertOne -->
 <h2>Insert One</h2>
@@ -120,10 +113,7 @@ Document inserted
         </code>
     </pre>
 </div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/" target="_blank">db.collection.insertOne</a>.</p>
-</div>
+<p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/" target="_blank">db.collection.insertOne</a>.</p>
 
 <!-- _id Explanation -->
 <h2>Understanding the _id Field</h2>
@@ -197,10 +187,7 @@ Multiple documents inserted
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/" target="_blank">db.collection.insertMany</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/" target="_blank">db.collection.insertMany</a>.</p>
 
         <!-- Find -->
         <h2>Find Documents</h2>
@@ -224,10 +211,7 @@ db.students.find()
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
 
   <!-- Find by Key -->
         <h2>Find by Key</h2>
@@ -249,10 +233,7 @@ db.students.find({ name: "Alice" })
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank">db.collection.find</a>.</p>
 
         <!-- Find with OR -->
         <h2>Find Documents with OR</h2>
@@ -280,10 +261,7 @@ db.students.find({
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/operator/query/or/" target="_blank">db.collection.find</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/operator/query/or/" target="_blank">db.collection.find</a>.</p>
 
         <!-- UpdateOne -->
         <h2>Update One</h2>
@@ -321,10 +299,7 @@ db.students.updateOne(
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/" target="_blank">db.collection.updateOne</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/" target="_blank">db.collection.updateOne</a>.</p>
 
 <!-- UpdateMany -->
 <h2>Update Many</h2>
@@ -362,10 +337,7 @@ db.students.updateMany(
         </code>
     </pre>
 </div>
-<div class="documentation">
-    <h3>Documentation</h3>
-    <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/" target="_blank">db.collection.updateMany</a>.</p>
-</div>
+<p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/" target="_blank">db.collection.updateMany</a>.</p>
 
  <!-- DeleteOne -->
         <h2>Delete One</h2>
@@ -406,10 +378,7 @@ db.students.deleteOne({ name: "Charlie" })
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/" target="_blank">db.collection.deleteOne</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/" target="_blank">db.collection.deleteOne</a>.</p>
 
         <!-- Aggregate -->
         <h2>Aggregate</h2>
@@ -433,10 +402,7 @@ db.students.aggregate([
                 </code>
             </pre>
         </div>
-        <div class="documentation">
-            <h3>Documentation</h3>
-            <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/" target="_blank">db.collection.aggregate</a>.</p>
-        </div>
+        <p>For more information, see the official MongoDB documentation on <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/" target="_blank">db.collection.aggregate</a>.</p>
     </div>
 </body>
 </html>
