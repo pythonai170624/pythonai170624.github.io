@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Linear Equations Using Inverse Matrix</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+            color: #333;
+            direction: rtl; /* Right-to-left direction for Hebrew */
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            border-right: 4px solid #3498db; /* Changed from left to right */
+            padding-right: 10px; /* Changed from left to right */
+            text-align: right;
+        }
+        h3 {
+            color: #2980b9;
+            text-align: right;
+        }
+        .example {
+            background-color: #f9f9f9;
+            border-right: 4px solid #2ecc71; /* Changed from left to right */
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px 0 0 5px; /* Reversed */
+            text-align: right;
+        }
+        .step {
+            margin-right: 20px; /* Changed from left to right */
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .matrix-equation {
+            text-align: center;
+            margin: 15px 0;
+            direction: ltr; /* Keeping mathematical formulas left-to-right */
+        }
+        .note {
+            background-color: #fffacd;
+            border-right: 4px solid #f1c40f; /* Changed from left to right */
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px 0 0 5px; /* Reversed */
+            text-align: right;
+        }
+        .solution {
+            background-color: #e8f8f5;
+            border-right: 4px solid #1abc9c; /* Changed from left to right */
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px 0 0 5px; /* Reversed */
+            text-align: right;
+        }
+        .pros-cons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            direction: rtl;
+        }
+        .pros, .cons {
+            width: 48%;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: right;
+        }
+        .pros {
+            background-color: #eafaf1;
+            border-right: 4px solid #27ae60; /* Changed from left to right */
+        }
+        .cons {
+            background-color: #fdedec;
+            border-right: 4px solid #e74c3c; /* Changed from left to right */
+        }
+        ul {
+            padding-right: 20px; /* Changed from left to right */
+            padding-left: 0;
+            text-align: right;
+        }
+        code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            direction: ltr; /* Keeping code left-to-right */
+            display: block;
+            text-align: left;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>פתרון משוואות לינאריות באמצעות מטריצה הפוכה<br><span style="font-size: 0.8em;">(Solving Linear Equations Using Inverse Matrix)</span></h1>
+
+    <h2>מבוא (Introduction)</h2>
+    <p>
+        מערכת משוואות לינאריות יכולה להיות מיוצגת בצורת מטריצה. כאשר יש לנו מערכת משוואות, אנחנו יכולים לכתוב אותה בצורה:
+    </p>
+    <div class="matrix-equation">
+        \[AX = B\]
+    </div>
+    <p>כאשר:</p>
+    <ul>
+        <li>\(A\) היא מטריצת המקדמים (coefficient matrix)</li>
+        <li>\(X\) היא מטריצת (או וקטור) הנעלמים (unknowns)</li>
+        <li>\(B\) היא מטריצת (או וקטור) האיברים החופשיים (constants)</li>
+    </ul>
+
+    <p>
+        אם מטריצה \(A\) הפיכה (invertible) (כלומר, הדטרמיננטה שלה שונה מאפס), אז פתרון המערכת הוא:
+    </p>
+    <div class="matrix-equation">
+        \[X = A^{-1}B\]
+    </div>
+
+    <h2>שלבי הפתרון (Solution Steps)</h2>
+    <ol>
+        <li>ארגן את מערכת המשוואות בצורת מטריצה \(AX = B\)</li>
+        <li>חשב את הדטרמיננטה של \(A\) כדי לוודא שהיא הפיכה (\(\det(A) \neq 0\))</li>
+        <li>חשב את המטריצה ההפוכה \(A^{-1}\)</li>
+        <li>הכפל את שני האגפים ב-\(A^{-1}\) מצד שמאל: \(A^{-1}AX = A^{-1}B\)</li>
+        <li>פשט: \(IX = A^{-1}B\), כלומר \(X = A^{-1}B\)</li>
+    </ol>
+
+    <div class="example">
+        <h2>דוגמה עם 2 נעלמים (Example with 2 Unknowns)</h2>
+        <p>נפתור את המערכת הבאה:</p>
+        <code>
+            3x + 2y = 14<br>
+            2x + 5y = 19
+        </code>
+
+        <h3>שלב 1: ארגון בצורת מטריצה (Matrix Form)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[A = \begin{bmatrix} 3 & 2 \\ 2 & 5 \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[X = \begin{bmatrix} x \\ y \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[B = \begin{bmatrix} 14 \\ 19 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 2: חישוב הדטרמיננטה (Calculate Determinant)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[\det(A) = 3 \times 5 - 2 \times 2 = 15 - 4 = 11\]
+            </div>
+            <p>מכיוון ש-\(\det(A) \neq 0\), המטריצה \(A\) הפיכה והמערכת יש לה פתרון יחיד.</p>
+        </div>
+
+        <h3>שלב 3: חישוב המטריצה ההפוכה (Calculate Inverse)</h3>
+        <div class="step">
+            <p>המטריצה המצורפת (adjugate) של \(A\):</p>
+            <div class="matrix-equation">
+                \[\text{adj}(A) = \begin{bmatrix} 5 & -2 \\ -2 & 3 \end{bmatrix}\]
+            </div>
+            <p>המטריצה ההפוכה:</p>
+            <div class="matrix-equation">
+                \[A^{-1} = \frac{1}{\det(A)} \times \text{adj}(A) = \frac{1}{11} \times \begin{bmatrix} 5 & -2 \\ -2 & 3 \end{bmatrix} = \begin{bmatrix} \frac{5}{11} & \frac{-2}{11} \\ \frac{-2}{11} & \frac{3}{11} \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 4: הכפלה ב-\(A^{-1}\) מצד שמאל (Multiply by Inverse)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[X = A^{-1} \times B = \begin{bmatrix} \frac{5}{11} & \frac{-2}{11} \\ \frac{-2}{11} & \frac{3}{11} \end{bmatrix} \times \begin{bmatrix} 14 \\ 19 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 5: חישוב הפתרון (Calculate Solution)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[X = \begin{bmatrix} \frac{5}{11} \times 14 + \frac{-2}{11} \times 19 \\ \frac{-2}{11} \times 14 + \frac{3}{11} \times 19 \end{bmatrix} = \begin{bmatrix} \frac{70}{11} - \frac{38}{11} \\ \frac{-28}{11} + \frac{57}{11} \end{bmatrix} = \begin{bmatrix} \frac{32}{11} \\ \frac{29}{11} \end{bmatrix} \approx \begin{bmatrix} 2.91 \\ 2.64 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <div class="solution">
+            <p>לכן, \(x = \frac{32}{11} \approx 2.91\) ו-\(y = \frac{29}{11} \approx 2.64\).</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>דוגמה עם 3 נעלמים (Example with 3 Unknowns)</h2>
+        <p>נפתור את המערכת הבאה:</p>
+        <code>
+            2x + y + z = 5<br>
+            x + 3y + 2z = 10<br>
+            3x + 2y + 4z = 16
+        </code>
+
+        <h3>שלב 1: ארגון בצורת מטריצה (Matrix Form)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[A = \begin{bmatrix} 2 & 1 & 1 \\ 1 & 3 & 2 \\ 3 & 2 & 4 \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[X = \begin{bmatrix} x \\ y \\ z \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[B = \begin{bmatrix} 5 \\ 10 \\ 16 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 2: חישוב הדטרמיננטה (Calculate Determinant)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[\begin{align*}
+                \det(A) &= 2 \times (3 \times 4 - 2 \times 2) - 1 \times (1 \times 4 - 2 \times 3) + 1 \times (1 \times 2 - 3 \times 3)\\
+                &= 2 \times (12 - 4) - 1 \times (4 - 6) + 1 \times (2 - 9)\\
+                &= 2 \times 8 - 1 \times (-2) + 1 \times (-7)\\
+                &= 16 + 2 - 7 = 11
+                \end{align*}\]
+            </div>
+            <p>מכיוון ש-\(\det(A) \neq 0\), המטריצה \(A\) הפיכה והמערכת יש לה פתרון יחיד.</p>
+        </div>
+
+        <h3>שלב 3: חישוב המטריצה ההפוכה (Calculate Inverse)</h3>
+        <div class="step">
+            <p>המטריצה המצורפת (adjugate) של \(A\):</p>
+            <div class="matrix-equation">
+                \[\text{adj}(A) = \begin{bmatrix} 8 & 2 & -7 \\ -5 & 7 & 1 \\ 1 & -1 & 4 \end{bmatrix}\]
+            </div>
+            <p>המטריצה ההפוכה:</p>
+            <div class="matrix-equation">
+                \[A^{-1} = \frac{1}{\det(A)} \times \text{adj}(A) = \frac{1}{11} \times \begin{bmatrix} 8 & 2 & -7 \\ -5 & 7 & 1 \\ 1 & -1 & 4 \end{bmatrix} = \begin{bmatrix} \frac{8}{11} & \frac{2}{11} & \frac{-7}{11} \\ \frac{-5}{11} & \frac{7}{11} & \frac{1}{11} \\ \frac{1}{11} & \frac{-1}{11} & \frac{4}{11} \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 4 ו-5: הכפלה ב-\(A^{-1}\) וחישוב הפתרון (Multiply and Solve)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[X = A^{-1} \times B = \begin{bmatrix} \frac{8}{11} & \frac{2}{11} & \frac{-7}{11} \\ \frac{-5}{11} & \frac{7}{11} & \frac{1}{11} \\ \frac{1}{11} & \frac{-1}{11} & \frac{4}{11} \end{bmatrix} \times \begin{bmatrix} 5 \\ 10 \\ 16 \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[\begin{align*}
+                X &= \begin{bmatrix} \frac{8}{11} \times 5 + \frac{2}{11} \times 10 + \frac{-7}{11} \times 16 \\ \frac{-5}{11} \times 5 + \frac{7}{11} \times 10 + \frac{1}{11} \times 16 \\ \frac{1}{11} \times 5 + \frac{-1}{11} \times 10 + \frac{4}{11} \times 16 \end{bmatrix}\\
+                &= \begin{bmatrix} \frac{40}{11} + \frac{20}{11} - \frac{112}{11} \\ \frac{-25}{11} + \frac{70}{11} + \frac{16}{11} \\ \frac{5}{11} - \frac{10}{11} + \frac{64}{11} \end{bmatrix}\\
+                &= \begin{bmatrix} \frac{-52}{11} \\ \frac{61}{11} \\ \frac{59}{11} \end{bmatrix} \approx \begin{bmatrix} -4.73 \\ 5.55 \\ 5.36 \end{bmatrix}
+                \end{align*}\]
+            </div>
+        </div>
+
+        <div class="solution">
+            <p>לכן, \(x = \frac{-52}{11} \approx -4.73\), \(y = \frac{61}{11} \approx 5.55\), ו-\(z = \frac{59}{11} \approx 5.36\).</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>דוגמה עם 4 נעלמים (Example with 4 Unknowns)</h2>
+        <p>נפתור את המערכת הבאה:</p>
+        <code>
+            x + y - z + w = 4<br>
+            2x - y + 2z - w = 3<br>
+            3x + 2y - z - 2w = 0<br>
+            x - 3y - 3z + 3w = 2
+        </code>
+
+        <h3>שלב 1: ארגון בצורת מטריצה (Matrix Form)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[A = \begin{bmatrix} 1 & 1 & -1 & 1 \\ 2 & -1 & 2 & -1 \\ 3 & 2 & -1 & -2 \\ 1 & -3 & -3 & 3 \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[X = \begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}\]
+            </div>
+            <div class="matrix-equation">
+                \[B = \begin{bmatrix} 4 \\ 3 \\ 0 \\ 2 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 2: חישוב הדטרמיננטה (Calculate Determinant)</h3>
+        <div class="step">
+            <p>חישוב דטרמיננטה של מטריצה 4×4 הוא תהליך מורכב. במקרה הזה, \(\det(A) = 18 \neq 0\), ולכן המטריצה \(A\) הפיכה.</p>
+        </div>
+
+        <h3>שלב 3: חישוב המטריצה ההפוכה (Calculate Inverse)</h3>
+        <div class="step">
+            <p>בפועל, חישוב המטריצה ההפוכה למטריצה 4×4 נעשה בדרך כלל באמצעות אלגוריתמים ממוחשבים. המטריצה ההפוכה במקרה זה היא:</p>
+            <div class="matrix-equation">
+                \[A^{-1} = \begin{bmatrix} \frac{1}{6} & \frac{1}{3} & 0 & 0 \\ \frac{2}{9} & \frac{1}{9} & \frac{1}{9} & \frac{-1}{3} \\ \frac{1}{18} & \frac{1}{9} & \frac{1}{18} & \frac{-1}{6} \\ \frac{2}{9} & \frac{1}{3} & \frac{1}{9} & \frac{-1}{3} \end{bmatrix}\]
+            </div>
+        </div>
+
+        <h3>שלב 4 ו-5: הכפלה ב-\(A^{-1}\) וחישוב הפתרון (Multiply and Solve)</h3>
+        <div class="step">
+            <div class="matrix-equation">
+                \[X = A^{-1} \times B = \begin{bmatrix} \frac{1}{6} & \frac{1}{3} & 0 & 0 \\ \frac{2}{9} & \frac{1}{9} & \frac{1}{9} & \frac{-1}{3} \\ \frac{1}{18} & \frac{1}{9} & \frac{1}{18} & \frac{-1}{6} \\ \frac{2}{9} & \frac{1}{3} & \frac{1}{9} & \frac{-1}{3} \end{bmatrix} \times \begin{bmatrix} 4 \\ 3 \\ 0 \\ 2 \end{bmatrix}\]
+            </div>
+        </div>
+
+        <div class="solution">
+            <p>לאחר ביצוע החישובים, נקבל:</p>
+            <div class="matrix-equation">
+                \[X = \begin{bmatrix} 2 \\ 1 \\ 0 \\ 1 \end{bmatrix}\]
+            </div>
+            <p>לכן, \(x = 2\), \(y = 1\), \(z = 0\), ו-\(w = 1\).</p>
+        </div>
+    </div>
+
+    <h2>סיכום (Summary)</h2>
+    <p>
+        השיטה של פתרון מערכת משוואות לינאריות באמצעות מטריצה הפוכה היא שיטה יעילה ואלגנטית, במיוחד כאשר:
+    </p>
+    <ol>
+        <li>מספר המשוואות שווה למספר הנעלמים</li>
+        <li>הדטרמיננטה של מטריצת המקדמים שונה מאפס (כלומר, יש פתרון יחיד)</li>
+    </ol>
+
+    <div class="pros-cons">
+        <div class="pros">
+            <h3>יתרונות (Advantages)</h3>
+            <ul>
+                <li>מתודית ושיטתית</li>
+                <li>מאפשרת טיפול במערכות משוואות גדולות</li>
+                <li>נוחה ליישום באמצעים ממוחשבים</li>
+            </ul>
+        </div>
+        <div class="cons">
+            <h3>חסרונות (Disadvantages)</h3>
+            <ul>
+                <li>חישוב המטריצה ההפוכה עלול להיות מורכב, במיוחד למטריצות גדולות</li>
+                <li>רגישה לשגיאות עיגול בחישובים מספריים</li>
+                <li>לא יעילה חישובית כמו שיטות אחרות (למשל, פירוק LU)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="note">
+        <p>
+            בפרקטיקה, לפתרון מערכות גדולות של משוואות לינאריות משתמשים בדרך כלל בשיטות נומריות אחרות, אך הבנת השיטה של מטריצה הפוכה מספקת תובנות חשובות לאלגברה לינארית ולתכונות של מערכות משוואות.
+        </p>
+    </div>
+
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            }
+        });
+
+        // Add this to ensure mathematical equations stay left-to-right
+        document.addEventListener('DOMContentLoaded', function() {
+            const mathEquations = document.querySelectorAll('.matrix-equation');
+            mathEquations.forEach(function(eq) {
+                eq.style.direction = 'ltr';
+                eq.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
