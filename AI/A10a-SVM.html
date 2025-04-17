@@ -1,0 +1,477 @@
+<!DOCTYPE html><html><head>
+      <title>A10a-SVM</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\User\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.18\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="-מכונת-וקטורים-תומכים-svm--support-vector-machine">🤖 מכונת וקטורים תומכים (SVM – Support Vector Machine) </h1>
+<h2 id="-מה-זה-svm">🧠 מה זה SVM? </h2>
+<p>SVM היא שיטת <strong>למידת מכונה מונחית (Supervised Learning)</strong>, שנועדה:</p>
+<ul>
+<li><strong>לסווג</strong> דוגמאות (Classification)</li>
+<li>או לבצע <strong>רגרסיה</strong> (Regression – חיזוי ערכים רציפים)</li>
+</ul>
+<p>המטרה העיקרית:<br>
+<strong>למצוא את הגבול שמפריד בצורה הכי טובה בין קבוצות שונות של דוגמאות</strong></p>
+<img src="svm1.png">
+<hr>
+<h2 id="-מה-המטרה-של-svm">🎯 מה המטרה של SVM? </h2>
+<p>למצוא את <strong>הקו/מישור (Hyperplane)</strong> שמפריד בצורה מקסימלית בין קבוצות<br>
+המטרה היא להגדיל את המרחק מהקו אל הנקודות הקרובות ביותר – הנקראות <strong>וקטורים תומכים</strong></p>
+<p><strong>וקטורים תומכים – Support Vectors</strong></p>
+<p>הנקודות הקרובות ביותר לקו ההפרדה</p>
+<ul>
+<li>הן אלו שקובעות את מיקום הקו</li>
+<li>אם תזיז נקודה אחרת – הקו לא יזוז</li>
+<li>אם תזיז וקטור תומך – הקו ישתנה</li>
+</ul>
+<p>📌 אלה "הנקודות החשובות ביותר" באימון של SVM</p>
+<img src="svm2.png">
+<p><strong>למה "וקטור תומך" ולא "נקודה תומכת"?</strong></p>
+<p>ההסבר המתמטי:</p>
+<p>במתמטיקה, בפרט בגיאומטריה ולמידת מכונה:</p>
+<p>כל נקודה במרחב מיוצגת כ־וקטור</p>
+<p>לדוגמה: [3, 4] זו נקודה, אבל גם וקטור מהמוצא (0,0) אל [3, 4]</p>
+<p>כלומר: נקודה = וקטור שמראה לאן "להגיע" מהראשית</p>
+<p>אז במונחים של למידת מכונה:</p>
+<p>הנתונים שלנו הם וקטורים במרחב</p>
+<p>ולכן גם ה־Support Vectors הם וקטורים שנמצאים הכי קרוב למישור ההפרדה</p>
+<p>ולמה "תומך"?<br>
+כי הם אלו ש:</p>
+<p>תומכים במיקום של מישור ההפרדה</p>
+<p>כלומר: הם אלו שקובעים אותו</p>
+<p>אם תזיז אחד מהם — המישור יזוז!</p>
+<h2 id="-למה-נקודות-התמיכה-support-vectors-כל-כך-חשובות-בsvm">❓ למה נקודות התמיכה (Support Vectors) כל כך חשובות ב־SVM? </h2>
+<p>והאם הקו <strong>חייב</strong> לעבור דרכן?</p>
+<hr>
+<h2 id="-מה-הן-נקודות-התמיכה">✅ מה הן נקודות התמיכה? </h2>
+<ul>
+<li>נקודות התמיכה הן <strong>הנקודות הקרובות ביותר למישור המפריד</strong>.</li>
+<li>הן יושבות בדיוק <strong>על גבולות הרווח</strong> (margin boundaries).</li>
+<li>הן מקיימות את התנאי:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msup><mi>w</mi><mi>T</mi></msup><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mspace width="1em"></mspace><mtext>או</mtext><mspace width="1em"></mspace><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y_i(w^T x_i + b) = 1 \quad \text{או} \quad -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1413em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">או</span></span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></p>
+<hr>
+<h2 id="-האם-הקו-חייב-לעבור-דרכן">📐 האם הקו חייב לעבור דרכן? </h2>
+<h3 id="-המישור-המרכזי-ההיפרפליין">🔹 המישור המרכזי (ההיפר־פליין): </h3>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">w^T x + b = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9747em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+<ul>
+<li><strong>לא עובר דרך נקודות התמיכה</strong>.</li>
+<li>הוא עובר <strong>באמצע</strong> בין שתי הקבוצות.</li>
+</ul>
+<hr>
+<h3 id="-גבולות-הרווח-margin-boundaries">🔹 גבולות הרווח (margin boundaries): </h3>
+<ul>
+<li>גבול עליון:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w^T x + b = +1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9747em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span></span></p>
+<ul>
+<li>גבול תחתון:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w^T x + b = -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9747em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span></p>
+<p>✅ <strong>כן! גבולות הרווח חייבים לעבור דרך נקודות התמיכה.</strong></p>
+<hr>
+<h2 id="-למה-הן-הכי-חשובות">💡 למה הן הכי חשובות? </h2>
+<ul>
+<li>כי רק נקודות התמיכה משפיעות על הפתרון.</li>
+<li>כל שאר הנקודות <strong>לא משנות את המיקום של ההיפר־פליין</strong>.</li>
+<li>הפתרון של <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span> מבוסס אך ורק עליהן:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>w</mi><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>α</mi><mi>i</mi></msub><msub><mi>y</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w = \sum_i \alpha_i y_i x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3277em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>כאשר רק ל־support vectors יש <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mi>i</mi></msub><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\alpha_i \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></p>
+<hr>
+<h2 id="-סיכום-בטבלה">🧠 סיכום בטבלה: </h2>
+<table>
+<thead>
+<tr>
+<th>מרכיב</th>
+<th>עובר דרך נקודות התמיכה?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>המישור המרכזי <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">w^T x + b = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9247em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></td>
+<td>❌ לא חייב</td>
+</tr>
+<tr>
+<td>גבולות הרווח <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mo>±</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w^T x + b = \pm1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9247em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">±</span><span class="mord">1</span></span></span></span></td>
+<td>✅ כן, חייב</td>
+</tr>
+</tbody>
+</table>
+<p>ולכן הן נקראות <strong>וקטורי תמיכה</strong> – הן ממש <strong>תומכות</strong> במיקום של הקו! 💙</p>
+<hr>
+<h2 id="️-מה-זה-hyperplane">🛤️ מה זה Hyperplane? </h2>
+<ul>
+<li>ב־2D: קו ישר</li>
+<li>ב־3D: משטח</li>
+<li>ב־4D ומעלה: פשוט נקרא "Hyperplane"</li>
+</ul>
+<img src="svm3.png">
+<hr>
+<h2 id="-מרווח-רך--soft-margin-ומרווח-קשה---hard-margin">🔓 מרווח רך – Soft Margin ומרווח קשה - Hard Margin </h2>
+<p>בעולם האמיתי הנתונים לא תמיד מופרדים בצורה מושלמת.</p>
+<p><strong>Soft Margin:</strong></p>
+<ul>
+<li>מאפשר כמה טעויות קטנות</li>
+<li>נותן למודל להיות <strong>גמיש יותר</strong></li>
+<li>עוזר למנוע <strong>Overfitting</strong></li>
+</ul>
+<p><strong>Hard Margin:</strong></p>
+<p>מניחים שהנתונים ניתנים להפרדה בצורה מושלמת – אין שגיאות!</p>
+<p>כלומר: אפשר למצוא קו שמפריד 100% נכון בין הקבוצות.</p>
+<p>מאפיינים:</p>
+<p>לא מאפשר אף טעות (אין נקודות בצד הלא נכון)</p>
+<p>דורש שהנתונים יהיו ליניארית נפרדים (linearly separable)</p>
+<p>מאוד רגיש לרעש — נקודה אחת שגויה יכולה להרוס הכול</p>
+<p>📉 מתי להשתמש:</p>
+<p>רק כשאתה בטוח שאין חפיפה בין המחלקות</p>
+<p>לא מתאים לרוב המקרים האמיתיים</p>
+<img src="svm4.png" style="width: 60%">
+<hr>
+<h2 id="️-פרמטר-c">⚙️ פרמטר C </h2>
+<p>פרמטר חשוב מאוד ב־SVM שמחליט <strong>כמה נאפשר טעויות</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>ערך C</th>
+<th>מה זה עושה?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>גבוה</td>
+<td>פחות סלחני לטעויות (מודל קשיח, פחות גמיש)</td>
+</tr>
+<tr>
+<td>נמוך</td>
+<td>סלחני יותר – מאפשר שגיאות קטנות (מודל כללי יותר)</td>
+</tr>
+</tbody>
+</table>
+<img src="svm5.png" style="width: 80%">
+<hr>
+<h2 id="דוגמא-בפייטון">דוגמא בפייטון </h2>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+<span class="token keyword keyword-import">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword keyword-as">as</span> plt
+<span class="token keyword keyword-from">from</span> sklearn <span class="token keyword keyword-import">import</span> svm
+
+<span class="token comment"># Create a simple dataset for apples and bananas</span>
+<span class="token comment"># Using two features: sweetness (x-axis) and weight (y-axis)</span>
+apples <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">160</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3.5</span><span class="token punctuation">,</span> <span class="token number">145</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+bananas <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">120</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">110</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">7.5</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6.5</span><span class="token punctuation">,</span> <span class="token number">118</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Combine features and create labels (-1 for apples, 1 for bananas)</span>
+X <span class="token operator">=</span> np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span><span class="token punctuation">[</span>apples<span class="token punctuation">,</span> bananas<span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Create and train the SVM model</span>
+<span class="token comment"># Using a linear kernel for simplicity</span>
+clf <span class="token operator">=</span> svm<span class="token punctuation">.</span>SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span><span class="token string">'linear'</span><span class="token punctuation">,</span> C<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span>  <span class="token comment"># clf=classifier</span>
+clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># Extract the model parameters</span>
+w <span class="token operator">=</span> clf<span class="token punctuation">.</span>coef_<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># The weights (normal vector to the hyperplane)</span>
+b <span class="token operator">=</span> clf<span class="token punctuation">.</span>intercept_<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># The bias (b in w·x + b = 0)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Model weights (w): </span><span class="token interpolation"><span class="token punctuation">{</span>w<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Model bias (b): </span><span class="token interpolation"><span class="token punctuation">{</span>b<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># Create a new test point</span>
+test_point <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">135</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># A point with sweetness=5, weight=135</span>
+prediction <span class="token operator">=</span> clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>test_point<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+class_name <span class="token operator">=</span> <span class="token string">"Banana"</span> <span class="token keyword keyword-if">if</span> prediction <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword keyword-else">else</span> <span class="token string">"Apple"</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>class_name<span class="token punctuation">)</span>
+</code></pre><img src="svm7.png" style="width: 80%">
+<p>Output:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Model weights (w): [ 0.18791946 -0.26845638]
+Model bias (b): 33.14765100671113
+Apple
+
+Decision boundary equation: 0.19*x1 + -0.27*x2 + 33.15 = 0
+</code></pre><h2 id="-גרעין--kernel">🌌 גרעין – Kernel </h2>
+<p>כאשר הנתונים <strong>לא ניתנים להפרדה בקו ישר</strong>, נשתמש בקרנלים כדי להפוך את המרחב:</p>
+<ul>
+<li>נבצע <strong>מיפוי ל־מרחב חדש</strong> (לרוב גבוה יותר)</li>
+<li>במרחב החדש – כן ניתן להפריד ביניהם בקו ישר!</li>
+</ul>
+<img src="svm6.png" style="width: 80%">
+<hr>
+<h2 id="-kernel-trick">🎩 Kernel Trick </h2>
+<p>"טריק מתמטי" שמאפשר:</p>
+<ul>
+<li>לחשב את <strong>המכפלה הפנימית במרחב החדש</strong></li>
+<li>בלי באמת לחשב את המיקום החדש של כל נקודה!</li>
+</ul>
+<p>זה חוסך <strong>הרבה מאוד זמן וזיכרון</strong>.</p>
+<p><img src="https://miro.medium.com/max/1400/1*ssR5NtQmwTbqg5A0e0FSxw.png" alt="Kernel Trick Visualization"></p>
+<hr>
+<h2 id="-סוגי-kernels-נפוצים">📌 סוגי Kernels נפוצים: </h2>
+<ul>
+<li><strong>Linear</strong> – מתאים כשאפשר להפריד בקו ישר</li>
+<li><strong>Polynomial</strong> – מתאים כשיש קשרים מורכבים</li>
+<li><strong>RBF (Gaussian)</strong> – ברירת מחדל, מתאים להרבה בעיות</li>
+<li><strong>Sigmoid</strong> – כמו נוירונים ברשת עצבית</li>
+</ul>
+<p><img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_svm_kernels_001.png" alt="Different Kernel Types"></p>
+<hr>
+<h2 id="-דוגמה-קצרה-בקוד-python">🧪 דוגמה קצרה בקוד (Python) </h2>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> sklearn <span class="token keyword keyword-import">import</span> datasets
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>svm <span class="token keyword keyword-import">import</span> SVC
+<span class="token keyword keyword-import">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword keyword-as">as</span> plt
+<span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+<span class="token keyword keyword-from">from</span> mlxtend<span class="token punctuation">.</span>plotting <span class="token keyword keyword-import">import</span> plot_decision_regions
+
+<span class="token comment"># יצירת סט נתונים פשוט</span>
+X<span class="token punctuation">,</span> y <span class="token operator">=</span> datasets<span class="token punctuation">.</span>make_classification<span class="token punctuation">(</span>n_samples<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> n_features<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> 
+                                    n_classes<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> n_informative<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> 
+                                    n_redundant<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># יצירת מודל SVM עם Kernel לינארי</span>
+model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span><span class="token string">'linear'</span><span class="token punctuation">,</span> C<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># הדמיה של תוצאות המודל</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plot_decision_regions<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> clf<span class="token operator">=</span>model<span class="token punctuation">,</span> legend<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># סימון הוקטורים התומכים</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>model<span class="token punctuation">.</span>support_vectors_<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> model<span class="token punctuation">.</span>support_vectors_<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            s<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> facecolors<span class="token operator">=</span><span class="token string">'none'</span><span class="token punctuation">,</span> edgecolors<span class="token operator">=</span><span class="token string">'k'</span><span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'SVM עם גרעין לינארי'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'מאפיין 1'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'מאפיין 2'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><h2 id="-דוגמאות-ויזואליות">📊 דוגמאות ויזואליות </h2>
+<h3 id="השוואה-בין-סוגי-קרנלים-שונים-על-אותו-סט-נתונים">השוואה בין סוגי קרנלים שונים על אותו סט נתונים: </h3>
+<img src="svm9.png" style="width: 80%">
+<hr>
+<h2 id="-דוגמא---בעיית-xor">🔍 דוגמא - בעיית XOR </h2>
+<p>בעיית XOR היא דוגמא קלאסית לנתונים שלא ניתנים להפרדה בקו ישר:</p>
+<p><img src="https://miro.medium.com/max/1400/1*_7OPgojau8hkiPUiHoGK_w.png" alt="XOR Problem"></p>
+<h3 id="עם-קרנל-rbf-ניתן-לפתור-את-בעיית-xor">עם קרנל RBF ניתן לפתור את בעיית XOR: </h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>svm <span class="token keyword keyword-import">import</span> SVC
+<span class="token keyword keyword-import">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword keyword-as">as</span> plt
+<span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+
+<span class="token comment"># סט נתונים של XOR</span>
+X <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># יצירת מודל עם קרנל RBF</span>
+model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span><span class="token string">'rbf'</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+
+<span class="token comment"># הדמיה</span>
+h <span class="token operator">=</span> <span class="token number">0.01</span>
+x_min<span class="token punctuation">,</span> x_max <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1.5</span>
+y_min<span class="token punctuation">,</span> y_max <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1.5</span>
+xx<span class="token punctuation">,</span> yy <span class="token operator">=</span> np<span class="token punctuation">.</span>meshgrid<span class="token punctuation">(</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>x_min<span class="token punctuation">,</span> x_max<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>y_min<span class="token punctuation">,</span> y_max<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+Z <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>np<span class="token punctuation">.</span>c_<span class="token punctuation">[</span>xx<span class="token punctuation">.</span>ravel<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> yy<span class="token punctuation">.</span>ravel<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Z <span class="token operator">=</span> Z<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>xx<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+plt<span class="token punctuation">.</span>contourf<span class="token punctuation">(</span>xx<span class="token punctuation">,</span> yy<span class="token punctuation">,</span> Z<span class="token punctuation">,</span> cmap<span class="token operator">=</span>plt<span class="token punctuation">.</span>cm<span class="token punctuation">.</span>Paired<span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.8</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>X<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token operator">=</span>y<span class="token punctuation">,</span> cmap<span class="token operator">=</span>plt<span class="token punctuation">.</span>cm<span class="token punctuation">.</span>Paired<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'פתרון בעיית XOR באמצעות SVM עם קרנל RBF'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p><img src="https://miro.medium.com/max/1400/1*6HwPal0z7VZ9HRJzoVb5XA.png" alt="XOR Solution with RBF Kernel"></p>
+<hr>
+<h2 id="-שימושים-נפוצים-של-svm">📈 שימושים נפוצים של SVM </h2>
+<ul>
+<li><strong>זיהוי טקסט וכתב יד</strong></li>
+<li><strong>סיווג תמונות</strong></li>
+<li><strong>זיהוי פנים</strong></li>
+<li><strong>חיזוי במדעי הרפואה</strong></li>
+<li><strong>ניתוח רגשות בטקסט</strong></li>
+</ul>
+<p><img src="https://miro.medium.com/max/1400/1*0XjuZBNyTA0XKT7q0YYLXg.png" alt="SVM Applications"></p>
+<h2 id="חלוקה-ל-train-test-ובדיקת-דיוק">חלוקה ל train-test ובדיקת דיוק </h2>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+<span class="token keyword keyword-import">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword keyword-as">as</span> plt
+<span class="token keyword keyword-from">from</span> sklearn <span class="token keyword keyword-import">import</span> svm
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword keyword-import">import</span> train_test_split
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword keyword-import">import</span> classification_report<span class="token punctuation">,</span> confusion_matrix<span class="token punctuation">,</span> accuracy_score
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword keyword-import">import</span> StandardScaler
+<span class="token keyword keyword-import">import</span> seaborn <span class="token keyword keyword-as">as</span> sns
+
+<span class="token comment"># Create a dataset with 20 points manually</span>
+<span class="token comment"># Class 0: Points forming a cluster on the left</span>
+<span class="token comment"># Class 1: Points forming a cluster on the right</span>
+X <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token comment"># 10 points for Class 0</span>
+    <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2.5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">2.5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    
+    <span class="token comment"># 10 points for Class 1</span>
+    <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Create labels (0 for first 10 points, 1 for last 10 points)</span>
+y <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Split the data into training and testing sets (70% train, 30% test)</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">,</span> stratify<span class="token operator">=</span>y<span class="token punctuation">)</span>
+
+<span class="token comment"># Scale the features for better SVM performance</span>
+scaler <span class="token operator">=</span> StandardScaler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X_train_scaled <span class="token operator">=</span> scaler<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>X_train<span class="token punctuation">)</span>
+X_test_scaled <span class="token operator">=</span> scaler<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+
+<span class="token comment"># Create and train the SVM model</span>
+clf <span class="token operator">=</span> svm<span class="token punctuation">.</span>SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span><span class="token string">'linear'</span><span class="token punctuation">,</span> C<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span>
+clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_scaled<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment"># Make predictions on the test set</span>
+y_pred <span class="token operator">=</span> clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test_scaled<span class="token punctuation">)</span>
+
+<span class="token comment"># Evaluate the model</span>
+accuracy <span class="token operator">=</span> accuracy_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+conf_matrix <span class="token operator">=</span> confusion_matrix<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+class_report <span class="token operator">=</span> classification_report<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+
+<span class="token comment"># Print performance metrics</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Model Accuracy: </span><span class="token interpolation"><span class="token punctuation">{</span>accuracy<span class="token punctuation">:</span><span class="token format-spec">.2f</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"\nConfusion Matrix:"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>conf_matrix<span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"\nClassification Report:"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>class_report<span class="token punctuation">)</span>
+
+<span class="token comment"># Plot the confusion matrix as a heatmap</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>conf_matrix<span class="token punctuation">,</span> annot<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> fmt<span class="token operator">=</span><span class="token string">'d'</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'Blues'</span><span class="token punctuation">,</span>
+            xticklabels<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'Class 0'</span><span class="token punctuation">,</span> <span class="token string">'Class 1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            yticklabels<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'Class 0'</span><span class="token punctuation">,</span> <span class="token string">'Class 1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Confusion Matrix'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Predicted Label'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'True Label'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>tight_layout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><img src="svm12.png" style="width: 70%">
+<img src="svm13.png" style="width: 70%">
+<p>Output:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Model Accuracy: 1.00
+
+Confusion Matrix:
+[[3 0]
+ [0 3]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         3
+           1       1.00      1.00      1.00         3
+
+    accuracy                           1.00         6
+   macro avg       1.00      1.00      1.00         6
+weighted avg       1.00      1.00      1.00         6
+</code></pre><h2 id="שימוש-ב--gridsearchcv-למציאת-הפרמטרים-האידיאליים">שימוש ב- GridSearchCV למציאת הפרמטרים האידיאליים </h2>
+<p>The <strong>gamma parameter</strong> is a crucial hyperparameter in SVM that determines the influence of individual training examples. It's primarily used in non-linear kernels like</p>
+<p>RBF (Radial Basis Function), polynomial, and sigmoid</p>
+<p>High gamma values (e.g., 10, 100):</p>
+<p>Creates a decision boundary with "tight" curves around individual data points</p>
+<p>Low gamma values (e.g., 0.001, 0.01):</p>
+<p>Creates a decision boundary with smoother, wider curves</p>
+<img src="svm15.png" style="width: 70%">
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+<span class="token keyword keyword-import">import</span> pandas <span class="token keyword keyword-as">as</span> pd
+<span class="token keyword keyword-import">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword keyword-as">as</span> plt
+<span class="token keyword keyword-from">from</span> sklearn <span class="token keyword keyword-import">import</span> svm<span class="token punctuation">,</span> datasets
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword keyword-import">import</span> train_test_split<span class="token punctuation">,</span> GridSearchCV
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword keyword-import">import</span> classification_report<span class="token punctuation">,</span> confusion_matrix<span class="token punctuation">,</span> accuracy_score
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword keyword-import">import</span> StandardScaler
+<span class="token keyword keyword-import">import</span> seaborn <span class="token keyword keyword-as">as</span> sns
+<span class="token keyword keyword-from">from</span> time <span class="token keyword keyword-import">import</span> time
+
+<span class="token comment"># Load the digits dataset (larger dataset with 1797 samples, 64 features, 10 classes)</span>
+digits <span class="token operator">=</span> datasets<span class="token punctuation">.</span>load_digits<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X <span class="token operator">=</span> digits<span class="token punctuation">.</span>data
+y <span class="token operator">=</span> digits<span class="token punctuation">.</span>target
+
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Dataset shape: </span><span class="token interpolation"><span class="token punctuation">{</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string"> samples, </span><span class="token interpolation"><span class="token punctuation">{</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string"> features"</span></span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Number of classes: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>unique<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># Split the data into training and testing sets (80% train, 20% test)</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">,</span> stratify<span class="token operator">=</span>y<span class="token punctuation">)</span>
+
+<span class="token comment"># Scale the features</span>
+scaler <span class="token operator">=</span> StandardScaler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X_train_scaled <span class="token operator">=</span> scaler<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>X_train<span class="token punctuation">)</span>
+X_test_scaled <span class="token operator">=</span> scaler<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+
+<span class="token comment"># Define a smaller parameter grid to make computation more manageable</span>
+<span class="token comment"># but still diverse enough to show differences between kernels</span>
+param_grid <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'C'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'gamma'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'scale'</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># scale gamma:  1 / (n_features * [variance of X.var])</span>
+    <span class="token string">'kernel'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'linear'</span><span class="token punctuation">,</span> <span class="token string">'rbf'</span><span class="token punctuation">,</span> <span class="token string">'poly'</span><span class="token punctuation">,</span> <span class="token string">'sigmoid'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'degree'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>  <span class="token comment"># Only relevant for poly kernel</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Create an SVM classifier</span>
+svm_clf <span class="token operator">=</span> svm<span class="token punctuation">.</span>SVC<span class="token punctuation">(</span>probability<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set up GridSearchCV</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Starting grid search. This might take a few minutes with this larger dataset..."</span><span class="token punctuation">)</span>
+start_time <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+grid_search <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>
+    estimator<span class="token operator">=</span>svm_clf<span class="token punctuation">,</span>
+    param_grid<span class="token operator">=</span>param_grid<span class="token punctuation">,</span>
+    cv<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>  <span class="token comment"># Reduce to 3-fold cross-validation for speed</span>
+    n_jobs<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>  <span class="token comment"># Use all available cores</span>
+    verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+    scoring<span class="token operator">=</span><span class="token string">'accuracy'</span><span class="token punctuation">,</span>
+    return_train_score<span class="token operator">=</span><span class="token boolean">True</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># Perform the grid search</span>
+grid_search<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train_scaled<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+search_time <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start_time
+
+<span class="token comment"># Print the best parameters</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"\nGrid search completed in </span><span class="token interpolation"><span class="token punctuation">{</span>search_time<span class="token punctuation">:</span><span class="token format-spec">.2f</span><span class="token punctuation">}</span></span><span class="token string"> seconds"</span></span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Best parameters: </span><span class="token interpolation"><span class="token punctuation">{</span>grid_search<span class="token punctuation">.</span>best_params_<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+</code></pre><img src="svm14.png" style="width: 70%">
+<p>Output:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Dataset shape: (1797, 64) - 1797 samples, 64 features
+Number of classes: 10
+Starting grid search. This might take a few minutes with this larger dataset...
+Fitting 3 folds for each of 72 candidates, totalling 216 fits
+
+Grid search completed in 5.38 seconds
+Best parameters: {'C': 10, 'degree': 2, 'gamma': 0.01, 'kernel': 'rbf'}
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
